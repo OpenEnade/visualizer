@@ -1,7 +1,7 @@
 <template>
 
   <section class="course-selector">
-    <h1>Lista de universidades</h1>
+    <h1>Lista de cursos</h1>
 
     <form>
       <div class="form-row">
