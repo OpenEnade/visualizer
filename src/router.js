@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
 import CourseSelector from './components/CourseSelector.vue';
-import Header from './components/Header.vue';
 import Courses from './views/Courses.vue';
 
 Vue.use(Router);
@@ -25,7 +23,7 @@ export default new Router({
     {
       path: '/course-selector',
       name: 'course-selector',
-      component: CourseSelector
-    }
+      component: CourseSelector,
+    },
   ],
 });
