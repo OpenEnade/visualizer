@@ -5,21 +5,30 @@
 
     <form>
       <div class="form-row">
-        <div class="form-group col-sm-3 col-md-3 col-lg-3"></div>
+        <div class="form-group col-sm-3 col-md-3 col-lg-3" />
         <div class="form-group col-sm-6 col-md-6 col-lg-6">
-          <label for="course-selection" class="course-label">Cursos</label>
-          <select class="form-control" id="course" v-model="course">
-            <option disabled value="">Escolha um curso</option>
+          <label
+            for="course-selection"
+            class="course-label">Cursos</label>
+          <select
+            id="course"
+            v-model="course"
+            class="form-control">
+            <option
+              disabled
+              value="">Escolha um curso</option>
             <option>Ciência da Computação</option>
             <option>História</option>
             <option>Sociologia</option>
             <option>Engenharia Mecatrônica</option>
           </select>
         </div>
-        <div class="form-group col-sm-6 col-md-3 col-lg-3"></div>
+        <div class="form-group col-sm-6 col-md-3 col-lg-3" />
       </div>
 
-      <button type="button" class="btn btn-primary">Listar</button>
+      <button
+        type="button"
+        class="btn btn-primary">Listar</button>
     </form>
 
   </section>
@@ -27,28 +36,27 @@
 </template>
 
 <script lang="js">
-export default  {
-name: 'course-selector',
-props: [],
-mounted() {
+export default {
+  name: 'CourseSelector',
+  data() {
+    return {
+      course: '',
+    };
+  },
+  computed: {
 
-},
-data() {
-  return {
-    course: ''
-  }
-},
-methods: {
+  },
+  mounted() {
 
-},
-computed: {
+  },
 
-},
+  updated() {
+    console.log(this.course);
+  },
+  methods: {
 
-updated() {
-  console.log(this.course);
-},
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">
