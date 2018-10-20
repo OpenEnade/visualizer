@@ -1,16 +1,21 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import CourseSelector from './components/CourseSelector.vue';
 import Courses from './views/Courses.vue';
+import UniversitiesList from './views/UniversitiesList.vue';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/courses',
       name: 'courses',
       component: Courses,
+    },
+    {
+      path: '/',
+      name: 'universities-list',
+      component: UniversitiesList,
     },
     {
       path: '/about',
@@ -19,11 +24,6 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-    },
-    {
-      path: '/course-selector',
-      name: 'course-selector',
-      component: CourseSelector,
     },
   ],
 });
