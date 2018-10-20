@@ -10,7 +10,7 @@ import ListFilter from '@/components/ListFilter.vue';
 export default {
   name: 'UniversitiesList',
   components: {
-    ListFilter
+    ListFilter,
   },
 };
 </script>
