@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Courses from './views/Courses.vue';
-import UniversitiesList from './views/UniversitiesList.vue';
+import Dashboard from './views/Dashboard.vue';
 
 Vue.use(Router);
 
@@ -14,8 +14,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'universities-list',
-      component: UniversitiesList,
+      name: 'dashboard',
+      component: Dashboard,
     },
     {
       path: '/about',
