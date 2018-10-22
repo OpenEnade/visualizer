@@ -5,17 +5,17 @@
     <br>
     <div class="container">
       <div
-              class="row justify-content-md-center"
-              style="margin-top: 10%">
+        class="row justify-content-md-center"
+        style="margin-top: 10%">
         <div class="col-md-auto">
           <h1 class="display-3">OpenEnade</h1>
           <p class="lead">Plataforma aberta para consulta dos dados</p>
           <p class="lead">do Exame Nacional de Desempenho de</p>
           <p class="lead">Estudantes</p>
           <router-link
-                  tag="button"
-                  class="btn btn-primary btn-lg btn-block"
-                  to="courses">Pesquise sobre um curso!</router-link>
+            tag="button"
+            class="btn btn-primary btn-lg btn-block"
+            to="courses">Pesquise sobre um curso!</router-link>
         </div>
       </div>
     </div>
@@ -24,16 +24,16 @@
 
 <script>
 
-    import Header from '@/components/Header.vue';
+import Header from '@/components/Header.vue';
 
-    export default {
-        name: 'Home',
-        components: {
-            Header,
-        },
-        methods: {
-        },
-    };
+export default {
+  name: 'Home',
+  components: {
+    Header,
+  },
+  methods: {
+  },
+};
 </script>
 
 <style>
