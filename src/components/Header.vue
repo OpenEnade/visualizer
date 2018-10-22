@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bcg-primary">
       <a
         class="navbar-brand"
-        href="#">Open Enade</a>
+        href="/">Open Enade</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -23,7 +23,7 @@
           <li class="nav-item active">
             <a
               class="nav-link"
-              href="#">Home <span class="sr-only">(current)</span></a>
+              href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a
