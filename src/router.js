@@ -2,28 +2,38 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Courses from './views/Courses.vue';
 import Dashboard from './views/Dashboard.vue';
+import Home from './views/Home.vue';
 
 Vue.use(Router);
 
 export default new Router({
-  routes: [
+  mode: 'history',
+  routes: [{
+      path: '/',
+      redirect: '/home',
+    },
     {
-      path: '/courses',
-      name: 'courses',
+      path: '/home',
+      name: 'home',
+      component: Home,
+    },
+    {
+      path: '/cursos',
+      name: 'cursos',
       component: Courses,
     },
     {
-      path: '/',
-      name: 'dashboard',
-      component: Dashboard,
+      path: '/universidades',
+      name: 'universidades',
+      component: Dashboard
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/sobre',
+      name: 'sobre',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component: () => import( /* webpackChunkName: "about" */ './views/About.vue'),
     },
   ],
 });

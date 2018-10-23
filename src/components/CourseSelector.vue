@@ -1,38 +1,27 @@
 <template>
-
-  <section class="course-selector">
-    <h1>Lista de cursos</h1>
-
+  <b-container fluid>
+    <h2 class="text-center"> Pesquise um curso do seu interesse </h2>
     <form>
       <div class="form-row">
         <div class="form-group col-sm-3 col-md-3 col-lg-3" />
         <div class="form-group col-sm-6 col-md-6 col-lg-6">
-          <label
-            for="course-selection"
-            class="course-label">Cursos</label>
-          <select
-            id="course"
-            v-model="course"
-            class="form-control">
-            <option
-              disabled
-              value="">Escolha um curso</option>
+          <label for="course-selection" class="course-label">Cursos</label>
+          <select id="course" v-model="course" class="form-control">
+            <option disabled value="">Escolha um curso</option>
             <option>Ciência da Computação</option>
             <option>História</option>
             <option>Sociologia</option>
             <option>Engenharia Mecatrônica</option>
           </select>
+          <div style="text-align: center">
+            <button type="button" class="btn btn-primary">Pesquisar
+            </button>
+          </div>
         </div>
         <div class="form-group col-sm-6 col-md-3 col-lg-3" />
       </div>
-
-      <button
-        type="button"
-        class="btn btn-primary">Listar</button>
     </form>
-
-  </section>
-
+  </b-container>
 </template>
 
 <script lang="js">

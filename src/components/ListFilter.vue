@@ -1,6 +1,6 @@
 <template lang="html">
   <section class="filter">
-    <h1>Filtros</h1>
+    <h1 style="text-align: center">Filtros</h1>
 
     <div class="form-row">
       <div class="form-group col-sm-2 col-md-2 col-lg-2"/>
