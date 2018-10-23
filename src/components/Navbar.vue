@@ -1,40 +1,23 @@
 <template>
+    <b-container>
+      <b-navbar toggleable="md" type="light">
 
-  <section class="header">
-    <nav class="navbar navbar-expand-lg navbar-dark bcg-primary">
-      <a
-        class="navbar-brand"
-        href="/">Open Enade</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" />
-      </button>
+        <b-navbar-toggle target="nav_collapse"/>
 
-      <div
-        id="navbarSupportedContent"
-        class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a
-              class="nav-link"
-              href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#">Link</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </section>
+        <b-navbar-brand to="/">OpenEnade</b-navbar-brand>
 
+        <b-collapse is-nav id="nav_collapse">
+
+          <b-navbar-nav>
+                <b-nav-item to="/"> Início </b-nav-item>
+                <b-nav-item to="/cursos"> Pesquisa </b-nav-item>
+                <b-nav-item to="/ranking"> Ranking </b-nav-item>
+                <b-nav-item to="/sobre"> Sobre </b-nav-item>
+                <b-nav-item to="/contato"> Contato </b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>      
+    </b-container>
 </template>
 
 <script>
@@ -48,12 +31,3 @@ export default {
   methods: {},
 };
 </script>
-
-<style scoped lang="scss">
-.header {
-}
-
-.bcg-primary {
-  background-color: #36648b;
-}
-</style>
