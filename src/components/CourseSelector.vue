@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid course-selector">
-    <h2 class="text-center">Lista de cursos </h2>
+  <b-container fluid> 
+    <h2 class="text-center"> Pesquise um curso do seu interesse </h2>
     <form>
       <div class="form-row">
         <div class="form-group col-sm-3 col-md-3 col-lg-3" />
@@ -21,14 +21,14 @@
             <option>Engenharia Mecatrônica</option>
           </select>
           <button
-            type="submit"
-            class="btn btn-primary">Listar
+            type="button"
+            class="btn btn-primary">Pesquisar
           </button>
         </div>
         <div class="form-group col-sm-6 col-md-3 col-lg-3"/>
       </div>
     </form>
-  </div>
+  </b-container>
 </template>
 
 <script lang="js">
