@@ -1,9 +1,6 @@
 <template>
   <b-container role="navigation">
-    <b-nav
-      tabs
-      fill
-      justified>
+    <b-nav tabs fill justified>
       <b-nav-item :to="{ name: 'home'}">
         Início
       </b-nav-item>
@@ -19,12 +16,12 @@
 
 <script>
 export default {
-  name: 'Navbar',
+  name: "Navbar",
   data() {
     return {};
   },
   computed: {},
   mounted() {},
-  methods: {},
+  methods: {}
 };
 </script>
