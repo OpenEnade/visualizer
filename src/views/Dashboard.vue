@@ -1,5 +1,6 @@
 <template>
   <div class="courses">
+    <br>
     <ListFilter />
     <div class="list-university">
       <ListUniversity />

@@ -46,6 +46,20 @@
       </div>
       <div class="form-group col-sm-2 col-md-2 col-lg-2"></div>
     </div>
+    <div class="row">
+      <div class="form-group col-sm-5 col-md-5 col-lg-5"></div>
+      <div class="form-group col-sm-2 col-md-2 col-lg-2">
+        <b-form-select
+          v-b-tooltip.hover
+          title="Filtrar por ano"
+          v-model="year"
+          :options="yearList"
+          class="mb-3"
+          size="sm"/>
+        <div>Selected: <strong>{{ year }}</strong></div>
+      </div>
+      <div class="form-group col-sm-5 col-md-5 col-lg-5"></div>
+    </div>
   
   </section>
 </template>
@@ -62,6 +76,7 @@
         city: '',
         adminCategory: '',
         educationModality: '',
+        year: 2018,
         stateList: [
           {
             value: '',
@@ -130,6 +145,20 @@
             text: 'Educação à Distância'
           },
         ],
+        yearList: [
+          {
+            value: '',
+            text: 'Ano',
+          },
+          {
+            value: 2018,
+            text: 2018
+          },
+          {
+            value: 2017,
+            text: 2017
+          }
+        ]
       }
     },
     methods: {
@@ -142,5 +171,6 @@
 </script>
 
 <style scoped lang="scss">
-  .filter {}
+.filter {
+}
 </style>
