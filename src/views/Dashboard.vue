@@ -9,15 +9,15 @@
 </template>
 
 <script>
-import ListFilter from "@/components/ListFilter.vue";
-import ListUniversity from "@/components/ListUniversity.vue";
+import ListFilter from '@/components/ListFilter.vue';
+import ListUniversity from '@/components/ListUniversity.vue';
 
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {
     ListFilter,
-    ListUniversity
-  }
+    ListUniversity,
+  },
 };
 </script>
 
