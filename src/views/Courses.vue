@@ -9,6 +9,7 @@
 <script>
 // @ is an alias to /src
 import CourseSelector from '@/components/CourseSelector.vue';
+
 export default {
   name: 'Home',
   components: {
