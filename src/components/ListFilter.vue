@@ -1,15 +1,15 @@
 <template lang="html">
   <section class="filter">
     <h1>Filtros</h1>
-  
+
     <div class="form-row">
-      <div class="form-group col-sm-2 col-md-2 col-lg-2"></div>
-       <div class="form-group col-sm-2 col-md-2 col-lg-2">
+      <div class="form-group col-sm-2 col-md-2 col-lg-2"/>
+      <div class="form-group col-sm-2 col-md-2 col-lg-2">
         <b-form-select
           v-b-tooltip.hover
-          title="Filtrar por estado"
           v-model="state"
           :options="stateList"
+          title="Filtrar por estado"
           class="mb-3"
           size="sm"/>
         <div>Selected: <strong>{{ state }}</strong></div>
@@ -17,34 +17,34 @@
       <div class="form-group col-sm-2 col-md-2 col-lg-2">
         <b-form-select
           v-b-tooltip.hover
-          title="Filtrar por município"
           v-model="city"
           :options="cityList"
+          title="Filtrar por município"
           class="mb-3"
           size="sm"/>
         <div>Selected: <strong>{{ city }}</strong></div>
       </div>
       <div class="form-group col-sm-2 col-md-2 col-lg-2">
         <b-form-select
-        v-b-tooltip.hover
-          title="Filtrar por categoria administrativa"
+          v-b-tooltip.hover
           v-model="adminCategory"
           :options="categoryList"
+          title="Filtrar por categoria administrativa"
           class="mb-3"
           size="sm"/>
         <div>Selected: <strong>{{ adminCategory }}</strong></div>
       </div>
-       <div class="form-group col-sm-2 col-md-2 col-lg-2">
+      <div class="form-group col-sm-2 col-md-2 col-lg-2">
         <b-form-select
           v-b-tooltip.hover
-          title="Filtrar por modalidade de ensino"
           v-model="educationModality"
           :options="modalityList"
+          title="Filtrar por modalidade de ensino"
           class="mb-3"
           size="sm"/>
         <div>Selected: <strong>{{ educationModality }}</strong></div>
       </div>
-      <div class="form-group col-sm-2 col-md-2 col-lg-2"></div>
+      <div class="form-group col-sm-2 col-md-2 col-lg-2"/>
     </div>
     <div class="row">
       <div class="form-group col-sm-5 col-md-5 col-lg-5"></div>
