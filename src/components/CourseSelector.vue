@@ -1,9 +1,8 @@
 <template>
 
   <section class="course-selector">
-    <h1>Lista de cursos</h1>
-
     <form>
+      <h2 > <b-badge> Lista de cursos </b-badge></h2>
       <div class="form-row">
         <div class="form-group col-sm-3 col-md-3 col-lg-3" />
         <div class="form-group col-sm-6 col-md-6 col-lg-6">

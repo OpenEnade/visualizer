@@ -1,6 +1,5 @@
 <template>
-  <div class="home">
-    <Header />
+  <div class="home">    
     <br>
     <br>
     <div class="container">
@@ -15,7 +14,7 @@
           <router-link
             tag="button"
             class="btn btn-primary btn-lg btn-block"
-            to="courses">Pesquise sobre um curso!</router-link>
+            to="cursos">Pesquise sobre um curso!</router-link>
         </div>
       </div>
     </div>
@@ -23,16 +22,10 @@
 </template>
 
 <script>
-
-import Header from '@/components/Header.vue';
-
 export default {
   name: 'Home',
-  components: {
-    Header,
-  },
-  methods: {
-  },
+  components: {},
+  methods: {},
 };
 </script>
 
