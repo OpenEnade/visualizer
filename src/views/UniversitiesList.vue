@@ -1,16 +1,16 @@
 <template>
   <div class="courses">
-    <ListFilter/>
+    <ListFilter />
   </div>
 </template>
 
 <script>
-import ListFilter from '@/components/ListFilter.vue';
+import ListFilter from "@/components/ListFilter.vue";
 
 export default {
-  name: 'UniversitiesList',
+  name: "UniversitiesList",
   components: {
-    ListFilter,
-  },
+    ListFilter
+  }
 };
 </script>
