@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid> 
+  <b-container fluid>
     <h2 class="text-center"> Pesquise um curso do seu interesse </h2>
     <form>
       <div class="form-row">
