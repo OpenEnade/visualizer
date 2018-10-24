@@ -7,7 +7,7 @@
         <div class="form-group col-sm-6 col-md-6 col-lg-6">
           <label
             for="course-selection"
-            class="course-label">Cursos</label>
+            class="course-label text-center">Cursos</label>
           <select
             id="course"
             v-model="course"
