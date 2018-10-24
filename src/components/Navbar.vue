@@ -13,6 +13,9 @@
       <b-nav-item :to="{ name: 'sobre' }">
         Sobre
       </b-nav-item>
+      <b-nav-item :to="{ name: 'contact' }">
+        Contato
+      </b-nav-item>
     </b-nav>
   </b-container>
 </template>
