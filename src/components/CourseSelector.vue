@@ -20,12 +20,14 @@
             <option>Sociologia</option>
             <option>Engenharia Mecatrônica</option>
           </select>
-          <button
-            type="button"
-            class="btn btn-primary">Pesquisar
-          </button>
+          <div style="text-align: center">
+            <button
+              type="button"
+              class="btn btn-primary">Pesquisar
+            </button>
+          </div>
         </div>
-        <div class="form-group col-sm-6 col-md-3 col-lg-3"/>
+        <div class="form-group col-sm-6 col-md-3 col-lg-3" />
       </div>
     </form>
   </b-container>
