@@ -6,14 +6,15 @@
       <div
         class="row justify-content-md-center"
         style="margin-top: 10%">
-        <div class="col-md-auto">
+        <div>
           <h1 class="display-3 text-center">Contate-nos</h1>
           <br>
-            <twitter-icon class="row"/>
-
-            <at-icon class="row"/>
-            <facebook-icon class="row"/>
-            <git-hub-icon class="row"/>
+          <div align="center">
+            <label><twitter-icon/>@openenade</label><br>
+            <label><at-icon/>openenade@gmail.com</label><br>
+            <label><facebook-icon/>@openenade</label><br>
+            <label><git-hub-icon/>@openenade</label><br>
+          </div>
         </div>
       </div>
     </b-container>
@@ -44,8 +45,8 @@ export default {
   .display-3 {
     color: #a7a8a8;
   }
-  .d-lg-table-row {
-    padding: 10px;
+  label {
+    padding-bottom: 10px;
   }
 </style>
 
