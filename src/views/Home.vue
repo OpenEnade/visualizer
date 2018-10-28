@@ -7,7 +7,7 @@
         class="row justify-content-md-center"
         style="margin-top: 10%">
         <div class="col-md-auto">
-          <h1 class="display-1 text-center">OpenEnade</h1>
+          <h1 class="lead display-3 text-center">OpenEnade</h1>
           <p class="lead text-center"> Plataforma aberta para consulta dos dados
           do Exame Nacional de Desempenho de Estudantes </p>
           <router-link
@@ -33,7 +33,7 @@ export default {
     margin-bottom: 0px;
     color: #2e6588;
   }
-  .display-1 {
+  .display-3 {
     font-weight: 900;
     color: darkgray;
   }
