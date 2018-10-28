@@ -73,7 +73,7 @@ export default {
       city: '',
       adminCategory: '',
       educationModality: '',
-      year: 2018,
+      year: '',
       stateList: [
         {
           value: '',
@@ -149,11 +149,11 @@ export default {
         },
         {
           value: 2018,
-          text: 2018,
+          text: '2018',
         },
         {
           value: 2017,
-          text: 2017,
+          text: '2017',
         },
       ],
     };

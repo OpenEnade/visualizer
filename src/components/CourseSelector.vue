@@ -23,7 +23,8 @@
           <div style="text-align: center">
             <button
               type="button"
-              class="btn btn-primary">Pesquisar
+              class="btn btn-primary"
+              @click="selectCourse()">Pesquisar
             </button>
           </div>
         </div>
@@ -52,7 +53,9 @@ export default {
     console.log(this.course);
   },
   methods: {
-
+    selectCourse() {
+      this.$router.replace("universidades");
+    }
   },
 };
 </script>
