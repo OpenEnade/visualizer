@@ -1,36 +1,38 @@
 <template>
-  <nav class="container" role="navigation">
-      <ul class="nav nav-fill bg-light justify-content-center">
-        <li class="nav-item">
-          <router-link
-                  class="nav-link"
-                  :to="{ name: 'home'}">
-            Início
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-                  class="nav-link"
-                  :to="{ name: 'cursos' }">
-            Pesquisa
-          </router-link>
-        </li>
+  <nav
+    class="container"
+    role="navigation">
+    <ul class="nav nav-fill bg-light justify-content-center">
+      <li class="nav-item">
+        <router-link
+          :to="{ name: 'home'}"
+          class="nav-link">
+          Início
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link
+          :to="{ name: 'cursos' }"
+          class="nav-link">
+          Pesquisa
+        </router-link>
+      </li>
 
-        <li class="nav-item">
-          <router-link
-                  class="nav-link disabled"
-                  :to="{ name: 'cursos' }">
-            Ranking
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-                  class="nav-link disabled"
-                  :to="{ name: 'sobre' }">
-            Sobre
-          </router-link>
-        </li>
-      </ul>
+      <li class="nav-item">
+        <router-link
+          :to="{ name: 'cursos' }"
+          class="nav-link disabled">
+          Ranking
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link
+          :to="{ name: 'sobre' }"
+          class="nav-link disabled">
+          Sobre
+        </router-link>
+      </li>
+    </ul>
   </nav>
 </template>
 
