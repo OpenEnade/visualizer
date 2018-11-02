@@ -38,14 +38,13 @@
 
 <script>
 export default {
-  name: "course-detail",
-  props: [],
-  mounted() {},
+  name: 'CourseDetail',
   data() {
     return {};
   },
+  computed: {},
+  mounted() {},
   methods: {},
-  computed: {}
 };
 </script>
 
