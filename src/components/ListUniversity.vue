@@ -39,10 +39,10 @@ export default {
       ],
 
       items: [
-        { universityName: 'Universidade Federal de Campina Grande', category: 'Federal', modality: 'Presencial', continousConcept: 5.0, concept: 5, year: 2018 },
-        { universityName: 'Universidade Federal da Paraíba', category: 'Federal', modality: 'Presencial', continousConcept: 4.64, concept: 4, year: 2018 },
-        { universityName: 'Universidade Federal de Pernambuco', category: 'Federal', modality: 'Presencial', continousConcept: 4.02, concept: 4, year: 2018 },
-        { universityName: 'Universidade Estadual da Paraíba', category: 'Federal', modality: 'Presencial', continousConcept: 3.97, concept: 4, year: 2018 },
+        { universityName: 'Universidade Federal de Campina Grande', category: 'Federal', modality: 'Presencial', continuousConcept: 5.0, concept: 5, year: 2018 },
+        { universityName: 'Universidade Federal da Paraíba', category: 'Federal', modality: 'Presencial', continuousConcept: 4.64, concept: 4, year: 2018 },
+        { universityName: 'Universidade Federal de Pernambuco', category: 'Federal', modality: 'Presencial', continuousConcept: 4.02, concept: 4, year: 2018 },
+        { universityName: 'Universidade Estadual da Paraíba', category: 'Federal', modality: 'Presencial', continuousConcept: 3.97, concept: 4, year: 2018 },
       ],
     };
   },
