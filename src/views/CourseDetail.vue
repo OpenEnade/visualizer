@@ -21,6 +21,14 @@
             <th>Média Geral</th>
             <td>100</td>
           </tr>
+          <tr>
+            <th>Modalidade de Ensino</th>
+            <td>Presencial</td>
+          </tr>
+          <tr>
+            <th>Categoria Administrativa</th>
+            <td>Federal</td>
+          </tr>
         </tbody>
       </table>
     </div>
