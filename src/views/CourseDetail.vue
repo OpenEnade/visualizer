@@ -6,7 +6,7 @@
     <hr>
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
-    <div style="margin-left: 4px">
+    <div>
       <table class="table table-borderless">
         <tbody>
           <tr>
