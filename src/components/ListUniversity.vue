@@ -30,17 +30,19 @@ export default {
       fields: [
         { key: 'index', label: '#' },
         { key: 'universityName', label: 'Nome da universidade' },
+        { key: 'category', label: 'Categoria administrativa'},
+        { key: 'modality', label: 'Modalidade de ensino'},
+        { key: 'continuousConcept', label: 'Conceito contínuo'},
         {
-          key: 'concept', label: 'Conceito enade', sortable: true, sortDirection: 'asc',
-        },
+          key: 'concept', label: 'Conceito ENADE', sortable: true, sortDirection: 'asc'},
         { key: 'year', label: 'Ano' },
       ],
 
       items: [
-        { universityName: 'Universidade Federal de Campina Grande', concept: 5, year: 2018 },
-        { universityName: 'Universidade Federal da Paraíba', concept: 4, year: 2018 },
-        { universityName: 'Universidade Federal de Pernambuco', concept: 4, year: 2018 },
-        { universityName: 'Universidade Estadual da Paraíba', concept: 4, year: 2018 },
+        { universityName: 'Universidade Federal de Campina Grande', category: 'Federal', modality: 'Presencial', continousConcept: 5.0, concept: 5, year: 2018 },
+        { universityName: 'Universidade Federal da Paraíba', category: 'Federal', modality: 'Presencial', continousConcept: 4.64, concept: 4, year: 2018 },
+        { universityName: 'Universidade Federal de Pernambuco', category: 'Federal', modality: 'Presencial', continousConcept: 4.02, concept: 4, year: 2018 },
+        { universityName: 'Universidade Estadual da Paraíba', category: 'Federal', modality: 'Presencial', continousConcept: 3.97, concept: 4, year: 2018 },
       ],
     };
   },
