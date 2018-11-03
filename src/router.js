@@ -5,6 +5,7 @@ import Dashboard from './views/Dashboard.vue';
 import Home from './views/Home.vue';
 import About from './views/About.vue';
 import Contact from './views/Contact.vue';
+import CourseDetail from './views/CourseDetail.vue';
 
 Vue.use(Router);
 
@@ -12,12 +13,18 @@ export default new Router({
   mode: 'history',
   routes: [{
     path: '/',
-    redirect: '/home',
+    // redirect: '/home',,
+    redirect: '/detail',
   },
   {
     path: '/home',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/detail',
+    name: 'detail',
+    component: CourseDetail,
   },
   {
     path: '/about',
