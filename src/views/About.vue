@@ -1,11 +1,9 @@
 <template>
   <div class="home">
-    <br>
-    <br>
     <b-container flex>
       <div class="row" style="margin-top: 10%">
         <div class="col-md-12">
-          <h1 class="display-1">OpenEnade</h1>
+          <h1 class="display-1">Open Enade</h1>
           <br>
           <h1 class="display-4">O que é</h1>
           <p class="lead col-md-12"> Plataforma aberta para consulta dos dados

@@ -14,6 +14,7 @@
 <script>
 export default {
   name: "page-header",
+  components: {},
   props: {
     description: String
   },
@@ -31,6 +32,7 @@ export default {
 }
 
 .display-4 {
+  font-weight: bold;
   color: darkgray;
 }
 

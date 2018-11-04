@@ -1,17 +1,19 @@
 <template>
   <div id="App">
-    <CustomHeader />
-    <router-view/>
+    <Navbar />
+    <router-view />
   </div>
 </template>
 
 <script>
-import CustomHeader from '@/components/CustomHeader.vue';
+import CustomHeader from "@/components/CustomHeader.vue";
+import Navbar from "@/components/Navbar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     CustomHeader,
-  },
+    Navbar
+  }
 };
 </script>
