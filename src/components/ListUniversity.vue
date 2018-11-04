@@ -32,7 +32,7 @@ export default {
         { key: 'universityName', label: 'Nome da universidade' },
         { key: 'category', label: 'Categoria administrativa' },
         { key: 'modality', label: 'Modalidade de ensino' },
-        { key: 'continuousConcept', label: 'Conceito contínuo' },
+        { key: 'continuousConcept', label: 'Conceito contínuo', sortable: true },
         {
           key: 'concept', label: 'Conceito ENADE', sortable: true, sortDirection: 'asc',
         },
