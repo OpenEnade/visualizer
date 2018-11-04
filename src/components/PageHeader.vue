@@ -4,7 +4,7 @@
     <div class="container">
       <div class="jumbotron">
         <h1 class="display-4">Open Enade</h1>
-        <p class="lead">{{description}}</p>
+        <p class="lead">{{ description }}</p>
       </div>
     </div>
   </section>
@@ -13,17 +13,19 @@
 
 <script>
 export default {
-  name: "page-header",
+  name: 'PageHeader',
   components: {},
   props: {
-    description: String
+    description: String,
+    default:
+      'Plataforma aberta para consulta dos dados do Exame Nacional de Desempenho de Estudantes',
   },
-  mounted() {},
   data() {
     return {};
   },
+  computed: {},
+  mounted() {},
   methods: {},
-  computed: {}
 };
 </script>
 

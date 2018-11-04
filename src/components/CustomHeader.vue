@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import NavbarC from "@/components/Navbar.vue";
+import NavbarC from '@/components/Navbar.vue';
 
 export default {
-  name: "CustomHeader",
+  name: 'CustomHeader',
   components: {
-    NavbarC
-  }
+    NavbarC,
+  },
 };
 </script>
 
