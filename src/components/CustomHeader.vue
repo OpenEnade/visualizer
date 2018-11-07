@@ -17,8 +17,8 @@ export default {
 };
 </script>
 
-<style>
-    .jumbotron {
-        max-height: 100px;
-    }
+<style scoped>
+.jumbotron {
+  max-height: 100px;
+}
 </style>

@@ -7,7 +7,7 @@
         class="row justify-content-md-center"
         style="margin-top: 10%">
         <div class="col-md-auto">
-          <h1 class="lead display-3 text-center">OpenEnade</h1>
+          <h1 class="lead display-3 text-center">Open Enade</h1>
           <p class="lead text-center"> Plataforma aberta para consulta dos dados
           do Exame Nacional de Desempenho de Estudantes </p>
           <router-link
@@ -28,16 +28,16 @@ export default {
 };
 </script>
 
-<style>
-  p {
-    margin-bottom: 0px;
-    color: #2e6588;
-  }
-  .display-3 {
-    font-weight: 900;
-    color: darkgray;
-  }
-  button {
-    margin-top: 5%;
-  }
+<style scoped>
+p {
+  margin-bottom: 0px;
+  color: #2e6588;
+}
+.display-3 {
+  font-weight: bold;
+  color: darkgray;
+}
+button {
+  margin-top: 5%;
+}
 </style>

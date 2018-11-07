@@ -73,7 +73,7 @@ export default {
       city: '',
       adminCategory: '',
       educationModality: '',
-      year: 2018,
+      year: '',
       stateList: [
         {
           value: '',
