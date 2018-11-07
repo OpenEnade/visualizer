@@ -14,24 +14,13 @@
 
 <style scoped>
     .footer {
-        position: absolute;
-        right: 0;
+        position: fixed;
         bottom: 0;
-        left: 0;
         padding: 1rem;
         background-color: #efefef;
         text-align: center;
         color: #aec3d8;
         width: 100%;
+        height: 50px;
     }
-    .doido {
-        position: sticky;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        padding: 10px;
-        background-color: #efefef;
-        text-align: center;
-    }
-
 </style>
