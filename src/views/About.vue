@@ -9,7 +9,7 @@
         <h4>Objetivo</h4>
         <p class="lead">Disponibilizar um mecanismo rápido e pátrico para
         consulta e comparação do rendimento dos concluintes de universidades brasileiras a
-        partir da nota do <Enade class=""/></p>
+        partir da nota do Enade</p>
       </div>
     </div>
   </div>
