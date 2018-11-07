@@ -10,10 +10,14 @@
           <h1 class="display-3 text-center">Contate-nos</h1>
           <br>
           <div align="center">
-            <label><twitter-icon/>@openenade</label><br>
-            <label><at-icon/>openenade@gmail.com</label><br>
-            <label><facebook-icon/>@openenade</label><br>
-            <label><git-hub-icon/>@openenade</label><br>
+            <label>
+            <twitter-icon />@openenade</label><br>
+            <label>
+            <at-icon />openenade@gmail.com</label><br>
+            <label>
+            <facebook-icon />@openenade</label><br>
+            <label>
+            <git-hub-icon />@openenade</label><br>
           </div>
         </div>
       </div>
@@ -41,12 +45,12 @@ export default {
 };
 </script>
 
-<style>
-  .display-3 {
-    color: #a7a8a8;
-  }
-  label {
-    padding-bottom: 10px;
-  }
+<style scoped>
+.display-3 {
+  color: #a7a8a8;
+}
+label {
+  padding-bottom: 10px;
+}
 </style>
 

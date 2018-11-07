@@ -5,7 +5,8 @@ import Dashboard from './views/Dashboard.vue';
 import Home from './views/Home.vue';
 import About from './views/About.vue';
 import Contact from './views/Contact.vue';
-import CourseDetail from './views/CourseDetail.vue';
+import CourseDetail from './components/CourseDetail.vue';
+import PageHeader from './components/PageHeader.vue';
 
 Vue.use(Router);
 
@@ -13,8 +14,8 @@ export default new Router({
   mode: 'history',
   routes: [{
     path: '/',
-    // redirect: '/home',,
-    redirect: '/detail',
+    redirect: '/home',
+    // redirect: '/detalhes',,
   },
   {
     path: '/home',
@@ -22,7 +23,7 @@ export default new Router({
     component: Home,
   },
   {
-    path: '/detail',
+    path: '/detalhes',
     name: 'detail',
     component: CourseDetail,
   },

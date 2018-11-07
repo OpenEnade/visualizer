@@ -1,15 +1,15 @@
 <template>
-    <div class="footer">
-        <div class="container">
-            <h6>© 2018 OpenEnade</h6>
-        </div>
+  <div class="footer">
+    <div class="container">
+      <h6>© 2018 OpenEnade</h6>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "Footer"
-    }
+export default {
+  name: 'Footer',
+};
 </script>
 
 <style scoped>
