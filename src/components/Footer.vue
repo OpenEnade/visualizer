@@ -8,19 +8,20 @@
 
 <script>
 export default {
-  name: 'Footer',
+  name: "Footer"
 };
 </script>
 
 <style scoped>
-    .footer {
-        position: fixed;
-        bottom: 0;
-        padding: 1rem;
-        background-color: #efefef;
-        text-align: center;
-        color: #aec3d8;
-        width: 100%;
-        height: 50px;
-    }
+.footer {
+  margin-top: 5%;
+  position: relative;
+  bottom: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: #aec3d8;
+  width: 100%;
+  height: 50px;
+}
 </style>
