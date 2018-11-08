@@ -97,7 +97,6 @@
     },
   
     updated() {
-      console.log(this.detailsShowing);
     },
   };
 </script>
