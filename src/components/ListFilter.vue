@@ -2,55 +2,48 @@
   <section class="filter">
     <h1 style="text-align: center">Filtros</h1>
     <div class="form-row">
-      <div class="form-group col-sm-0 col-md-2 col-lg-2" />
-      <div class="form-group col-sm-6 col-md-2 col-lg-2">
+      <div class="form-group col-sm-0 col-md-2 col-lg-2"></div>
+      <div class="form-group col-sm-12 col-md-2 col-lg-2">
         <select class="form-control form-control-sm" v-b-tooltip.hover title="Filtrar por estado" id="selectState" v-model="state" @change="filtrar()">
               <option disabled value="">Estado</option>
               <option v-for="(item, index) in stateList" :key="item.value">{{item.value}}</option>
             </select>
         <div>Selected: <strong>{{ state }}</strong></div>
       </div>
-      <div class="form-group col-sm-6 col-md-2 col-lg-2">
+      <div class="form-group col-sm-0 col-md-1 col-lg-1"></div>
+      <div class="form-group col-sm-12 col-md-2 col-lg-2">
         <select class="form-control form-control-sm" v-b-tooltip.hover title="Filtrar por município" id="selectCity" v-model="city" @change="filtrar()">
               <option disabled value="">Município</option>
               <option v-for="(item, index) in stateList" :key="item.value">{{item.value}}</option>
             </select>
         <div>Selected: <strong>{{ city }}</strong></div>
       </div>
-      <div class="form-group col-sm-6 col-md-2 col-lg-2">
+      <div class="form-group col-sm-0 col-md-1 col-lg-1"></div>
+      <div class="form-group col-sm-12 col-md-2 col-lg-2">
         <select class="form-control form-control-sm" v-b-tooltip.hover title="Filtrar por categoria administrativa" id="selectCity" v-model="category" @change="filtrar()">
               <option disabled value="">Categoria administrativa</option>
               <option v-for="(item, index) in categoryList" :key="item.value">{{item.value}}</option>
             </select>
         <div>Selected: <strong>{{ category }}</strong></div>
       </div>
-      <div class="form-group col-sm-6 col-md-2 col-lg-2">
-        <!-- <b-form-select
-              v-b-tooltip.hover
-              v-model="modality"
-              :options="modalityList"
-              title="Filtrar por modalidade de ensino"
-              class="mb-3"
-              size="sm"
-              v-on:change="filter(modality)"/> -->
-        <select class="form-control form-control-sm" v-b-tooltip.hover title="Filtrar por modalidade de ensino" id="selectCity" v-model="modality" @change="filtrar()">
+    </div>
+    <div class="form-row justify-content-around">
+      <div class="form-group col-sm-0 col-md-2 col-lg-2"></div>
+      <div class="form-group col-sm-12 col-md-2 col-lg-2">
+      <select class="form-control form-control-sm" v-b-tooltip.hover title="Filtrar por modalidade de ensino" id="selectCity" v-model="modality" @change="filtrar()">
                 <option disabled value="">Modalidade de ensino</option>
                 <option v-for="(item, index) in modalityList" :key="item.value">{{item.value}}</option>
             </select>
         <div>Selected: <strong>{{ modality }}</strong></div>
       </div>
-      <div class="form-group col-sm-0 col-md-2 col-lg-2" />
-    </div>
-    <div class="form-row">
-      <div class="form-group col-sm-4 col-md-5 col-lg-5" />
-      <div class="form-group col-sm-4 col-md-2 col-lg-2">
+      <div class="form-group col-sm-12 col-md-2 col-lg-2">
           <select class="form-control form-control-sm" v-b-tooltip.hover title="Filtrar por ano" id="selectCity" v-model="year" @change="filtrar()">
               <option disabled value="">Ano</option>
               <option v-for="(item, index) in yearList" :key="item.value">{{item.value}}</option>
           </select>
         <div>Selected: <strong>{{ year }}</strong></div>
       </div>
-      <div class="form-group col-sm-4 col-md-5 col-lg-5" />
+      <div class="form-group col-sm-0 col-md-2 col-lg-2"></div>
     </div>
   
   </section>
