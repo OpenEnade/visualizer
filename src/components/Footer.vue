@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="container">
-      <h6>© 2018 OpenEnade</h6>
+      <i class="fab fa-github"><a href="https://github.com/OpenEnade" style="padding-left: 10px">Open Enade</a></i>
     </div>
   </div>
 </template>
@@ -18,9 +18,7 @@ export default {
   position: relative;
   bottom: 0;
   padding: 1rem;
-  background-color: #efefef;
   text-align: center;
-  color: #aec3d8;
   width: 100%;
   height: 50px;
 }
