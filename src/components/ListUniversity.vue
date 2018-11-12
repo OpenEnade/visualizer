@@ -18,7 +18,7 @@
           </thead>
           <tbody is="transition-group" enter-active-class="animated zoomIn faster">
             <tr v-for="(item, index) in items" :key="item.universityName">
-              <input class="input-checkbox" type="checkbox" :value="item" v-model="checked">
+              <input class="input-checkbox" type="checkbox" :value="item" v-model="checked" v-b-tooltip.hover title="Selecione até três universidades para comparar" :disabled="comparable">
               <th scope="row">{{index}}</th>
               <td>{{ item.universityName }}</td>
               <td>{{ item.category}}</td>
@@ -87,7 +87,9 @@
       };
     },
     computed: {
-  
+      comparable: function() {
+        return this.checked.length > 2;
+      }
     },
     mounted() {
   
