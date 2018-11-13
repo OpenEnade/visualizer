@@ -18,7 +18,7 @@
           </thead>
           <tbody is="transition-group" enter-active-class="animated zoomIn faster">
             <tr v-for="(item, index) in items" :key="item.universityName">
-              <input class="input-checkbox" type="checkbox" :value="item" v-model="checked" v-b-tooltip.hover title="Selecione até três universidades para comparar" :disabled="comparable">
+              <input class="input-checkbox" type="checkbox" :value="item" v-model="checkedUniversities" v-b-tooltip.hover title="Selecione até 3 universidades para comparar" :disabled="!selectable">
               <th scope="row">{{index}}</th>
               <td>{{ item.universityName }}</td>
               <td>{{ item.category}}</td>
@@ -29,7 +29,10 @@
             </tr>
           </tbody>
         </table>
-        <span>{{checked}}</span>
+        <div class="btn-compare" v-if="comparable">
+          <button type="button" class="btn btn-outline-primary">Comparar</button>
+        </div>
+        <span>{{checkedUniversities}}</span>
 </template>
 
     
@@ -42,7 +45,7 @@
     universityName: 'list-university',
     data() {
       return { 
-        checked: [],
+        checkedUniversities: [],
         items: [{
             universityName: 'Universidade Federal de Campina Grande',
             category: 'Federal',
@@ -87,15 +90,17 @@
       };
     },
     computed: {
+      selectable: function() {
+        return this.checkedUniversities.length < 3;
+      },
       comparable: function() {
-        return this.checked.length > 2;
-      }
+        return this.checkedUniversities.length > 0 && this.checkedUniversities.length <= 3;
+      },
     },
     mounted() {
   
     },
     methods: {
-  
     },
   
     updated() {
@@ -113,5 +118,10 @@
 
 .input-checkbox {
   margin-top: 18px;
+}
+
+.btn-compare {
+  width: 100%;
+  text-align: center;
 }
 </style>
