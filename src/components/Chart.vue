@@ -18,14 +18,26 @@ export default {
   props: ['courses'],
   data() {
     return {
-      chartData: [
-        ['Year', 'UEPB', 'UFPB', 'UFCG'],
-        ['2014', 1000, 400, 200],
-        ['2015', 1170, 460, 250],
-        ['2016', 660, 1120, 300],
-        ['2017', 1030, 540, 350],
-      ],
+      chartData: [],
     };
+  },
+  mounted: async function () {
+    var newChartData = [
+        ['Year']
+    ];
+    var universities = Object.keys(this.courses);
+    universities.map((university) => {
+      newChartData[0].push(university);
+    });
+    var years = Object.keys(this.courses[universities[0]]);
+    await years.map(async (year, index) => {
+      newChartData.push([year]);
+      await universities.map((university) => {
+          var newNote = this.courses[university][year]
+          newChartData[index+1].push(newNote);
+      });
+    });
+    this.chartData = newChartData;
   },
 };
 </script>
