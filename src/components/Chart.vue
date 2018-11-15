@@ -21,20 +21,20 @@ export default {
       chartData: [],
     };
   },
-  mounted: async function () {
-    var newChartData = [
-        ['Year']
+  async mounted() {
+    const newChartData = [
+      ['Year'],
     ];
-    var universities = Object.keys(this.courses);
+    const universities = Object.keys(this.courses);
     universities.map((university) => {
       newChartData[0].push(university);
     });
-    var years = Object.keys(this.courses[universities[0]]);
+    const years = Object.keys(this.courses[universities[0]]);
     await years.map(async (year, index) => {
       newChartData.push([year]);
       await universities.map((university) => {
-          var newNote = this.courses[university][year]
-          newChartData[index+1].push(newNote);
+        const newNote = this.courses[university][year];
+        newChartData[index + 1].push(newNote);
       });
     });
     this.chartData = newChartData;

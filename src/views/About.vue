@@ -1,31 +1,46 @@
 <template>
   <div class="home">
+    <PageHeader description="Mais sobre o Open Enade" />
+
     <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-4">OpenEnade</h1>
-        <h4>O que é</h4>
-        <p class="lead"> Plataforma aberta para consulta dos dados
-        do Exame Nacional de Desempenho de Estudantes.</p>
-        <h4>Objetivo</h4>
-        <p class="lead">Disponibilizar um mecanismo rápido e pátrico para
-        consulta e comparação do rendimento dos concluintes de universidades brasileiras a
-        partir da nota do Enade</p>
-      </div>
+      <h2 class="display-4 header">O que é</h2>
+      <p class="lead"> Plataforma aberta para consulta dos dados
+      do Exame Nacional de Desempenho de Estudantes.</p>
+      <br>
+      <h2 class="display-4 header">Objetivo</h2>
+      <p class="lead">Disponibilizar um mecanismo rápido e pátrico para
+      consulta e comparação do rendimento dos concluintes de universidades brasileiras a
+      partir da nota do Enade</p>
     </div>
   </div>
+
 </template>
 
 <script>
+import PageHeader from '@/components/PageHeader.vue';
+
 export default {
   name: 'About',
+  components: {
+    PageHeader,
+  },
 };
 </script>
 
+
 <style>
-  .jumbotron {
-    background: white;
-    padding-top: 26.5px;
-    padding-bottom: 26.5px;
-    line-height: 27px;
-  }
+.jumbotron {
+  background: white;
+  padding-top: 26.5px;
+  padding-bottom: 26.5px;
+  line-height: 27px;
+}
+
+.header {
+  color: #2e6588;
+}
+
+.lead {
+  font-weight: bold;
+}
 </style>
