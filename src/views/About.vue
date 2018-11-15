@@ -5,25 +5,25 @@
     <div class="jumbotron">
       <h2 class="display-4 header">O que é</h2>
       <p class="lead"> Plataforma aberta para consulta dos dados
-        do Exame Nacional de Desempenho de Estudantes.</p>
+      do Exame Nacional de Desempenho de Estudantes.</p>
       <br>
       <h2 class="display-4 header">Objetivo</h2>
       <p class="lead">Disponibilizar um mecanismo rápido e pátrico para
-        consulta e comparação do rendimento dos concluintes de universidades brasileiras a
-        partir da nota do Enade</p>
+      consulta e comparação do rendimento dos concluintes de universidades brasileiras a
+      partir da nota do Enade</p>
     </div>
   </div>
 
 </template>
 
 <script>
-import PageHeader from "@/components/PageHeader.vue";
+import PageHeader from '@/components/PageHeader.vue';
 
 export default {
-  name: "About",
+  name: 'About',
   components: {
-    PageHeader
-  }
+    PageHeader,
+  },
 };
 </script>
 

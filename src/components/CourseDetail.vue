@@ -14,7 +14,7 @@
             <td>2018</td>
             <th>Média Geral</th>
             <td>100</td>
-          <tr>
+          </tr><tr>
             <th>Conceito ENADE</th>
             <td>5.0</td>
             <th>Conceito contínuo</th>
@@ -47,13 +47,13 @@
 
 <script>
 export default {
-  name: "CourseDetail",
+  name: 'CourseDetail',
   data() {
     return {};
   },
   computed: {},
   mounted() {},
-  methods: {}
+  methods: {},
 };
 </script>
 
