@@ -8,28 +8,28 @@
 </template>
 
 <script lang="js">
-  import PageHeader from '@/components/PageHeader.vue';
+import PageHeader from '@/components/PageHeader.vue';
 
-  export default  {
-    name: 'comparison',
-    components: {
-      PageHeader
-    },
-    mounted() {
+export default {
+  name: 'Comparison',
+  components: {
+    PageHeader,
+  },
+  data() {
+    return {
 
-    },
-    data() {
-      return {
+    };
+  },
+  computed: {
 
-      }
-    },
-    methods: {
+  },
+  mounted() {
 
-    },
-    computed: {
+  },
+  methods: {
 
-    }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">

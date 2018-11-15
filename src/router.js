@@ -5,7 +5,7 @@ import Dashboard from './views/Dashboard.vue';
 import Home from './views/Home.vue';
 import About from './views/About.vue';
 import CourseDetail from './components/CourseDetail.vue';
-import PageHeader from './components/PageHeader.vue';
+import Comparison from './views/Comparison.vue';
 
 Vue.use(Router);
 
@@ -44,6 +44,11 @@ export default new Router({
       path: '/universidades',
       name: 'universidades',
       component: Dashboard,
+    },
+    {
+      path: '/comparacao',
+      name: 'comparacao',
+      component: Comparison,
     },
     {
       path: '/sobre',
