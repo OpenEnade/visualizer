@@ -12,51 +12,51 @@ Vue.use(Router);
 export default new Router({
   mode: 'history',
   routes: [{
-      path: '*',
-      redirect: '/home',
-    },
-    {
-      path: '/',
-      redirect: '/home',
-      // redirect: '/detalhes',,
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: Home,
-    },
-    {
-      path: '/detalhes',
-      name: 'detail',
-      component: CourseDetail,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About,
-    },
-    {
-      path: '/cursos',
-      name: 'cursos',
-      component: Courses,
-    },
-    {
-      path: '/universidades',
-      name: 'universidades',
-      component: Dashboard,
-    },
-    {
-      path: '/comparacao',
-      name: 'comparacao',
-      component: Comparison,
-    },
-    {
-      path: '/sobre',
-      name: 'sobre',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import( /* webpackChunkName: "about" */ './views/About.vue'),
-    },
+    path: '*',
+    redirect: '/home',
+  },
+  {
+    path: '/',
+    redirect: '/home',
+    // redirect: '/detalhes',,
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: Home,
+  },
+  {
+    path: '/detalhes',
+    name: 'detail',
+    component: CourseDetail,
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About,
+  },
+  {
+    path: '/cursos',
+    name: 'cursos',
+    component: Courses,
+  },
+  {
+    path: '/universidades',
+    name: 'universidades',
+    component: Dashboard,
+  },
+  {
+    path: '/comparacao',
+    name: 'comparacao',
+    component: Comparison,
+  },
+  {
+    path: '/sobre',
+    name: 'sobre',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+  },
   ],
 });
