@@ -61,8 +61,7 @@
             </tbody>
           </table>
         </div>
-        <div style="border-left:1px solid rgba(0,0,0,.1); height:600px"></div>
-        <div class="col">Col 2</div>
+        <div class="col">Col 3</div>
       </div>
     </div>
   </section>
@@ -90,8 +89,20 @@
           participants: 90,
           grossScore: 99.90,
           standardScore: 99.99
-
-        }]
+          },
+          {
+            // Uma letra 'u' a mais para mudar a chave do elemento no v-for
+          universityName: 'Uuniversidade Federal de Campina Grande',
+          category: 'Federal',
+          modality: 'Presencial',
+          enadeConcept: 5.0,
+          continuousConcept: 5.0,
+          average: 100.0,
+          subscribed: 90,
+          participants: 90,
+          grossScore: 99.90,
+          standardScore: 99.99
+          }]
       };
     },
     computed: {
