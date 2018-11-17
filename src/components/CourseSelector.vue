@@ -21,10 +21,12 @@
             <option>Engenharia Mecatrônica</option>
           </select>
           <div class="btn-div">
-            <button
-              type="button"
-              class="btn btn-primary">Pesquisar
-            </button>
+            <router-link
+              tag="button"
+              class="btn btn-primary"
+              to="detalhes"
+            >Pesquisar
+            </router-link>
           </div>
         </div>
         <div class="form-group col-sm-6 col-md-3 col-lg-3" />

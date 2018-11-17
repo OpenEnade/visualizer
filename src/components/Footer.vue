@@ -1,14 +1,16 @@
 <template>
   <div class="footer">
     <div class="container">
-      <i class="fab fa-github"><a href="https://github.com/OpenEnade" style="padding-left: 10px">Open Enade</a></i>
+      <i class="fab fa-github"><a
+        href="https://github.com/OpenEnade"
+        style="padding-left: 10px">Open Enade</a></i>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Footer"
+  name: 'Footer',
 };
 </script>
 
