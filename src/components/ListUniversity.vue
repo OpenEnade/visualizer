@@ -26,7 +26,7 @@
               v-b-tooltip.hover
               :value="item"
               v-model="checkedUniversities"
-              :disabled="!selectable"
+              :disabled="checkedUniversities.length >= 3 && checkedUniversities.indexOf(item) == -1"
               class="input-checkbox"
               type="checkbox"
               title="Selecione até 3 universidades para comparar">

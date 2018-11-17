@@ -1,9 +1,10 @@
 <template>
 
   <section class="course-detail">
+    <br>
     <h1>Ciência da Computação</h1>
     <h4 style="margin-left: 4px">Universidade Federal de Campina Grande</h4>
-    <Chart :courses="courses"/>
+    <Chart :courses="courses" />
     <hr>
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
@@ -15,7 +16,8 @@
             <td>2018</td>
             <th>Média Geral</th>
             <td>100</td>
-          </tr><tr>
+          </tr>
+          <tr>
             <th>Conceito ENADE</th>
             <td>5.0</td>
             <th>Conceito contínuo</th>

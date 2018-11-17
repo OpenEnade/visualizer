@@ -40,4 +40,14 @@ p {
 button {
   margin-top: 5%;
 }
+
+.btn-primary {
+  background-color: #36648b;
+  border-color: #36648b;
+}
+
+.btn-primary:hover {
+  background-color: #104e8b;
+  border-color: #104e8b;
+}
 </style>
