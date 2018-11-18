@@ -2,6 +2,7 @@
   <div class="home">
     <PageHeader description="Mais sobre o Open Enade" />
 
+    <div class="container flex">
     <div class="jumbotron">
       <h2 class="display-4 header">O que é</h2>
       <p class="lead"> Plataforma aberta para consulta dos dados
@@ -11,6 +12,7 @@
       <p class="lead">Disponibilizar um mecanismo rápido e pátrico para
       consulta e comparação do rendimento dos concluintes de universidades brasileiras a
       partir da nota do Enade</p>
+    </div>
     </div>
   </div>
 

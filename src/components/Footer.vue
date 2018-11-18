@@ -3,7 +3,7 @@
     <div class="container">
       <i class="fab fa-github"><a
         href="https://github.com/OpenEnade"
-        style="padding-left: 10px">footerText</a></i>
+        style="padding-left: 10px">{{ footerText }}</a></i>
     </div>
   </div>
 </template>
