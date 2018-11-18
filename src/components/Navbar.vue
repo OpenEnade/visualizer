@@ -38,13 +38,7 @@
 
 <script>
 export default {
-  name: 'Navbar',
-  data() {
-    return {};
-  },
-  computed: {},
-  mounted() {},
-  methods: {},
+  name: 'Navbar',  
 };
 </script>
 

@@ -49,10 +49,7 @@
       </div>
       <span>{{ checkedUniversities }}</span>
     </template>
-
-
   </section>
-
 </template>
 
 <script lang="js">
@@ -111,22 +108,11 @@ export default {
     comparable() {
       return this.checkedUniversities.length > 0 && this.checkedUniversities.length <= 3;
     },
-  },
-  mounted() {
-
-  },
-
-  updated() {
-  },
-  methods: {
-  },
+  }
 };
 </script>
 
 <style scoped lang="scss">
-.list-university {
-}
-
 .table {
   text-align: center;
 }
