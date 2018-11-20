@@ -1,6 +1,6 @@
 <template lang="html">
 
-  <section class="comparison">
+  <section class="comparison animated fadeIn slow">
     <PageHeader description="Comparação de cursos" />
 
     <div class="container">
