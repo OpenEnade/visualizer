@@ -1,5 +1,5 @@
 <template>
-  <div class="courses">
+  <div class="courses animated fadeIn slow">
     <Header />
     <PageHeader description="Selecione um curso de seu interesse" />
     <CourseSelector />
@@ -8,14 +8,14 @@
 
 <script>
 // @ is an alias to /src
-import CourseSelector from '@/components/CourseSelector.vue';
-import PageHeader from '@/components/PageHeader.vue';
+import CourseSelector from "@/components/CourseSelector.vue";
+import PageHeader from "@/components/PageHeader.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     CourseSelector,
-    PageHeader,
-  },
+    PageHeader
+  }
 };
 </script>

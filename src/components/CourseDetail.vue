@@ -1,6 +1,6 @@
 <template>
 
-  <section class="course-detail animated zoomIn fast">
+  <section class="course-detail animated fadeIn slow">
     <br>
     <h1>Ciência da Computação</h1>
     <h4 style="margin-left: 4px">Universidade Federal de Campina Grande</h4>

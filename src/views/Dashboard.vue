@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard animated fadeIn slow">
     <PageHeader description="Lista de universidades associadas ao curso selecionado" />
     <div class="list-filter">
       <ListFilter />
@@ -11,17 +11,17 @@
 </template>
 
 <script>
-import ListFilter from '@/components/ListFilter.vue';
-import ListUniversity from '@/components/ListUniversity.vue';
-import PageHeader from '@/components/PageHeader.vue';
+import ListFilter from "@/components/ListFilter.vue";
+import ListUniversity from "@/components/ListUniversity.vue";
+import PageHeader from "@/components/PageHeader.vue";
 
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   components: {
     ListFilter,
     ListUniversity,
-    PageHeader,
-  },
+    PageHeader
+  }
 };
 </script>
 
