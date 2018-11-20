@@ -40,13 +40,18 @@
           </tr>
         </tbody>
       </table>
+      <transition
+         enter-active-class="animated slideInUp fast"
+         leave-active-class="animated slideOutDown faster">
       <div
         v-if="comparable"
         class="btn-compare">
         <button
           type="button"
           class="btn btn-outline-primary">Comparar</button>
+        
       </div>
+      </transition>
       <span>{{ checkedUniversities }}</span>
     </template>
 
@@ -109,7 +114,7 @@ export default {
       return this.checkedUniversities.length < 3;
     },
     comparable() {
-      return this.checkedUniversities.length > 0 && this.checkedUniversities.length <= 3;
+      return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
   },
   mounted() {
