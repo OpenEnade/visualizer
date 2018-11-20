@@ -1,4 +1,4 @@
-
+/* eslint-disable import/no-extraneous-dependencies */
 
 import Vue from 'vue';
 import axios from 'axios';
@@ -9,37 +9,14 @@ import axios from 'axios';
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  // timeout: 60 * 1000, // Timeout
-  // withCredentials: true, // Check cross-site Access-Control
+  baseURL: process.env.baseURL || process.env.apiUrl || 'http://localhost:8080/api',
 };
 
+// eslint-disable-next-line no-underscore-dangle
 const _axios = axios.create(config);
 
-_axios.interceptors.request.use(
-  config =>
-    // Do something before request is sent
-    config
-  ,
-  error =>
-    // Do something with request error
-    Promise.reject(error),
-
-);
-
-// Add a response interceptor
-_axios.interceptors.response.use(
-  response =>
-    // Do something with response data
-    response
-  ,
-  error =>
-    // Do something with response error
-    Promise.reject(error),
-
-);
-
-Plugin.install = function (Vue, options) {
+// eslint-disable-next-line func-names
+Plugin.install = function () {
   Vue.axios = _axios;
   window.axios = _axios;
   Object.defineProperties(Vue.prototype, {

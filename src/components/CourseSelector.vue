@@ -43,19 +43,9 @@ export default {
       course: '',
     };
   },
-  computed: {
-
-  },
-  mounted() {
-
-  },
-
   updated() {
     console.log(this.course);
-  },
-  methods: {
-
-  },
+  }
 };
 </script>
 

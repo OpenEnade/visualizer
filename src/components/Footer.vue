@@ -3,7 +3,7 @@
     <div class="container">
       <i class="fab fa-github"><a
         href="https://github.com/OpenEnade"
-        style="padding-left: 10px">Open Enade</a></i>
+        style="padding-left: 10px">{{ footerText }}</a></i>
     </div>
   </div>
 </template>
@@ -11,6 +11,11 @@
 <script>
 export default {
   name: 'Footer',
+  data() {
+    return {
+      footerText: 'Open Enade'
+    }
+  }
 };
 </script>
 

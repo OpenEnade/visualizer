@@ -19,20 +19,11 @@ export default {
     description: String,
     default:
       'Plataforma aberta para consulta dos dados do Exame Nacional de Desempenho de Estudantes',
-  },
-  data() {
-    return {};
-  },
-  computed: {},
-  mounted() {},
-  methods: {},
+  }
 };
 </script>
 
 <style scoped>
-.page-header {
-}
-
 .display-4 {
   font-weight: bold;
   color: darkgray;
