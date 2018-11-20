@@ -1,5 +1,5 @@
 <template>
-  <div class="courses">
+  <div class="courses animated fadeIn slow">
     <Header />
     <PageHeader description="Selecione um curso de seu interesse" />
     <CourseSelector />

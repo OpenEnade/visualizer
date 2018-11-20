@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard animated fadeIn slow">
     <PageHeader description="Lista de universidades associadas ao curso selecionado" />
     <div class="list-filter">
       <ListFilter />

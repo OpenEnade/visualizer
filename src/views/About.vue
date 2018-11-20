@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home animated fadeIn slow">
     <PageHeader description="Mais sobre o Open Enade" />
 
     <div class="container flex">

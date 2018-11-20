@@ -1,6 +1,6 @@
 <template>
 
-  <section class="course-detail">
+  <section class="course-detail animated fadeIn slow">
     <br>
     <h1>Ciência da Computação</h1>
     <h4 style="margin-left: 4px">Universidade Federal de Campina Grande</h4>
@@ -36,7 +36,7 @@
             <td>90</td>
           </tr>
           <tr>
-            <th>Nota Bruta</th>
+            <th>Nota bruta</th>
             <td>99.90</td>
             <th>Nota padronizada</th>
             <td>99.99</td>
@@ -95,5 +95,9 @@ export default {
   font-weight: bold;
   color: #36648b;
   margin-left: 8px;
+}
+
+th {
+  color: rgb(5, 47, 82);
 }
 </style>

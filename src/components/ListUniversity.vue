@@ -1,5 +1,5 @@
 <template lang="html">
-  <section class="list-university">
+  <section class="list-university animated zoomIn fast">
     <h1>Ciência da Computação</h1>
     <br>
     <template>
@@ -16,9 +16,7 @@
             <th scope="col">Ano</th>
           </tr>
         </thead>
-        <tbody
-          is="transition-group"
-          enter-active-class="animated zoomIn faster">
+        <tbody>
           <tr
             v-for="(item, index) in items"
             :key="item.universityName">
@@ -40,16 +38,24 @@
           </tr>
         </tbody>
       </table>
-      <div
-        v-if="comparable"
-        class="btn-compare">
-        <button
-          type="button"
-          class="btn btn-outline-primary">Comparar</button>
-      </div>
+      <transition
+        enter-active-class="animated slideInUp fast"
+        leave-active-class="animated slideOutDown faster">
+        <div
+          v-if="comparable"
+          class="btn-compare">
+          <button
+            type="button"
+            class="btn btn-outline-primary">Comparar</button>
+
+        </div>
+      </transition>
       <span>{{ checkedUniversities }}</span>
     </template>
+    </transition>
   </section>
+  </transition-group>
+
 </template>
 
 <script lang="js">
@@ -106,7 +112,7 @@ export default {
       return this.checkedUniversities.length < 3;
     },
     comparable() {
-      return this.checkedUniversities.length > 0 && this.checkedUniversities.length <= 3;
+      return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
   }
 };
@@ -124,5 +130,9 @@ export default {
 .btn-compare {
   width: 100%;
   text-align: center;
+}
+
+th {
+  color: rgb(5, 47, 82);
 }
 </style>

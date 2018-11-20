@@ -24,8 +24,7 @@
             <router-link
               tag="button"
               class="btn btn-primary"
-              to="detalhes"
-            >Pesquisar
+              to="detalhes">Pesquisar
             </router-link>
           </div>
         </div>

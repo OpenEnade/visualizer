@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home animated fadeIn slow">
     <br>
     <br>
     <b-container flex>
