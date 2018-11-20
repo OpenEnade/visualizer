@@ -159,12 +159,6 @@ export default {
       ],
     };
   },
-  computed: {
-
-  },
-
-  watch: {},
-  mounted() {},
   methods: {
     filtrar() {
       console.log(this.state);
@@ -174,6 +168,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.filter {
-}
 </style>

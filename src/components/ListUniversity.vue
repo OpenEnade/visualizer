@@ -114,22 +114,11 @@ export default {
     comparable() {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
-  },
-  mounted() {
-
-  },
-
-  updated() {
-  },
-  methods: {
-  },
+  }
 };
 </script>
 
 <style scoped lang="scss">
-.list-university {
-}
-
 .table {
   text-align: center;
 }
