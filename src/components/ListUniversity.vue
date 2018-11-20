@@ -139,4 +139,8 @@ export default {
   width: 100%;
   text-align: center;
 }
+
+th {
+  color: rgb(5, 47, 82);
+}
 </style>
