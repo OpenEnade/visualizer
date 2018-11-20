@@ -11,17 +11,17 @@
 </template>
 
 <script>
-import ListFilter from "@/components/ListFilter.vue";
-import ListUniversity from "@/components/ListUniversity.vue";
-import PageHeader from "@/components/PageHeader.vue";
+import ListFilter from '@/components/ListFilter.vue';
+import ListUniversity from '@/components/ListUniversity.vue';
+import PageHeader from '@/components/PageHeader.vue';
 
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {
     ListFilter,
     ListUniversity,
-    PageHeader
-  }
+    PageHeader,
+  },
 };
 </script>
 
