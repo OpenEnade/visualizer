@@ -1,5 +1,5 @@
 <template lang="html">
-  <section class="list-university">
+  <section class="list-university animated zoomIn fast">
     <h1>Ciência da Computação</h1>
     <br>
     <template>
@@ -16,9 +16,7 @@
             <th scope="col">Ano</th>
           </tr>
         </thead>
-        <tbody
-          is="transition-group"
-          enter-active-class="animated zoomIn faster">
+        <tbody>
           <tr
             v-for="(item, index) in items"
             :key="item.universityName">
@@ -54,9 +52,9 @@
       </transition>
       <span>{{ checkedUniversities }}</span>
     </template>
-
-
+    </transition>
   </section>
+  </transition-group>
 
 </template>
 
