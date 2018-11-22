@@ -1,13 +1,13 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-faded">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="d-flex flex-grow-1">
-        <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-        <a class="navbar-brand d-none d-lg-inline-block" :to="{name:'home'}">
+        <span class="w-100 d-lg-none d-block"/>
+        <router-link class="navbar-brand d-none d-lg-inline-block" :to="{name:'home'}">
             OpenEnade
-        </a>
-        <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+        </router-link>
+        <router-link class="navbar-brand-two mx-auto d-lg-none d-inline-block" :to="{name:'home'}">
             <img src="../assets/logo.png" alt="OpenEnade" height="42" width="42">
-        </a>
+        </router-link>
         <div class="w-100 text-right">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -37,6 +37,9 @@ export default {
 </script>
 
 <style>
+.navbar {
+    background-color: #36648b
+};
 @media (min-width: 768px) {
 .navbar-brand.abs
     {
