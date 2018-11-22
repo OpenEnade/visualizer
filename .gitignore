@@ -1,4 +1,5 @@
-yarn.lock
+/yarn.lock
+.directory
 .DS_Store
 node_modules
 /dist
