@@ -18,7 +18,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="(item, index) in items"
+            v-for="(item, index) in universityList"
             :key="item.universityName">
             <input
               v-b-tooltip.hover
@@ -29,8 +29,8 @@
               type="checkbox"
               title="Selecione até 3 universidades para comparar">
             <th scope="row">{{ index }}</th>
-            <td>{{ item.universityName }}</td>
-            <td>{{ item.category }}</td>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.categoriaAdmin }}</td>
             <td>{{ item.modality }}</td>
             <td>{{ item.continuousConcept }}</td>
             <td>{{ item.concept }}</td>
@@ -59,11 +59,14 @@
 </template>
 
 <script lang="js">
+import ApiService from '@/services/ApiService.js';
+
 export default {
   universityName: 'list-university',
   data() {
     return {
       checkedUniversities: [],
+      universityList: [],
       items: [{
         universityName: 'Universidade Federal de Campina Grande',
         category: 'Federal',
@@ -106,6 +109,12 @@ export default {
       },
       ],
     };
+  },
+  created() {
+    return ApiService.getUniversitiesByCourse(
+      "TECNOLOGIA EM REDES DE COMPUTADORES"
+    ).then(response => (this.universityList = response))
+    .then(() => console.log(this.universityList));
   },
   computed: {
     selectable() {
