@@ -41,8 +41,4 @@ export default {
 .header {
   color: #2e6588;
 }
-
-.lead {
-  font-weight: bold;
-}
 </style>

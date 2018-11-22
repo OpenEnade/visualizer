@@ -1,33 +1,53 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="d-flex flex-grow-1">
-        <span class="w-100 d-lg-none d-block"/>
-        <router-link class="navbar-brand d-none d-lg-inline-block" :to="{name:'home'}">
-            OpenEnade
-        </router-link>
-        <router-link class="navbar-brand-two mx-auto d-lg-none d-inline-block" :to="{name:'home'}">
-            <img src="../assets/logo.png" alt="OpenEnade" height="42" width="42">
-        </router-link>
-        <div class="w-100 text-right">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
+      <span class="w-100 d-lg-none d-block"/>
+      <router-link
+        :to="{name:'home'}"
+        class="navbar-brand d-none d-lg-inline-block">
+        OpenEnade
+      </router-link>
+      <router-link
+        :to="{name:'home'}"
+        class="navbar-brand-two mx-auto d-lg-none d-inline-block">
+        <img
+          src="../assets/logo.png"
+          alt="OpenEnade"
+          height="42"
+          width="42">
+      </router-link>
+      <div class="w-100 text-right">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#myNavbar">
+          <span class="navbar-toggler-icon"/>
+        </button>
+      </div>
     </div>
-    <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
-        <ul class="navbar-nav ml-auto flex-nowrap">
-            <li class="nav-item">
-                <router-link :to="{name:'home'}" class="nav-link m-2 menu-item nav-active">Início</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link :to="{name:'cursos'}" class="nav-link m-2 menu-item">Pesquisa</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link :to="{name:'sobre'}" class="nav-link m-2 menu-item">Sobre</router-link>
-            </li>
-        </ul>
+    <div
+      id="myNavbar"
+      class="collapse navbar-collapse flex-grow-1 text-right">
+      <ul class="navbar-nav ml-auto flex-nowrap">
+        <li class="nav-item">
+          <router-link
+            :to="{name:'home'}"
+            class="nav-link m-2 menu-item nav-active">Início</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link
+            :to="{name:'cursos'}"
+            class="nav-link m-2 menu-item">Pesquisa</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link
+            :to="{name:'sobre'}"
+            class="nav-link m-2 menu-item">Sobre</router-link>
+        </li>
+      </ul>
     </div>
-</nav>
+  </nav>
 </template>
 
 <script>

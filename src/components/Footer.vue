@@ -3,7 +3,7 @@
     <div class="container">
       <i class="fab fa-github"><a
         href="https://github.com/OpenEnade"
-        style="padding-left: 10px">{{ footerText }}</a></i>
+        style="padding-left: 10px; color: white;">{{ footerText }}</a></i>
     </div>
   </div>
 </template>
@@ -21,10 +21,12 @@ export default {
 
 <style scoped>
 .footer {
-  margin-top: 5%;
-  position: relative;
-  bottom: 0;
+  background-color: #36648b;
+  position: fixed;
   padding: 1rem;
+  bottom: 0px;
+  lef: 0px;  
+  right: 0px;
   text-align: center;
   width: 100%;
   height: 50px;
