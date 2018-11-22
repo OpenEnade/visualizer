@@ -16,7 +16,7 @@
     "eslint": "^5.9.0",
     "eslint-plugin-vue": "^4.7.1",
     "graphql": "^0.13.2",
-    "jquery": "^1.12.4",
+    "jquery": "^3.0.0",
     "vue": "^2.5.17",
     "vue-google-charts": "^0.3.2",
     "vue-material-design-icons": "^2.4.0",
