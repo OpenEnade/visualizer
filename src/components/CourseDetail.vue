@@ -4,7 +4,6 @@
     <br>
     <h1>Ciência da Computação</h1>
     <h4 style="margin-left: 4px">Universidade Federal de Campina Grande</h4>
-    <Chart :courses="courses" />
     <hr>
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
@@ -44,42 +43,44 @@
         </tbody>
       </table>
     </div>
+
+    <Chart :courses="courses" />
   </section>
 
 </template>
 
 <script>
-import Chart from './Chart';
+import Chart from "./Chart";
 
 export default {
-  name: 'CourseDetail',
+  name: "CourseDetail",
   components: { Chart },
   data() {
     return {
-      course: 'Ciência da Computação',
+      course: "Ciência da Computação",
       courses: {
         UEPB: {
           2014: 1000,
           2015: 1170,
           2016: 660,
           2017: 1030,
-          2018: 2000,
+          2018: 2000
         },
         UFPB: {
           2014: 400,
           2015: 460,
           2016: 1120,
           2017: 540,
-          2018: 100,
+          2018: 100
         },
         UFCG: {
           2014: 200,
           2015: 250,
           2016: 300,
           2017: 350,
-          2018: 400,
-        },
-      },
+          2018: 400
+        }
+      }
     };
   }
 };
