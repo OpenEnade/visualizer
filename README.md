@@ -31,7 +31,9 @@ yarn run test:unit
 
 ## Using ClientApp with Docker
 
-### How to run with docker command
+### How to run
+
+#### Docker direct command
 
 To access the application: [http://localhost](http://localhost).
 ```
@@ -43,7 +45,7 @@ docker run -idt \
 
 The application will be served in port 80.
 
-### How to run with run.sh script
+#### run.sh script
 
 To access the application: [http://localhost](http://localhost).
 ```
@@ -51,3 +53,9 @@ bash run.sh
 ```
 
 The application will be served in port 80.
+
+### How to build
+
+```
+bash build.sh
+```
