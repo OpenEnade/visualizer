@@ -2,7 +2,7 @@ FROM node:11
 
 RUN git clone https://github.com/OpenEnade/ClientApp.git
 
-WORKDIR ./ClientApp
+WORKDIR /root/ClientApp
 
 RUN yarn install
 
