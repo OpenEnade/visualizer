@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <div class="container">
     <!-- <h2 class="text-center"> Pesquise um curso do seu interesse </h2> -->
     <form>
       <div class="form-row">
@@ -14,11 +14,15 @@
             class="form-control">
             <option
               disabled
+              selected
               value="">Escolha um curso</option>
-            <option>Ciência da Computação</option>
-            <option>História</option>
-            <option>Sociologia</option>
-            <option>Engenharia Mecatrônica</option>
+            <option
+              v-for="curso in listaCursos"
+              :key="curso.codigoCurso"
+              :value="curso.codigoCurso">
+              {{ curso.nome }}
+            </option>
+
           </select>
           <div class="btn-div">
             <router-link
@@ -31,20 +35,27 @@
         <div class="form-group col-sm-6 col-md-3 col-lg-3" />
       </div>
     </form>
-  </b-container>
+  </div>
 </template>
 
 <script lang="js">
+import ApiService from '@/services/ApiService.js';
+
 export default {
   name: 'CourseSelector',
   data() {
     return {
       course: '',
+      listaCursos: [],
     };
   },
+  created() {
+    ApiService.getCourses()
+      .then(response => this.listaCursos = response.data);
+  },
+
   updated() {
-    console.log(this.course);
-  }
+  },
 };
 </script>
 

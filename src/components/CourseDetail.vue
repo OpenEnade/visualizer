@@ -4,7 +4,6 @@
     <br>
     <h1>Ciência da Computação</h1>
     <h4 style="margin-left: 4px">Universidade Federal de Campina Grande</h4>
-    <Chart :courses="courses" />
     <hr>
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
@@ -44,6 +43,8 @@
         </tbody>
       </table>
     </div>
+
+    <Chart :courses="courses" />
   </section>
 
 </template>
@@ -81,7 +82,7 @@ export default {
         },
       },
     };
-  }
+  },
 };
 </script>
 

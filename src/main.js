@@ -1,16 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import '@babel/polyfill';
-import Vue from 'vue';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './plugins/axios';
-import './plugins/bootstrap-vue';
+import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import store from './store';
+import BootstrapVue from 'bootstrap-vue';
 
 Vue.config.productionTip = false;
+Vue.use(BootstrapVue);
 
 new Vue({
   router,
-  store,
   render: h => h(App),
 }).$mount('#App');
