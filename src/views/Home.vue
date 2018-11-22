@@ -2,7 +2,7 @@
   <div class="home animated fadeIn slow">
     <br>
     <br>
-    <b-container flex>
+    <div class="container">
       <div
         class="row justify-content-md-center"
         style="margin-top: 10%">
@@ -16,7 +16,7 @@
             to="cursos">Pesquise sobre um curso!</router-link>
         </div>
       </div>
-    </b-container>
+    </div>
   </div>
 </template>
 

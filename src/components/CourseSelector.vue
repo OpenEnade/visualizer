@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <div class="container">
     <!-- <h2 class="text-center"> Pesquise um curso do seu interesse </h2> -->
     <form>
       <div class="form-row">
@@ -35,7 +35,7 @@
         <div class="form-group col-sm-6 col-md-3 col-lg-3" />
       </div>
     </form>
-  </b-container>
+  </div>
 </template>
 
 <script lang="js">
