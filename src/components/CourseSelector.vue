@@ -5,16 +5,30 @@
       <div class="form-row">
         <div class="form-group col-sm-3 col-md-3 col-lg-3" />
         <div class="form-group col-sm-6 col-md-6 col-lg-6 text-center">
-          <label for="course-selection" class="course-label">Cursos</label>
-          <select id="course" v-model="course" class="form-control">
-            <option disabled selected value="">Escolha um curso</option>
-            <option v-for="curso in listaCursos" :key="curso.codigoCurso" v-bind:value="curso.codigoCurso">
-              {{curso.nome}}
+          <label
+            for="course-selection"
+            class="course-label">Cursos</label>
+          <select
+            id="course"
+            v-model="course"
+            class="form-control">
+            <option
+              disabled
+              selected
+              value="">Escolha um curso</option>
+            <option
+              v-for="curso in listaCursos"
+              :key="curso.codigoCurso"
+              :value="curso.codigoCurso">
+              {{ curso.nome }}
             </option>
 
           </select>
           <div class="btn-div">
-            <router-link tag="button" class="btn btn-primary" to="detalhes">Pesquisar
+            <router-link
+              tag="button"
+              class="btn btn-primary"
+              to="detalhes">Pesquisar
             </router-link>
           </div>
         </div>
@@ -32,16 +46,16 @@ export default {
   data() {
     return {
       course: '',
-      listaCursos: []
+      listaCursos: [],
     };
   },
   created() {
     ApiService.getCourses()
-    .then((response) => this.listaCursos = response['data'])
+      .then(response => this.listaCursos = response.data);
   },
 
   updated() {
-  }
+  },
 };
 </script>
 

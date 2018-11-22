@@ -110,12 +110,6 @@ export default {
       ],
     };
   },
-  created() {
-    return ApiService.getUniversitiesByCourse(
-      "TECNOLOGIA EM REDES DE COMPUTADORES"
-    ).then(response => (this.universityList = response))
-    .then(() => console.log(this.universityList));
-  },
   computed: {
     selectable() {
       return this.checkedUniversities.length < 3;
@@ -123,7 +117,11 @@ export default {
     comparable() {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
-  }
+  },
+  created() {
+    return ApiService.getUniversitiesByCourse('TECNOLOGIA EM REDES DE COMPUTADORES').then(response => (this.universityList = response))
+      .then(() => console.log(this.universityList));
+  },
 };
 </script>
 

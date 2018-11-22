@@ -19,7 +19,7 @@ export default {
     description: String,
     default:
       'Plataforma aberta para consulta dos dados do Exame Nacional de Desempenho de Estudantes',
-  }
+  },
 };
 </script>
 

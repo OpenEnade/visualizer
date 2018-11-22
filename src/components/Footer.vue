@@ -13,9 +13,9 @@ export default {
   name: 'Footer',
   data() {
     return {
-      footerText: 'Open Enade'
-    }
-  }
+      footerText: 'Open Enade',
+    };
+  },
 };
 </script>
 

@@ -11,23 +11,23 @@
 </template>
 
 <script>
-import ListFilter from "@/components/ListFilter.vue";
-import ListUniversity from "@/components/ListUniversity.vue";
-import PageHeader from "@/components/PageHeader.vue";
-import ApiService from "@/services/ApiService.js";
+import ListFilter from '@/components/ListFilter.vue';
+import ListUniversity from '@/components/ListUniversity.vue';
+import PageHeader from '@/components/PageHeader.vue';
+import ApiService from '@/services/ApiService.js';
 
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {
     ListFilter,
     ListUniversity,
-    PageHeader
+    PageHeader,
   },
   data() {
     return {};
   },
 
-  created() {}
+  created() {},
 };
 </script>
 
