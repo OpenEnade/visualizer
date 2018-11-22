@@ -1,20 +1,26 @@
 <template>
-  <div>
+  <div class="main">
     <Navbar />
     <router-view />
-    <Footer />
+    <FooterC />
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
+import FooterC from '@/components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    Footer,
+    FooterC,
   },
 };
 </script>
+
+<style> 
+.main {
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+}
+</style>

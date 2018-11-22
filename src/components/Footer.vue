@@ -1,11 +1,19 @@
 <template>
-  <div class="footer">
+  <footer>
+     <div class="footer">
     <div class="container">
-      <i class="fab fa-github"><a
+      <i class="fab fa-github"></i>
+      <a
         href="https://github.com/OpenEnade"
-        style="padding-left: 10px; color: white;">{{ footerText }}</a></i>
+        style="padding-left: 10px; color: white;"> &copy; {{ footerText }}
+      </a>
     </div>
+    <!-- Copyright -->
+    
+    <!-- Copyright -->
   </div>
+
+  </footer>
 </template>
 
 <script>
@@ -32,3 +40,4 @@ export default {
   height: 50px;
 }
 </style>
+
