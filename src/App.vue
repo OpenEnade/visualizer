@@ -2,25 +2,28 @@
   <div class="main">
     <Navbar />
     <router-view />
+    <br>
+    <br>
+    <br>
     <FooterC />
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue';
-import FooterC from '@/components/Footer.vue';
+import Navbar from "@/components/Navbar.vue";
+import FooterC from "@/components/Footer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Navbar,
-    FooterC,
-  },
+    FooterC
+  }
 };
 </script>
 
-<style> 
+<style>
 .main {
-  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Merriweather", "Helvetica Neue", Arial, sans-serif;
 }
 </style>
