@@ -14,8 +14,7 @@
 
           </select>
           <div class="btn-div">
-            <router-link tag="button" class="btn btn-primary" to="universidades">Pesquisar
-            </router-link>
+            <button class="btn btn-primary" @click.prevent="searchCourse()">Pesquisar</button>
           </div>
         </div>
         <div class="form-group col-sm-6 col-md-3 col-lg-3" />
@@ -35,6 +34,14 @@ export default {
       course: '',
       courses: [],
     };
+  },
+
+  methods: {
+    searchCourse() {
+      if (this.course) {
+        this.$router.replace('universidades')
+      }
+    }
   },
   computed: {
     courseList() {
