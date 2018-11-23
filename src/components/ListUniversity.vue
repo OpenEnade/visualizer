@@ -1,6 +1,6 @@
 <template lang="html">
   <section class="list-university animated zoomIn fast">
-    <h1>Ciência da Computação</h1>
+    <h1>{{courseName}}</h1>
     <br>
     <template>
       <table class="table table-hover">
