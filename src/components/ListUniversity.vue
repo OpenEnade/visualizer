@@ -69,6 +69,47 @@ export default {
       courseName: 'TECNOLOGIA EM REDES DE COMPUTADORES',
       universityList: [],
       courseList: [],
+      // items: [{
+      //   universityName: 'Universidade Federal de Campina Grande',
+      //   category: 'Federal',
+      //   modality: 'Presencial',
+      //   continuousConcept: 5.0,
+      //   concept: 5,
+      //   year: 2018,
+      // },
+      // {
+      //   universityName: 'Universidade Federal da Paraíba',
+      //   category: 'Federal',
+      //   modality: 'Presencial',
+      //   continuousConcept: 4.64,
+      //   concept: 4,
+      //   year: 2018,
+      // },
+      // {
+      //   universityName: 'Universidade Federal de Pernambuco',
+      //   category: 'Federal',
+      //   modality: 'Presencial',
+      //   continuousConcept: 4.02,
+      //   concept: 4,
+      //   year: 2018,
+      // },
+      // {
+      //   universityName: 'Universidade Estadual da Paraíba',
+      //   category: 'Federal',
+      //   modality: 'Presencial',
+      //   continuousConcept: 3.97,
+      //   concept: 4,
+      //   year: 2018,
+      // },
+      // {
+      //   universityName: 'Faculdade de Ciências Sociais Aplicadas',
+      //   category: 'Privada',
+      //   modality: 'Presencial',
+      //   continuousConcept: 3.40,
+      //   concept: 4,
+      //   year: 2018,
+      // },
+      // ],
     };
   },
 
@@ -81,11 +122,9 @@ export default {
       for (let i=0; i<this.universityList.length; i++) {
         this.universityList[i].cursos.forEach(curso => {
           if (curso.nome == courseName) {
-            this.universityList[i]['modalidade'] = curso.modalidade;
+            this.$set(this.universityList[i], 'modalidade', curso.modalidade);
           }
         });
-        // let curso = this.universityList[i].cursos[0];
-        // this.universityList[i]['modalidade'] = curso.modalidade;
         console.log(this.universityList[i]);
       }
     }
@@ -99,7 +138,7 @@ export default {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
   },
-  created() {
+  created () {
    this.getUniversitiesByCourse()
    .then((res) => this.getCoursesModality(this.courseName));
   },
