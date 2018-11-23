@@ -46,7 +46,7 @@
           class="btn-compare">
           <button
             type="button"
-            class="btn btn-outline-primary">Comparar</button>
+            class="btn btn-outline-primary" @click.prevent="compareCourses()">Comparar</button>
 
         </div>
       </transition>
@@ -126,6 +126,12 @@ export default {
           }
         });
         console.log(this.universityList[i]);
+      }
+    },
+
+    compareCourses() {
+      if (this.checkedUniversities) {
+        this.$router.replace('comparacao');
       }
     }
   },
