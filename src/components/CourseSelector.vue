@@ -60,6 +60,7 @@ export default {
 .btn-primary {
   background-color: #36648b;
   border-color: #36648b;
+  border-radius: 300px;
 }
 
 .btn-primary:hover {
