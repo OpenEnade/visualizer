@@ -1,6 +1,6 @@
 <template lang="html">
-  <section class="list-university animated zoomIn fast">
-    <h1>Ciência da Computação</h1>
+  <section class="list-university animated fadeIn slow">
+    <h1>{{ courseName }}</h1>
     <br>
     <template>
       <table class="table table-hover">
@@ -19,7 +19,7 @@
         <tbody>
           <tr
             v-for="(item, index) in universityList"
-            :key="item.universityName">
+            :key="item.codigoIES">
             <input
               v-b-tooltip.hover
               :value="item"
@@ -31,10 +31,10 @@
             <th scope="row">{{ index }}</th>
             <td>{{ item.nome }}</td>
             <td>{{ item.categoriaAdmin }}</td>
-            <td>{{ item.modality }}</td>
+            <td>{{ item.modalidade }}</td>
             <td>{{ item.continuousConcept }}</td>
-            <td>{{ item.concept }}</td>
-            <td>{{ item.year }}</td>
+            <td>{{ item.enadeConcept }}</td>
+            <td>{{ 2017 }}</td>
           </tr>
         </tbody>
       </table>
@@ -46,11 +46,12 @@
           class="btn-compare">
           <button
             type="button"
-            class="btn btn-outline-primary">Comparar</button>
+            class="btn btn-outline-primary"
+            @click.prevent="compareCourses()">Comparar</button>
 
         </div>
       </transition>
-      <span>{{ checkedUniversities }}</span>
+      <!-- <span>{{ checkedUniversities }}</span> -->
     </template>
     </transition>
   </section>
@@ -66,50 +67,13 @@ export default {
   data() {
     return {
       checkedUniversities: [],
+      courseName: '',
       universityList: [],
-      items: [{
-        universityName: 'Universidade Federal de Campina Grande',
-        category: 'Federal',
-        modality: 'Presencial',
-        continuousConcept: 5.0,
-        concept: 5,
-        year: 2018,
-      },
-      {
-        universityName: 'Universidade Federal da Paraíba',
-        category: 'Federal',
-        modality: 'Presencial',
-        continuousConcept: 4.64,
-        concept: 4,
-        year: 2018,
-      },
-      {
-        universityName: 'Universidade Federal de Pernambuco',
-        category: 'Federal',
-        modality: 'Presencial',
-        continuousConcept: 4.02,
-        concept: 4,
-        year: 2018,
-      },
-      {
-        universityName: 'Universidade Estadual da Paraíba',
-        category: 'Federal',
-        modality: 'Presencial',
-        continuousConcept: 3.97,
-        concept: 4,
-        year: 2018,
-      },
-      {
-        universityName: 'Faculdade de Ciências Sociais Aplicadas',
-        category: 'Privada',
-        modality: 'Presencial',
-        continuousConcept: 3.40,
-        concept: 4,
-        year: 2018,
-      },
-      ],
+      courseList: [],
+
     };
   },
+
   computed: {
     selectable() {
       return this.checkedUniversities.length < 3;
@@ -117,10 +81,67 @@ export default {
     comparable() {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
+
+    selectedCourses() {
+      const coursesCodes = [];
+      for (let i = 0; i < this.checkedUniversities.length; i++) {
+        coursesCodes.push(this.checkedUniversities[i].cursos.map(curso => curso.codigoCurso));
+      }
+      return coursesCodes;
+    },
   },
   created() {
-    return ApiService.getUniversitiesByCourse('TECNOLOGIA EM REDES DE COMPUTADORES').then(response => (this.universityList = response))
-      .then(() => console.log(this.universityList));
+    if (localStorage.getItem('cursosComparacao')) {
+      localStorage.removeItem('cursosComparacao');
+    }
+    const course = localStorage.getItem('curso');
+    if (course) {
+      this.courseName = course;
+    }
+    this.getUniversitiesByCourse()
+      .then(res => this.getCoursesModality(this.courseName))
+      .then(() => this.getGrades());
+  },
+
+  updated() {
+  },
+
+  methods: {
+    getUniversitiesByCourse() {
+      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response);
+    },
+
+    getCoursesModality(courseName) {
+      for (let i = 0; i < this.universityList.length; i++) {
+        this.universityList[i].cursos.forEach((curso) => {
+          if (curso.nome == courseName) {
+            this.$set(this.universityList[i], 'modalidade', curso.modalidade);
+          }
+        });
+      }
+    },
+
+    getGrades() {
+      for (let i = 0; i < this.universityList.length; i++) {
+        const university = this.universityList[i];
+        const code = university.codigoIES;
+        const year = 2017;
+        const grades = {};
+        ApiService.getUniversityGradesByYear(code, year)
+          .then((response) => {
+            const gradeInfo = response[0].avaliacao;
+            this.$set(university, 'enadeConcept', gradeInfo.enadeFaixa);
+            this.$set(university, 'continuousConcept', gradeInfo.enadeContinuo);
+          });
+      }
+    },
+
+    compareCourses() {
+      if (this.checkedUniversities) {
+        localStorage.setItem('cursosComparacao', this.selectedCourses);
+        this.$router.replace('comparacao');
+      }
+    },
   },
 };
 </script>
@@ -135,8 +156,10 @@ export default {
 }
 
 .btn-compare {
-  width: 100%;
-  text-align: center;
+  bottom: 55px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 th {

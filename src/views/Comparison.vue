@@ -6,8 +6,10 @@
     <div class="container">
       <div class="row">
         <div class="col" />
-        <div class="col">
-          <h2>Ciência da Computação</h2>
+        <div
+          class="col"
+          style="text-align: center">
+          <h2>{{ course }}</h2>
         </div>
         <div class="col" />
       </div>
@@ -106,6 +108,7 @@ export default {
   },
   data() {
     return {
+      course: '',
       courses: [{
         universityName: 'Universidade Federal de Campina Grande',
         category: 'Federal',
@@ -137,8 +140,9 @@ export default {
   computed: {
 
   },
-  mounted() {
-
+  created() {
+    this.course = localStorage.getItem('curso');
+    console.log(localStorage.getItem('cursosComparacao'));
   },
   methods: {
 

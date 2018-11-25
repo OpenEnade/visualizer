@@ -18,7 +18,6 @@
             v-for="(item, index) in stateList"
             :key="item.value">{{ item.value }}</option>
         </select>
-        <div>Selected: <strong>{{ state }}</strong></div>
       </div>
       <div class="form-group col-sm-0 col-md-1 col-lg-1"/>
       <div class="form-group col-sm-12 col-md-2 col-lg-2">
@@ -36,7 +35,6 @@
             v-for="(item, index) in stateList"
             :key="item.value">{{ item.value }}</option>
         </select>
-        <div>Selected: <strong>{{ city }}</strong></div>
       </div>
       <div class="form-group col-sm-0 col-md-1 col-lg-1"/>
       <div class="form-group col-sm-12 col-md-2 col-lg-2">
@@ -54,7 +52,6 @@
             v-for="(item, index) in categoryList"
             :key="item.value">{{ item.value }}</option>
         </select>
-        <div>Selected: <strong>{{ category }}</strong></div>
       </div>
     </div>
     <div class="form-row justify-content-around">
@@ -74,7 +71,6 @@
             v-for="(item, index) in modalityList"
             :key="item.value">{{ item.value }}</option>
         </select>
-        <div>Selected: <strong>{{ modality }}</strong></div>
       </div>
       <div class="form-group col-sm-12 col-md-2 col-lg-2">
         <select
@@ -91,7 +87,6 @@
             v-for="(item, index) in yearList"
             :key="item.value">{{ item.value }}</option>
         </select>
-        <div>Selected: <strong>{{ year }}</strong></div>
       </div>
       <div class="form-group col-sm-0 col-md-2 col-lg-2"/>
     </div>
@@ -151,10 +146,13 @@ export default {
       ],
       yearList: [
         {
-          value: 2018,
+          value: 2017,
         },
         {
-          value: 2017,
+          value: 2016,
+        },
+        {
+          value: 2015,
         },
       ],
     };

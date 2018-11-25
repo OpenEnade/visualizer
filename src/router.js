@@ -8,7 +8,7 @@ import Comparison from './views/Comparison.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [{
     path: '*',
@@ -21,10 +21,10 @@ export default new Router({
   {
     path: '/home',
     name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+    component: Home,
   },
   {
-    path: '/detalhes',
+    path: '/detalhes/',
     name: 'detail',
     component: CourseDetail,
   },
@@ -49,4 +49,20 @@ export default new Router({
     component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
   },
   ],
+
+
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.path == '/detalhes' || to.path == '/universidades' || to.path == '/comparacao') {
+    if (!localStorage.getItem('curso')) {
+      next('cursos');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;

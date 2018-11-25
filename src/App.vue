@@ -2,6 +2,9 @@
   <div class="main">
     <Navbar />
     <router-view />
+    <br>
+    <br>
+    <br>
     <FooterC />
   </div>
 </template>
@@ -19,8 +22,8 @@ export default {
 };
 </script>
 
-<style> 
+<style>
 .main {
-  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Merriweather", "Helvetica Neue", Arial, sans-serif;
 }
 </style>
