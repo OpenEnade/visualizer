@@ -90,6 +90,7 @@ export default {
 
     compareCourses() {
       if (this.checkedUniversities) {
+        localStorage.setItem('cursosComparacao', this.selectedCourses);
         this.$router.replace('comparacao');
       }
     }
@@ -102,15 +103,30 @@ export default {
     comparable() {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
+
+    selectedCourses() {
+      let coursesCodes = [];
+      for (let i=0; i<this.checkedUniversities.length; i++) {
+        coursesCodes.push(this.checkedUniversities[i].cursos.map((curso) => curso.codigoCurso));
+      }
+      return coursesCodes;
+    }
   },
   created () {
-    let course = localStorage.getItem('curso');
+    if (localStorage.getItem('cursosComparacao')) {
+      localStorage.removeItem('cursosComparacao')
+    }
+    let course = localStorage.getItem('curso');    
     if (course) {
       this.courseName = course;
     }
    this.getUniversitiesByCourse()
    .then((res) => this.getCoursesModality(this.courseName));
   },
+
+  updated() {
+    console.log(this.selectedCourses);
+  }
 };
 </script>
 
