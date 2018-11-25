@@ -9,7 +9,7 @@ export default {
   },
 
   getUniversitiesByCourse(courseName) {
-    return axios.get('/universidades/todas')
+    return axios.get('/universidades')
       .then(response => response.data)
       .then((universidades) => {
         const universidadesByCourse = universidades.filter((universidade) => {

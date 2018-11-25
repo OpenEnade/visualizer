@@ -1,5 +1,5 @@
 <template lang="html">
-  <section class="list-university animated zoomIn fast">
+  <section class="list-university animated fadeIn slow">
     <h1>{{courseName}}</h1>
     <br>
     <template>
@@ -34,7 +34,7 @@
             <td>{{ item.modalidade }}</td>
             <td>{{ item.continuousConcept }}</td>
             <td>{{ item.concept }}</td>
-            <td>{{ item.year }}</td>
+            <td>{{ 2018 }}</td>
           </tr>
         </tbody>
       </table>
@@ -69,47 +69,6 @@ export default {
       courseName: 'TECNOLOGIA EM REDES DE COMPUTADORES',
       universityList: [],
       courseList: [],
-      // items: [{
-      //   universityName: 'Universidade Federal de Campina Grande',
-      //   category: 'Federal',
-      //   modality: 'Presencial',
-      //   continuousConcept: 5.0,
-      //   concept: 5,
-      //   year: 2018,
-      // },
-      // {
-      //   universityName: 'Universidade Federal da Paraíba',
-      //   category: 'Federal',
-      //   modality: 'Presencial',
-      //   continuousConcept: 4.64,
-      //   concept: 4,
-      //   year: 2018,
-      // },
-      // {
-      //   universityName: 'Universidade Federal de Pernambuco',
-      //   category: 'Federal',
-      //   modality: 'Presencial',
-      //   continuousConcept: 4.02,
-      //   concept: 4,
-      //   year: 2018,
-      // },
-      // {
-      //   universityName: 'Universidade Estadual da Paraíba',
-      //   category: 'Federal',
-      //   modality: 'Presencial',
-      //   continuousConcept: 3.97,
-      //   concept: 4,
-      //   year: 2018,
-      // },
-      // {
-      //   universityName: 'Faculdade de Ciências Sociais Aplicadas',
-      //   category: 'Privada',
-      //   modality: 'Presencial',
-      //   continuousConcept: 3.40,
-      //   concept: 4,
-      //   year: 2018,
-      // },
-      // ],
     };
   },
 
@@ -145,6 +104,10 @@ export default {
     },
   },
   created () {
+    let course = localStorage.getItem('curso');
+    if (course) {
+      this.courseName = course;
+    }
    this.getUniversitiesByCourse()
    .then((res) => this.getCoursesModality(this.courseName));
   },

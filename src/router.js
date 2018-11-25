@@ -11,42 +11,49 @@ Vue.use(Router);
 export default new Router({
   mode: 'history',
   routes: [{
-    path: '*',
-    redirect: '/home',
-  },
-  {
-    path: '/',
-    redirect: '/home',
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
-  },
-  {
-    path: '/detalhes',
-    name: 'detail',
-    component: CourseDetail,
-  },
-  {
-    path: '/cursos',
-    name: 'cursos',
-    component: Courses,
-  },
-  {
-    path: '/universidades',
-    name: 'universidades',
-    component: Dashboard,
-  },
-  {
-    path: '/comparacao',
-    name: 'comparacao',
-    component: Comparison,
-  },
-  {
-    path: '/sobre',
-    name: 'sobre',
-    component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-  },
+      path: '*',
+      redirect: '/home',
+    },
+    {
+      path: '/',
+      redirect: '/home',
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home,
+    },
+    {
+      path: '/detalhes/',
+      name: 'detail',
+      component: CourseDetail,
+    },
+    {
+      path: '/cursos',
+      name: 'cursos',
+      component: Courses,
+    },
+    {
+      path: '/universidades',
+      name: 'universidades',
+      component: Dashboard,
+      beforeEnter: (to, from, next) => {
+        if (!localStorage.getItem('curso')) {
+          next('cursos')
+        } else {
+          next()
+        }
+      }
+    },
+    {
+      path: '/comparacao',
+      name: 'comparacao',
+      component: Comparison,
+    },
+    {
+      path: '/sobre',
+      name: 'sobre',
+      component: () => import( /* webpackChunkName: "about" */ './views/About.vue'),
+    },
   ],
 });

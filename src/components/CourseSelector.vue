@@ -39,7 +39,8 @@ export default {
   methods: {
     searchCourse() {
       if (this.course) {
-        this.$router.replace('universidades')
+        localStorage.setItem('curso', this.course);
+        this.$router.replace('universidades');
       }
     }
   },
