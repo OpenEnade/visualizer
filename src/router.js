@@ -54,7 +54,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.path == '/detalhes' || to.path == '/universidades' || to.path == 'comparacao') {
+  if (to.path == '/detalhes' || to.path == '/universidades' || to.path == '/comparacao') {
     if (!localStorage.getItem('curso')) {
       next('cursos')
     } else {

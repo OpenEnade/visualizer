@@ -33,8 +33,8 @@
             <td>{{ item.categoriaAdmin }}</td>
             <td>{{ item.modalidade }}</td>
             <td>{{ item.continuousConcept }}</td>
-            <td>{{ item.concept }}</td>
-            <td>{{ 2018 }}</td>
+            <td>{{ item.enadeConcept }}</td>
+            <td>{{ 2017 }}</td>
           </tr>
         </tbody>
       </table>
@@ -66,9 +66,10 @@ export default {
   data() {
     return {
       checkedUniversities: [],
-      courseName: 'TECNOLOGIA EM REDES DE COMPUTADORES',
+      courseName: '',
       universityList: [],
       courseList: [],
+
     };
   },
 
@@ -84,7 +85,21 @@ export default {
             this.$set(this.universityList[i], 'modalidade', curso.modalidade);
           }
         });
-        console.log(this.universityList[i]);
+      }
+    },
+
+    getGrades() {
+      for (let i=0; i<this.universityList.length; i++) {
+        let university = this.universityList[i];
+        let code = university.codigoIES;
+        let year = 2017;
+        let grades = {};
+        ApiService.getUniversityGradesByYear(code, year)
+        .then(response => {
+          let gradeInfo = response[0]['avaliacao'];
+          this.$set(university, 'enadeConcept', gradeInfo['enadeFaixa']);
+          this.$set(university, 'continuousConcept', gradeInfo['enadeContinuo']);
+        });
       }
     },
 
@@ -121,11 +136,11 @@ export default {
       this.courseName = course;
     }
    this.getUniversitiesByCourse()
-   .then((res) => this.getCoursesModality(this.courseName));
+   .then((res) => this.getCoursesModality(this.courseName))
+   .then(() => this.getGrades())
   },
 
   updated() {
-    console.log(this.selectedCourses);
   }
 };
 </script>

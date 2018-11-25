@@ -23,4 +23,9 @@ export default {
         return universidadesByCourse;
       });
   },
+
+  getUniversityGradesByYear(universityCode, year) {
+    return axios.get(`/notas/filterby?universidade=${universityCode}&beginAno=${year}&endAno=${year}`)
+      .then(response => response.data);
+  }
 };
