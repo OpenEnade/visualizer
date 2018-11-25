@@ -1,23 +1,68 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Courses from './views/Courses.vue';
+import Dashboard from './views/Dashboard.vue';
 import Home from './views/Home.vue';
+import CourseDetail from './components/CourseDetail.vue';
+import Comparison from './views/Comparison.vue';
 
 Vue.use(Router);
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-    },
+const router = new Router({
+  mode: 'history',
+  routes: [{
+    path: '*',
+    redirect: '/home',
+  },
+  {
+    path: '/',
+    redirect: '/home',
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: Home,
+  },
+  {
+    path: '/detalhes/',
+    name: 'detail',
+    component: CourseDetail,
+  },
+  {
+    path: '/cursos',
+    name: 'cursos',
+    component: Courses,
+  },
+  {
+    path: '/universidades',
+    name: 'universidades',
+    component: Dashboard,
+  },
+  {
+    path: '/comparacao',
+    name: 'comparacao',
+    component: Comparison,
+  },
+  {
+    path: '/sobre',
+    name: 'sobre',
+    component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+  },
   ],
+
+
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.path == '/detalhes' || to.path == '/universidades' || to.path == '/comparacao') {
+    if (!localStorage.getItem('curso')) {
+      next('cursos');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;

@@ -1,6 +1,10 @@
+yarn.lock
 .DS_Store
 node_modules
 /dist
+
+/package-lock.json
+.gitignore
 
 # local env files
 .env.local
