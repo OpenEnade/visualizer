@@ -6,7 +6,9 @@
     <div class="container">
       <div class="row">
         <div class="col" />
-        <div class="col" style="text-align: center">
+        <div
+          class="col"
+          style="text-align: center">
           <h2>{{ course }}</h2>
         </div>
         <div class="col" />

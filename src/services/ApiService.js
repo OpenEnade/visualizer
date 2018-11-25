@@ -27,5 +27,5 @@ export default {
   getUniversityGradesByYear(universityCode, year) {
     return axios.get(`/notas/filterby?universidade=${universityCode}&beginAno=${year}&endAno=${year}`)
       .then(response => response.data);
-  }
+  },
 };

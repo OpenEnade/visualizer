@@ -1,6 +1,6 @@
 <template lang="html">
   <section class="list-university animated fadeIn slow">
-    <h1>{{courseName}}</h1>
+    <h1>{{ courseName }}</h1>
     <br>
     <template>
       <table class="table table-hover">
@@ -46,7 +46,8 @@
           class="btn-compare">
           <button
             type="button"
-            class="btn btn-outline-primary" @click.prevent="compareCourses()">Comparar</button>
+            class="btn btn-outline-primary"
+            @click.prevent="compareCourses()">Comparar</button>
 
         </div>
       </transition>
@@ -73,44 +74,6 @@ export default {
     };
   },
 
-  methods: {
-    getUniversitiesByCourse() {
-      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response)
-    },
-
-    getCoursesModality(courseName) {
-      for (let i=0; i<this.universityList.length; i++) {
-        this.universityList[i].cursos.forEach(curso => {
-          if (curso.nome == courseName) {
-            this.$set(this.universityList[i], 'modalidade', curso.modalidade);
-          }
-        });
-      }
-    },
-
-    getGrades() {
-      for (let i=0; i<this.universityList.length; i++) {
-        let university = this.universityList[i];
-        let code = university.codigoIES;
-        let year = 2017;
-        let grades = {};
-        ApiService.getUniversityGradesByYear(code, year)
-        .then(response => {
-          let gradeInfo = response[0]['avaliacao'];
-          this.$set(university, 'enadeConcept', gradeInfo['enadeFaixa']);
-          this.$set(university, 'continuousConcept', gradeInfo['enadeContinuo']);
-        });
-      }
-    },
-
-    compareCourses() {
-      if (this.checkedUniversities) {
-        localStorage.setItem('cursosComparacao', this.selectedCourses);
-        this.$router.replace('comparacao');
-      }
-    }
-  },
-  
   computed: {
     selectable() {
       return this.checkedUniversities.length < 3;
@@ -120,28 +83,66 @@ export default {
     },
 
     selectedCourses() {
-      let coursesCodes = [];
-      for (let i=0; i<this.checkedUniversities.length; i++) {
-        coursesCodes.push(this.checkedUniversities[i].cursos.map((curso) => curso.codigoCurso));
+      const coursesCodes = [];
+      for (let i = 0; i < this.checkedUniversities.length; i++) {
+        coursesCodes.push(this.checkedUniversities[i].cursos.map(curso => curso.codigoCurso));
       }
       return coursesCodes;
-    }
+    },
   },
-  created () {
+  created() {
     if (localStorage.getItem('cursosComparacao')) {
-      localStorage.removeItem('cursosComparacao')
+      localStorage.removeItem('cursosComparacao');
     }
-    let course = localStorage.getItem('curso');    
+    const course = localStorage.getItem('curso');
     if (course) {
       this.courseName = course;
     }
-   this.getUniversitiesByCourse()
-   .then((res) => this.getCoursesModality(this.courseName))
-   .then(() => this.getGrades())
+    this.getUniversitiesByCourse()
+      .then(res => this.getCoursesModality(this.courseName))
+      .then(() => this.getGrades());
   },
 
   updated() {
-  }
+  },
+
+  methods: {
+    getUniversitiesByCourse() {
+      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response);
+    },
+
+    getCoursesModality(courseName) {
+      for (let i = 0; i < this.universityList.length; i++) {
+        this.universityList[i].cursos.forEach((curso) => {
+          if (curso.nome == courseName) {
+            this.$set(this.universityList[i], 'modalidade', curso.modalidade);
+          }
+        });
+      }
+    },
+
+    getGrades() {
+      for (let i = 0; i < this.universityList.length; i++) {
+        const university = this.universityList[i];
+        const code = university.codigoIES;
+        const year = 2017;
+        const grades = {};
+        ApiService.getUniversityGradesByYear(code, year)
+          .then((response) => {
+            const gradeInfo = response[0].avaliacao;
+            this.$set(university, 'enadeConcept', gradeInfo.enadeFaixa);
+            this.$set(university, 'continuousConcept', gradeInfo.enadeContinuo);
+          });
+      }
+    },
+
+    compareCourses() {
+      if (this.checkedUniversities) {
+        localStorage.setItem('cursosComparacao', this.selectedCourses);
+        this.$router.replace('comparacao');
+      }
+    },
+  },
 };
 </script>
 

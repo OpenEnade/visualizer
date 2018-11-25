@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import FooterC from "@/components/Footer.vue";
+import Navbar from '@/components/Navbar.vue';
+import FooterC from '@/components/Footer.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Navbar,
-    FooterC
-  }
+    FooterC,
+  },
 };
 </script>
 

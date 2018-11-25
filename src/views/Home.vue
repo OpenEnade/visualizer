@@ -6,7 +6,7 @@
       <div
         class="row justify-content-md-center"
         style="margin-top: 10%"
-        >
+      >
         <div class="col-md-auto">
           <h1 class="lead display-3 text-center">Open Enade</h1>
           <div class="text-center">
