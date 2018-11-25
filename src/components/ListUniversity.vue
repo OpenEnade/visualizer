@@ -124,8 +124,10 @@ export default {
 }
 
 .btn-compare {
-  width: 100%;
-  text-align: center;
+  bottom: 55px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 th {
