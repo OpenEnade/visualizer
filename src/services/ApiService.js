@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8080/api';
+axios.defaults.baseURL = 'https://open-enade-api.herokuapp.com/api';
 
 export default {
   getCourses() {

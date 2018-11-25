@@ -32,7 +32,7 @@
             <td>{{ item.nome }}</td>
             <td>{{ item.categoriaAdmin }}</td>
             <td>{{ item.modalidade }}</td>
-            <td>{{ item.continuousConcept }}</td>
+            <td>{{ item.continuousConcept ? item.continuousConcept.toFixed(2) : ''}}</td>
             <td>{{ item.enadeConcept }}</td>
             <td>{{ 2017 }}</td>
           </tr>
