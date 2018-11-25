@@ -18,4 +18,9 @@ module.exports = {
     'plugin:vue/recommended',
     '@vue/airbnb',
   ],
+
+  'extends': [
+    'plugin:vue/essential',
+    '@vue/airbnb'
+  ]
 };

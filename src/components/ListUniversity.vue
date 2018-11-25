@@ -19,12 +19,12 @@
         <tbody>
           <tr
             v-for="(item, index) in universityList"
-            :key="item.codigoIES">
+            :key="item.codigoIES + item.campus.codigo">
             <input
               v-b-tooltip.hover
               :value="item"
               v-model="checkedUniversities"
-              :disabled="checkedUniversities.length >= 3 && checkedUniversities.indexOf(item) == -1"
+              :disabled="checkedUniversities.length >= 3 && checkedUniversities.indexOf(item) === -1"
               class="input-checkbox"
               type="checkbox"
               title="Selecione até 3 universidades para comparar">
@@ -114,7 +114,7 @@ export default {
     getCoursesModality(courseName) {
       for (let i = 0; i < this.universityList.length; i++) {
         this.universityList[i].cursos.forEach((curso) => {
-          if (curso.nome == courseName) {
+          if (curso.nome === courseName) {
             this.$set(this.universityList[i], 'modalidade', curso.modalidade);
           }
         });
