@@ -108,16 +108,6 @@ export default {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
 
-    selectedCourses() {
-      const coursesCodes = [];
-
-      for (let i = 0; i < this.checkedUniversities.length; i++) {
-        coursesCodes.push(this.checkedUniversities[i].cursos.map(curso => curso.codigoCurso));
-      }
-
-      return coursesCodes;
-    },
-
   },
 
   created() {
@@ -133,7 +123,7 @@ export default {
 
     this.getUniversitiesByCourse()
       .then(res => this.getCoursesModality(this.courseName))
-      .then(() => this.getGrades())
+      .then(() => this.getGrades());
   },
 
 
@@ -177,10 +167,20 @@ export default {
       }
     },
 
-    compareCourses() {
-      if (this.checkedUniversities) {
-        localStorage.setItem('cursosComparacao', this.selectedCourses);
+    async selectedCourses() {
+      const selectedUniversities = [];
+      for (let i = 0; i < this.checkedUniversities.length; i++) {
+        const university = this.checkedUniversities[i];
+        university.cursos = await university.cursos.filter(curso => curso.nome === this.courseName);
+        selectedUniversities.push(university);
+      }
+      return selectedUniversities;
+    },
 
+    async compareCourses() {
+      if (this.checkedUniversities) {
+        const courses = await this.selectedCourses();
+        localStorage.setItem('cursosComparacao', JSON.stringify(courses));
         this.$router.replace('comparacao');
       }
     },
