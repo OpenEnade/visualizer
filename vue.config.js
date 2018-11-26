@@ -6,5 +6,5 @@ module.exports = {
   productionSourceMap: undefined,
   parallel: undefined,
   css: undefined,
-  lintOnSave: undefined
+  lintOnSave: undefined,
 };
