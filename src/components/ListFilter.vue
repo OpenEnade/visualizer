@@ -10,7 +10,7 @@
         v-model="state"
         class="form-control form-control-sm"
         title="Filtrar por estado"
-        @change="filtrar()">
+        @change="filterByState()">
         <option
         disabled
         value="">Estado</option>
@@ -27,7 +27,7 @@
       v-model="city"
       class="form-control form-control-sm"
       title="Filtrar por município"
-      @change="filtrar()">
+      @change="filterByCity()">
       <option
       disabled
       value="">Município</option>
@@ -44,7 +44,7 @@
     v-model="category"
     class="form-control form-control-sm"
     title="Filtrar por categoria administrativa"
-    @change="filtrar()">
+    @change="filterByCategory()">
     <option
     disabled
     value="">Categoria administrativa</option>
@@ -63,7 +63,7 @@
     v-model="modality"
     class="form-control form-control-sm"
     title="Filtrar por modalidade de ensino"
-    @change="filtrar()">
+    @change="filterByModality()">
     <option
     disabled
     value="">Modalidade de ensino</option>
@@ -79,7 +79,7 @@
   v-model="year"
   class="form-control form-control-sm"
   title="Filtrar por ano"
-  @change="filtrar()">
+  @change="filterByYear()">
   <option
   disabled
   value="">Ano</option>
@@ -102,19 +102,34 @@ export default {
     courseName: {
       type: String,
       default: "",
+      required: true      
     }
   },
   methods: {
     ...mapActions([
-      'loadUniversities'
+      'loadUniversities',
+      'filterByStateAction',
+      'filterByCityAction',
+      'filterCategoryAction',
     ]),
-    filtrar: function () {
-      console.log("filtrando");
+    filterByState: function () {
+      this.filterByStateAction(this.state);
+    },
+    filterByCity: function () {
+      this.filterByCityAction(this.city);
+    },
+    filterByCategory: function () {
+      this.filterCategoryAction(this.category);
+    },
+    filterByModality: function () {
+      console.log('Not yet implemented!');
+    },  
+    filterByYear: function () {
+      console.log('Not yet implemented!');
     }
   },
   created: function() {
     this.loadUniversities(this.courseName);
-    console.log("passou");
   },
   computed: {
     ...mapState({
@@ -123,7 +138,7 @@ export default {
       categoryList: 'categoryList',
       modalityList: 'modalityList',
       yearList: 'yearList',
-    }),
+    })
   },
   data() {
     return {

@@ -22,7 +22,7 @@
           </thead>
           <tbody>
             <tr
-            v-for="(item, index) in universityList"
+            v-for="(item, index) in universtitiesShowed"
             :key="index">
             <input
             v-b-tooltip.hover
@@ -84,6 +84,7 @@ export default {
   computed: {
     ...mapState({
       universityList: 'universityList',
+      universtitiesShowed: 'universtitiesShowed'
     }),
     selectable() {
       return this.checkedUniversities.length < 3;
@@ -99,6 +100,9 @@ export default {
       }
       return coursesCodes;
     },
+  },
+  updated () {
+
   },
   created() {
     if (localStorage.getItem('cursosComparacao')) {
