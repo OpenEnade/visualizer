@@ -33,7 +33,7 @@
         <tbody>
           <tr
             v-for="(item, index) in universityList"
-            :key="item.codigoIES + item.campus.codigo">
+            :key="index">
             <input
               v-b-tooltip.hover
               :value="item"
@@ -133,7 +133,7 @@ export default {
 
     this.getUniversitiesByCourse()
       .then(res => this.getCoursesModality(this.courseName))
-      .then(() => this.getGrades());
+      .then(() => this.getGrades())
   },
 
 
