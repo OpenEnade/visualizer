@@ -6,26 +6,26 @@
     <div v-if="universityList.length == 0">
       <Spinner />
     </div>
-
-    <template v-if="universityList.length > 0">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col" />
-            <th scope="col">#</th>
-            <th scope="col">Nome da universidade</th>
-            <th scope="col">Categoria administrativa</th>
-            <th scope="col">Modalidade de ensino</th>
-            <th scope="col">Município</th>
-            <th scope="col">Conceito contínuo</th>
-            <th scope="col">Conceito ENADE</th>
-            <th scope="col">Ano</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr
-            v-for="(item, index) in universities"
+    <section class="list-university animated fadeIn slow">
+      <h1>{{ courseName }}</h1>
+      <br>
+      <template>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col"/>
+              <th scope="col">#</th>
+              <th scope="col">Nome da universidade</th>
+              <th scope="col">Categoria administrativa</th>
+              <th scope="col">Modalidade de ensino</th>
+              <th scope="col">Conceito contínuo</th>
+              <th scope="col">Conceito ENADE</th>
+              <th scope="col">Ano</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+            v-for="(item, index) in universtitiesShowed"
             :key="index">
             <input
               v-b-tooltip.hover
@@ -78,6 +78,9 @@
 <script lang="js">
 import lodash from 'lodash';
 import ApiService from '@/services/ApiService.js';
+import ListFilter from '@/components/ListFilter.vue';
+import { mapState } from 'vuex';
+
 import Spinner from '@/components/Spinner.vue';
 
 
@@ -92,13 +95,16 @@ export default {
     return {
       checkedUniversities: [],
       courseName: '',
-      universityList: [],
       courseList: [],
     };
   },
 
 
   computed: {
+    ...mapState({
+      universityList: 'universityList',
+      universtitiesShowed: 'universtitiesShowed'
+    }),
     selectable() {
       return this.checkedUniversities.length < 3;
     },
@@ -112,7 +118,9 @@ export default {
     }
 
   },
+  updated () {
 
+  },
   created() {
     if (localStorage.getItem('cursosComparacao')) {
       localStorage.removeItem('cursosComparacao');
@@ -123,21 +131,9 @@ export default {
     if (course) {
       this.courseName = course;
     }
-
-    this.getUniversitiesByCourse()
-      .then(res => this.getCoursesModality(this.courseName))
-      .then(() => this.getGrades());
   },
 
-
-  updated() {},
-
   methods: {
-
-    getUniversitiesByCourse() {
-      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response);
-    },
-
     getCoursesModality(courseName) {
       for (let i = 0; i < this.universityList.length; i++) {
         this.universityList[i].cursos.forEach((curso) => {

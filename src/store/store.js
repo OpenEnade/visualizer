@@ -9,6 +9,9 @@ import {
 	LOAD_MODALITYLIST,
 	LOAD_CATEGORYLIST,
 	LOAD_COURSESLIST,
+	UPDATE_BYSTATE,
+	UPDATE_BYCITY,
+	UPDATE_BYCATEGORY,
 } from './mutations-types.js';
 
 Vue.use(Vuex)
@@ -17,6 +20,7 @@ const store = new Vuex.Store({
 	strict: true,
 	state: {
 		universityList: [],
+		universtitiesShowed: [],
 		stateList: [],
 		cityList: [],
 		categoryList: [],
@@ -26,25 +30,26 @@ const store = new Vuex.Store({
 	},
 	getters: {},
 	mutations: {
-		[LOAD_UNIVERSITIES] (state, payload) {										
+		[LOAD_UNIVERSITIES]: (state, payload) => {										
 			state.universityList = _.uniq(payload).sort();
+			state.universtitiesShowed = state.universityList;
 		},
-		[LOAD_STATELIST] (state) {
+		[LOAD_STATELIST]: (state) => {
 			state.stateList = _.uniq(state.universityList.map(
 				(university => university.campus.estado.sigla)
 			)).sort();
 		},
-		[LOAD_CITYLIST] (state) {
+		[LOAD_CITYLIST]: (state) => {
 			state.cityList = _.uniq(state.universityList.map(
 				(university => university.campus.nome)
 			)).sort();
 		},
-		[LOAD_CATEGORYLIST] (state) {
+		[LOAD_CATEGORYLIST]: (state) => {
 			state.categoryList = _.uniq(state.universityList.map(
 				(university => university.categoriaAdmin)
 			)).sort();
 		}, 
-		[LOAD_COURSESLIST] (state, payload) {
+		[LOAD_COURSESLIST]: (state, payload) => {
 			state.coursesList = _.uniqBy(payload, 'nome').sort(function (previous, next) {
 				return ('' + previous.nome).localeCompare(next.nome);
 			});
@@ -52,15 +57,30 @@ const store = new Vuex.Store({
 				course.nome = course.nome.toUpperCase();
 			})
 		},
+		[UPDATE_BYSTATE] : (state, stateName) => {
+			state.universtitiesShowed = state.universityList.filter (
+				(university) => university.campus.estado.sigla === stateName
+			);
+		},
+		[UPDATE_BYCITY] : (state, cityName) => {
+			state.universtitiesShowed = state.universityList.filter (
+				(university) => university.campus.nome === cityName
+			);
+		},
+		[UPDATE_BYCATEGORY] : (state, categoryName) => {	
+			state.universtitiesShowed = state.universityList.filter (
+				university => university.categoriaAdmin === categoryName
+			);
+		},
 	},
 	actions: {
-		async loadUniversities(context, courseName) {
+		async loadUniversities({ commit }, courseName) {
 			try {
 				const allUniversities = await ApiService.getUniversitiesByCourse(courseName);				
-				context.commit('LOAD_UNIVERSITIES', allUniversities);
-				context.commit('LOAD_STATELIST');
-				context.commit('LOAD_CITYLIST');
-				context.commit('LOAD_CATEGORYLIST');				
+				commit('LOAD_UNIVERSITIES', allUniversities);
+				commit('LOAD_STATELIST');
+				commit('LOAD_CITYLIST');
+				commit('LOAD_CATEGORYLIST');				
 			} catch (err) {
 				console.error(err);
 			}	
@@ -72,6 +92,15 @@ const store = new Vuex.Store({
 			} catch (err) {
 				console.error(err);
 			}
+		},   
+		filterByStateAction({ commit }, stateName) {
+			commit('UPDATE_BYSTATE', stateName);			
+		}, 
+		filterByCityAction({ commit }, cityName) {
+			commit('UPDATE_BYCITY', cityName);
+		},
+		filterCategoryAction({ commit }, categoryName) {
+			commit('UPDATE_BYCATEGORY', categoryName);
 		}
 	},
 })

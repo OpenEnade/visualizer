@@ -12,6 +12,7 @@
 <script>
 import Navbar from '@/components/Navbar.vue';
 import FooterC from '@/components/Footer.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -19,6 +20,14 @@ export default {
     Navbar,
     FooterC,
   },
+  methods: {    
+    ...mapActions([
+      'loadCourses'
+    ]),
+  },
+  created: function () {
+    this.loadCourses();
+  }
 };
 </script>
 
