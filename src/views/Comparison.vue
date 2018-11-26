@@ -16,7 +16,11 @@
       <hr>
       <br>
 
-      <div class="row">
+      <div v-if="courses.length == 0">
+        <Spinner />
+      </div>
+
+      <div class="row" v-if="courses.length > 0">
         <div class="col-2">
           <div class="table-responsive">
             <table class="table table-borderless">
@@ -106,11 +110,13 @@
 <script lang="js">
 import PageHeader from '@/components/PageHeader.vue';
 import ApiService from '@/services/ApiService.js';
+import Spinner from '@/components/Spinner.vue';
 
 export default {
   name: 'Comparison',
   components: {
     PageHeader,
+    Spinner
   },
   data() {
     return {
