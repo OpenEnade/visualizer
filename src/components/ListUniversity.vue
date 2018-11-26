@@ -16,6 +16,7 @@
             <th scope="col">Nome da universidade</th>
             <th scope="col">Categoria administrativa</th>
             <th scope="col">Modalidade de ensino</th>
+            <th scope="col">Município</th>
             <th scope="col">Conceito contínuo</th>
             <th scope="col">Conceito ENADE</th>
             <th scope="col">Ano</th>
@@ -40,6 +41,7 @@
             <td>{{ item.nome }}</td>
             <td>{{ item.categoriaAdmin }}</td>
             <td>{{ item.modalidade }}</td>
+            <td>{{item.campus.nome}}</td>
             <td>{{ item.continuousConcept ? item.continuousConcept.toFixed(2) : '' }}</td>
             <td>{{ item.enadeConcept }}</td>
             <td>{{ 2017 }}</td>
@@ -128,7 +130,8 @@ export default {
   methods: {
 
     getUniversitiesByCourse() {
-      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response);
+      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response)
+      .then(() => console.log(this.universityList));
     },
 
     getCoursesModality(courseName) {
