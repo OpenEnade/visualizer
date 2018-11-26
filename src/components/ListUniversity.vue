@@ -4,15 +4,7 @@
     <br>
 
     <div v-if="universityList.length == 0">
-      <div id="circle">
-        <div class="loader">
-          <div class="loader">
-            <div class="loader">
-              <div class="loader"/>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Spinner />
     </div>
 
     <template v-if="universityList.length > 0">
@@ -83,11 +75,15 @@
 
 <script lang="js">
 import ApiService from '@/services/ApiService.js';
+import Spinner from '@/components/Spinner.vue';
 
 
 export default {
 
   universityName: 'list-university',
+  components: {
+    Spinner
+  },
 
   data() {
     return {
@@ -191,54 +187,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .table {
-    text-align: center;
-  }
+.table {
+  text-align: center;
+}
 
+.input-checkbox {
+  margin-top: 18px;
+}
 
-  .input-checkbox {
-    margin-top: 18px;
-  }
+.btn-compare {
+  bottom: 55px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-
-  .btn-compare {
-    bottom: 55px;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-
-  }
-
-
-  th {
-    color: rgb(5, 47, 82);
-  }
-
-
-  #circle {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 150px;
-
-  }
-
-
-  .loader {
-    width: calc(100% - 0px);
-    height: calc(100% - 0px);
-    border: 8px solid #162534;
-    border-top: 8px solid #09f;
-    border-radius: 50%;
-    animation: rotate 5s linear infinite;
-
-  }
-
-
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+th {
+  color: rgb(5, 47, 82);
+}
 </style>
