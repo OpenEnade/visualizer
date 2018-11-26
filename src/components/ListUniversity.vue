@@ -1,4 +1,4 @@
-<template lang="html">
+<template lang="html">  
   <section class="list-university animated fadeIn slow">
     <h1 style="text-align: center">{{ courseName }}</h1>
     <br>
@@ -9,7 +9,7 @@
     <section class="list-university animated fadeIn slow">
       <h1>{{ courseName }}</h1>
       <br>
-      <template>
+      <div>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -64,15 +64,10 @@
             @click.prevent="compareCourses()">Comparar</button>
 
         </div>
-
       </transition>
-
       <!-- <span>{{ checkedUniversities }}</span> -->
-    </template>
-    </transition>
+    </div>    
   </section>
-  </transition-group>
-
 </template>
 
 <script lang="js">
