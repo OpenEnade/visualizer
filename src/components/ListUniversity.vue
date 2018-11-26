@@ -82,7 +82,7 @@ export default {
 
   universityName: 'list-university',
   components: {
-    Spinner
+    Spinner,
   },
 
   data() {
