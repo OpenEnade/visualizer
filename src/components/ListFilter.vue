@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'loadUniversities',
+      'loadUniversitiesByCourse',
       'filterByStateAction',
       'filterByCityAction',
       'filterCategoryAction',
@@ -129,7 +129,7 @@ export default {
     }
   },
   created: function() {
-    this.loadUniversities(this.courseName);
+    this.loadUniversitiesByCourse(this.courseName);
   },
   computed: {
     ...mapState({

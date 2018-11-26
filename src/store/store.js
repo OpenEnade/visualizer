@@ -12,6 +12,8 @@ import {
 	UPDATE_BYSTATE,
 	UPDATE_BYCITY,
 	UPDATE_BYCATEGORY,
+	LOAD_NOTAS,
+	LOAD_COURSESVALIDS,
 } from './mutations-types.js';
 
 Vue.use(Vuex)
@@ -21,14 +23,22 @@ const store = new Vuex.Store({
 	state: {
 		universityList: [],
 		universtitiesShowed: [],
+		notasByCourse: [],
+		notasShowed: [],
 		stateList: [],
 		cityList: [],
 		categoryList: [],
 		modalityList: ["Educação à Distância", "Educação Presencial"],
 		yearList: [ 2017 ],
 		coursesList: [],
+		coursesValids: [],
+		coursesToCompare: [],
 	},
-	getters: {},
+	getters: {
+		validCourses: (state) => {
+			return state.coursesList.filter(course => course);
+		}
+	},
 	mutations: {
 		[LOAD_UNIVERSITIES]: (state, payload) => {										
 			state.universityList = _.uniq(payload).sort();
@@ -50,10 +60,13 @@ const store = new Vuex.Store({
 			)).sort();
 		}, 
 		[LOAD_COURSESLIST]: (state, payload) => {
-			state.coursesList = _.uniqBy(payload, 'nome').sort(function (previous, next) {
+			state.coursesList = payload;
+		},
+		[LOAD_COURSESVALIDS]: (state, payload) => {
+			state.coursesValids = _.uniqBy(payload, 'nome').sort(function (previous, next) {
 				return ('' + previous.nome).localeCompare(next.nome);
 			});
-			state.coursesList.forEach( (course, i) => {
+			state.coursesValids.forEach( (course, i) => {
 				course.nome = course.nome.toUpperCase();
 			})
 		},
@@ -72,9 +85,26 @@ const store = new Vuex.Store({
 				university => university.categoriaAdmin === categoryName
 			);
 		},
+		[LOAD_NOTAS]: (state, payload) => {
+			state.notasByCourse = payload;
+		},
 	},
 	actions: {
-		async loadUniversities({ commit }, courseName) {
+		async loadNotas({ commit }, course) {
+			try {
+				const allNotas = await ApiService.getNotas();
+
+				const expectedNotas = allNotas.filter( 
+					nota => nota.info.codigoCurso === course.codigoCurso
+				);
+				commit('LOAD_NOTAS', expectedNotas);
+
+			} catch (err) {
+				console.error(err);
+			}
+
+		},
+		async loadUniversitiesByCourse({ commit }, courseName) {
 			try {
 				const allUniversities = await ApiService.getUniversitiesByCourse(courseName);				
 				commit('LOAD_UNIVERSITIES', allUniversities);
@@ -85,10 +115,11 @@ const store = new Vuex.Store({
 				console.error(err);
 			}	
 		},
-		async loadCourses(context) {
+		async loadCourses({ commit }) {
 			try {
 				const allCourses = await ApiService.getCourses();
-				context.commit('LOAD_COURSESLIST', allCourses);
+				commit('LOAD_COURSESLIST', allCourses);
+				commit('LOAD_COURSESVALIDS', allCourses);
 			} catch (err) {
 				console.error(err);
 			}
@@ -101,7 +132,10 @@ const store = new Vuex.Store({
 		},
 		filterCategoryAction({ commit }, categoryName) {
 			commit('UPDATE_BYCATEGORY', categoryName);
-		}
+		},
+		compareCourses({ commit }, payload) {
+
+		},
 	},
 })
 
