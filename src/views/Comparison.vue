@@ -134,6 +134,19 @@ export default {
         grossScore: 99.90,
         standardScore: 99.99,
       },
+      {
+        // Uma letra 'u' a mais para mudar a chave do elemento no v-for
+        universityName: 'Uuuniversidade Federal de Campina Grande',
+        category: 'Federal',
+        modality: 'Presencial',
+        enadeConcept: 5.0,
+        continuousConcept: 5.0,
+        average: 100.0,
+        subscribed: 90,
+        participants: 90,
+        grossScore: 99.90,
+        standardScore: 99.99,
+      },
       ],
     };
   },

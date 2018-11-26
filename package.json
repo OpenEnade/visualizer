@@ -22,6 +22,7 @@
     "vue-google-charts": "^0.3.2",
     "vue-material-design-icons": "^2.4.0",
     "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
     "webpack": "^4.26.0"
   },
   "devDependencies": {

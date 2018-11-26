@@ -8,7 +8,7 @@
           <label for="course-selection" class="course-label">Cursos</label>
           <select id="course" v-model="course" class="form-control">
             <option disabled selected value="">Escolha um curso</option>
-            <option v-for="curso in courseList" :key="curso.codigoCurso" :value="curso.nome">
+            <option v-for="curso in courses" :key="curso.codigoCurso" :value="curso.nome">
               {{ curso.nome }}
             </option>
 
@@ -24,26 +24,22 @@
 </template>
 
 <script lang="js">
-import lodash from 'lodash';
-import ApiService from '@/services/ApiService.js';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'CourseSelector',
   data() {
     return {
       course: '',
-      courses: [],
     };
   },
   computed: {
-    courseList() {
-      return _.uniqBy(this.courses, 'nome');
-    },
+    ...mapState({
+      courses: 'coursesList'
+    }),
   },
   created() {
-    localStorage.clear();
-    ApiService.getCourses()
-      .then(response => this.courses = response.data);
+    localStorage.clear();    
   },
 
   updated() {
