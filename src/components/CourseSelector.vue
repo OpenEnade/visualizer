@@ -24,7 +24,7 @@
 </template>
 
 <script lang="js">
-import { mapState, mapActions } from 'vuex';
+import { mapState , mapActions } from 'vuex';
 
 export default {
   name: 'CourseSelector',
@@ -35,17 +35,17 @@ export default {
   },
   computed: {
     ...mapState({
-      courses: 'coursesList'
+      courses: 'coursesValids'
     }),
   },
-  created() {
-    localStorage.clear();    
-  },
+  created() {},
 
-  updated() {
-  },
+  updated() {},
 
   methods: {
+    ...mapActions([
+      'loadNotas'
+      ]),
     searchCourse() {
       if (this.course) {
         localStorage.setItem('curso', this.course);
