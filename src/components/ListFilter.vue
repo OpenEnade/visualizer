@@ -102,8 +102,6 @@ export default {
     courseName: {
       type: String,
       default: "",
-      required: true
-      
     }
   },
   methods: {
@@ -116,6 +114,7 @@ export default {
   },
   created: function() {
     this.loadUniversities(this.courseName);
+    console.log("passou");
   },
   computed: {
     ...mapState({
@@ -124,7 +123,7 @@ export default {
       categoryList: 'categoryList',
       modalityList: 'modalityList',
       yearList: 'yearList',
-    })
+    }),
   },
   data() {
     return {

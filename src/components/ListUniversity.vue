@@ -23,7 +23,7 @@
           <tbody>
             <tr
             v-for="(item, index) in universityList"
-            :key="item.codigoIES + item.campus.codigo">
+            :key="index">
             <input
             v-b-tooltip.hover
             :value="item"
@@ -66,6 +66,8 @@
 <script lang="js">
 import ApiService from '@/services/ApiService.js';
 import ListFilter from '@/components/ListFilter.vue';
+import { mapState } from 'vuex';
+
 export default {
   universityName: 'list-university',  
   components: {    
@@ -75,13 +77,14 @@ export default {
     return {
       checkedUniversities: [],
       courseName: '',
-      universityList: [],
       courseList: [],
-
     };
   },
 
   computed: {
+    ...mapState({
+      universityList: 'universityList',
+    }),
     selectable() {
       return this.checkedUniversities.length < 3;
     },
@@ -105,20 +108,9 @@ export default {
     if (course) {
       this.courseName = course;
     }
-    this.getUniversitiesByCourse()
-    .then(res => this.getCoursesModality(this.courseName))
-    .then(() => this.getGrades());
-  },
-
-  updated() {
-
   },
 
   methods: {
-    getUniversitiesByCourse() {
-      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response);
-    },
-
     getCoursesModality(courseName) {
       for (let i = 0; i < this.universityList.length; i++) {
         this.universityList[i].cursos.forEach((curso) => {

@@ -9,7 +9,7 @@
         do Exame Nacional de Desempenho de Estudantes.</p>
         <br>
         <h2 class="display-4 header">Objetivo</h2>
-        <p class="lead">Disponibilizar um mecanismo rápido e pátrico para
+        <p class="lead">Disponibilizar um mecanismo intuitivo para
         consulta e comparação do rendimento dos concluintes de universidades brasileiras a
         partir da nota do Enade</p>
       </div>

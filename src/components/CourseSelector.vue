@@ -39,17 +39,13 @@ export default {
     }),
   },
   created() {
-    localStorage.clear();
-    this.loadCourses();
+    localStorage.clear();    
   },
 
   updated() {
   },
 
   methods: {
-    ...mapActions([
-      'loadCourses'
-    ]),
     searchCourse() {
       if (this.course) {
         localStorage.setItem('curso', this.course);
