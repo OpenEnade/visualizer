@@ -16,7 +16,7 @@
         value="">Estado</option>
         <option
         v-for="(item, index) in stateList"
-        :key="item.value">{{ item.value }}</option>
+        :key="index">{{ item }}</option>
       </select>
     </div>
     <div class="form-group col-sm-0 col-md-1 col-lg-1"/>
@@ -33,7 +33,7 @@
       value="">Município</option>
       <option
       v-for="(item, index) in cityList"
-      :key="item.value">{{ item.value }}</option>
+      :key="index">{{ item }}</option>
     </select>
   </div>
   <div class="form-group col-sm-0 col-md-1 col-lg-1"/>
@@ -50,7 +50,7 @@
     value="">Categoria administrativa</option>
     <option
     v-for="(item, index) in categoryList"
-    :key="item.value">{{ item.value }}</option>
+    :key="index">{{ item }}</option>
   </select>
 </div>
 </div>
@@ -69,7 +69,7 @@
     value="">Modalidade de ensino</option>
     <option
     v-for="(item, index) in modalityList"
-    :key="item.value">{{ item.value }}</option>
+    :key="index">{{ item }}</option>
   </select>
 </div>
 <div class="form-group col-sm-12 col-md-2 col-lg-2">
@@ -85,7 +85,7 @@
   value="">Ano</option>
   <option
   v-for="(item, index) in yearList"
-  :key="item.value">{{ item.value }}</option>
+  :key="index">{{ item }}</option>
 </select>
 </div>
 <div class="form-group col-sm-0 col-md-2 col-lg-2"/>
@@ -95,7 +95,7 @@
 </template>
 
 <script lang="js">
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 export default {
   name: 'ListFilter',
   props: {
@@ -107,12 +107,15 @@ export default {
     }
   },
   methods: {
-    filtrar() {
+    ...mapActions([
+      'loadUniversities'
+    ]),
+    filtrar: function () {
       console.log("filtrando");
     }
   },
   created: function() {
-    console.log(this.courseName);
+    this.loadUniversities(this.courseName);
   },
   computed: {
     ...mapState({
@@ -121,7 +124,7 @@ export default {
       categoryList: 'categoryList',
       modalityList: 'modalityList',
       yearList: 'yearList',
-    }),
+    })
   },
   data() {
     return {
