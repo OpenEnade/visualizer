@@ -1,6 +1,6 @@
 <template lang="html">
   <section class="list-university animated fadeIn slow">
-    <h1>{{ courseName }}</h1>
+    <h1 style="text-align: center">{{ courseName }}</h1>
     <br>
 
     <div v-if="universityList.length == 0">
