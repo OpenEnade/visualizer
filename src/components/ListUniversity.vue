@@ -25,7 +25,7 @@
 
         <tbody>
           <tr
-            v-for="(item, index) in universityList"
+            v-for="(item, index) in universities"
             :key="index">
             <input
               v-b-tooltip.hover
@@ -76,6 +76,7 @@
 </template>
 
 <script lang="js">
+import lodash from 'lodash';
 import ApiService from '@/services/ApiService.js';
 import Spinner from '@/components/Spinner.vue';
 
@@ -106,6 +107,10 @@ export default {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
 
+    universities() {
+      return _.orderBy(this.universityList, 'continuousConcept', 'desc')
+    }
+
   },
 
   created() {
@@ -130,8 +135,7 @@ export default {
   methods: {
 
     getUniversitiesByCourse() {
-      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response)
-      .then(() => console.log(this.universityList));
+      return ApiService.getUniversitiesByCourse(this.courseName).then(response => this.universityList = response);
     },
 
     getCoursesModality(courseName) {
@@ -147,23 +151,18 @@ export default {
     getGrades() {
       for (let i = 0; i < this.universityList.length; i++) {
         const university = this.universityList[i];
-
         const code = university.codigoIES;
-
         const year = 2017;
 
-        const grades = {};
-
         ApiService.getUniversityGradesByYear(code, year)
-
           .then((response) => {
             const gradeInfo = response[0].avaliacao;
-
             this.$set(university, 'enadeConcept', gradeInfo.enadeFaixa);
-
             this.$set(university, 'continuousConcept', gradeInfo.enadeContinuo);
           });
       }
+
+      return Promise.resolve(true);
     },
 
     async selectedCourses() {
