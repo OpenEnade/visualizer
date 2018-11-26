@@ -5,29 +5,16 @@
       <div class="form-row">
         <div class="form-group col-sm-3 col-md-3 col-lg-3" />
         <div class="form-group col-sm-6 col-md-6 col-lg-6 text-center">
-          <label
-            for="course-selection"
-            class="course-label">Cursos</label>
-          <select
-            id="course"
-            v-model="course"
-            class="form-control">
-            <option
-              disabled
-              selected
-              value="">Escolha um curso</option>
-            <option
-              v-for="curso in courseList"
-              :key="curso.codigoCurso"
-              :value="curso.nome">
+          <label for="course-selection" class="course-label">Cursos</label>
+          <select id="course" v-model="course" class="form-control">
+            <option disabled selected value="">Escolha um curso</option>
+            <option v-for="curso in courses" :key="curso.codigoCurso" :value="curso.nome">
               {{ curso.nome }}
             </option>
 
           </select>
           <div class="btn-div">
-            <button
-              class="btn btn-primary"
-              @click.prevent="searchCourse()">Pesquisar</button>
+            <button class="btn btn-primary" @click.prevent="searchCourse()">Pesquisar</button>
           </div>
         </div>
         <div class="form-group col-sm-6 col-md-3 col-lg-3" />
@@ -37,32 +24,32 @@
 </template>
 
 <script lang="js">
-import lodash from 'lodash';
-import ApiService from '@/services/ApiService.js';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'CourseSelector',
   data() {
     return {
       course: '',
-      courses: [],
     };
   },
   computed: {
-    courseList() {
-      return _.uniqBy(this.courses, 'nome');
-    },
+    ...mapState({
+      courses: 'coursesList'
+    }),
   },
   created() {
     localStorage.clear();
-    ApiService.getCourses()
-      .then(response => this.courses = response.data);
+    this.loadCourses();
   },
 
   updated() {
   },
 
   methods: {
+    ...mapActions([
+      'loadCourses'
+    ]),
     searchCourse() {
       if (this.course) {
         localStorage.setItem('curso', this.course);

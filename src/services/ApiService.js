@@ -2,33 +2,23 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://open-enade-api.herokuapp.com/api';
+axios.defaults.withCredentials = false;
 
 export default {
   getCourses() {
-    return axios.get('/cursos');
+    return axios.get('/cursos')
+    .then(response => response.data);
   },
 
-  getUniversitiesByCourse(courseName) {
-    return axios.get('/universidades')
-      .then(response => response.data)
-      .then((universidades) => {
-        const universidadesByCourse = universidades.filter((universidade) => {
-          for (let i = 0; i < universidade.cursos.length; i++) {
-            if (universidade.cursos[i].nome === courseName) {
-              return true;
-            }
-          }
-          return false;
-        });
-        return universidadesByCourse;
-      });
+  getUniversitiesByCourse(courseName) {    
+    return axios.get(`/universidades/cursos?nomeCurso=${courseName}`)
+    .then(response => response.data);
   },
 
   getUniversityGradesByYear(universityCode, year) {
     return axios.get(`/notas/filterby?universidade=${universityCode}&beginAno=${year}&endAno=${year}`)
       .then(response => response.data);
   },
-
   async getCourseNotes(courses) {
     const result = [];
     const year = '2017';
@@ -68,5 +58,7 @@ export default {
     }
     return result;
   },
-
+  getModalities() {
+    return axios.get('/modalidades');
+  }
 };
