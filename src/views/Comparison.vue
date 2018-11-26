@@ -3,7 +3,7 @@
   <section class="comparison animated fadeIn slow">
     <PageHeader description="Comparação de cursos" />
 
-    <div class="container">
+    <div class="list-comparator">
       <div class="row">
         <div class="col" />
         <div
@@ -17,11 +17,14 @@
       <br>
 
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <div class="table-responsive">
             <table class="table table-borderless">
               <tr>
                 <th class="header">Universidade</th>
+              </tr>
+              <tr>
+                <th class="header">Código do curso</th>
               </tr>
               <tr>
                 <th class="header">Categoria administrativa</th>
@@ -36,7 +39,7 @@
                 <th class="header">Conceito contínuo</th>
               </tr>
               <tr>
-                <th class="header">Média Geral</th>
+                <th class="header">Formação Geral</th>
               </tr>
               <tr>
                 <th class="header">Candidatos inscritos</th>
@@ -55,12 +58,14 @@
         </div>
         <div
           v-for="(item) in courses"
-          :key="item.universityName"
-          class="col-4 table-item">
+          class="col-2 table-item">
           <div class="table-responsive">
             <table class="table table-borderless">
               <tr>
                 <td>{{ item.universityName }}</td>
+              </tr>
+              <tr>
+                <td>{{ item.courseCode }}</td>
               </tr>
               <tr>
                 <td>{{ item.category }}</td>
@@ -100,6 +105,7 @@
 
 <script lang="js">
 import PageHeader from '@/components/PageHeader.vue';
+import ApiService from '@/services/ApiService.js';
 
 export default {
   name: 'Comparison',
@@ -109,40 +115,16 @@ export default {
   data() {
     return {
       course: '',
-      courses: [{
-        universityName: 'Universidade Federal de Campina Grande',
-        category: 'Federal',
-        modality: 'Presencial',
-        enadeConcept: 5.0,
-        continuousConcept: 5.0,
-        average: 100.0,
-        subscribed: 90,
-        participants: 90,
-        grossScore: 99.90,
-        standardScore: 99.99,
-      },
-      {
-        // Uma letra 'u' a mais para mudar a chave do elemento no v-for
-        universityName: 'Uuniversidade Federal de Campina Grande',
-        category: 'Federal',
-        modality: 'Presencial',
-        enadeConcept: 5.0,
-        continuousConcept: 5.0,
-        average: 100.0,
-        subscribed: 90,
-        participants: 90,
-        grossScore: 99.90,
-        standardScore: 99.99,
-      },
-      ],
+      courses: [],
     };
   },
   computed: {
 
   },
-  created() {
+  async created() {
     this.course = localStorage.getItem('curso');
-    console.log(localStorage.getItem('cursosComparacao'));
+    const courses = JSON.parse(localStorage.getItem('cursosComparacao'));
+    this.courses = await ApiService.getCourseNotes(courses);
   },
   methods: {
 
@@ -152,6 +134,11 @@ export default {
 
 <style scoped lang="scss">
 .comparison {
+}
+
+.list-comparator {
+  align-content: center;
+  padding: 10px;
 }
 
 .table-item {
