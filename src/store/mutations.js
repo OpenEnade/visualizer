@@ -2,6 +2,9 @@ import _ from 'lodash';
 import  * as type from './mutations-types.js';
 
 export default {
+  [type.LOAD_GRADES_COURSE] : (state, payload) => {
+    state.gradesByCourse = payload;
+  },
   [type.LOAD_UNIVERSITIES]: (state, payload) => {
     state.universityList = _.uniq(payload).sort();
     state.universtitiesShowed = state.universityList;
@@ -46,9 +49,6 @@ export default {
     state.universtitiesShowed = state.universityList.filter (
       university => university.categoriaAdmin === categoryName
     );
-  },
-  [type.LOAD_GRADES]: (state, payload) => {
-    state.grades = payload;
   },
   [type.PERSIST_COURSE_NAME]: (state, courseName) => {
     state.currentCourseName = courseName;

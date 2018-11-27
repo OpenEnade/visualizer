@@ -22,13 +22,8 @@ export default {
 		},
 		async loadGradesByCourseName({ commit }, courseName) {
 			try {
-				const allGrades = await ApiService.getGrades();
-				const usefulGrades = allGrades.filter(
-					grade => grade.info.curso.nome = courseName					
-				)
-
-				commit('LOAD_GRADES', usefulGrades);
-				
+				const usefulGrades = await ApiService.getGradesByName(courseName);
+				commit('LOAD_GRADES_COURSE', usefulGrades);
 			} catch (err) {
 				console.error(err);
 			}

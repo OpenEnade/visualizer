@@ -6,6 +6,17 @@ axios.defaults.baseURL = 'https://open-enade-api.herokuapp.com/api';
 axios.defaults.withCredentials = false;
 
 export default {
+  getGradesByName(courseName) {
+    return axios.get('/notas')
+    .then(res => res.data)
+    .then((res) => {
+      let notas = res.filter(function(element) {
+        return element.info.curso.nome == courseName
+      })
+
+      return notas
+    })
+  },
   getGrades() {
     return axios.get('/notas').then(response => response.data);
   },

@@ -10,7 +10,6 @@
       <Spinner />
     </div>
     <section class="list-university animated fadeIn slow">
-      <h1>{{ courseName }}</h1>
       <br>
       <template>
         <table class="table table-hover table-bordered table-sm">
@@ -94,7 +93,7 @@ export default {
   computed: {
     ...mapState({
       courseName: 'currentCourseName',
-      gradesByCourse: 'grades',
+      gradesByCourse: 'gradesByCourse',
     }),
     selectable() {
       return this.checkedUniversities.length < 3;
@@ -123,15 +122,15 @@ export default {
       }
     },
     loadGrades() {
-      this.loadGradesByCourseName(this.courseName);    
+      this.loadGradesByCourseName(this.courseName);
     },
   },
   updated () {
-    this.verifyRoute();    
+    this.verifyRoute();
   },
   created() {
     this.verifyRoute();
-    this.loadGrades();    
+    this.loadGrades();
   },
 };
 </script>
