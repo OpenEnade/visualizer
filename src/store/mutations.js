@@ -50,11 +50,6 @@ export default {
   [type.LOAD_GRADES]: (state, payload) => {
     state.grades = payload;
   },
-  [type.LOAD_GRADES_COURSE]: (state, courseName) => {
-    state.gradesByCourse = state.grades.filter(
-      (grade) => grade.curso.nome === courseName
-    );
-  },
   [type.PERSIST_COURSE_NAME]: (state, courseName) => {
     state.currentCourseName = courseName;
   }

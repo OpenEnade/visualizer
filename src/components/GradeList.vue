@@ -13,12 +13,12 @@
       <h1>{{ courseName }}</h1>
       <br>
       <template>
-        <table class="table table-hover">
+        <table class="table table-hover table-bordered table-sm">
           <thead>
             <tr>
               <th scope="col"/>
-              <th scope="col">#</th>
-              <th scope="col"> Universidade</th>
+              <th @click="sort('position')" scope="col">#</th>
+              <th scope="col">Universidade</th>
               <th scope="col">Categoria Administrativa</th>
               <th scope="col">Modalidade de Ensino</th>
               <th scope="col">Conceito Contínuo</th>
@@ -87,6 +87,8 @@ export default {
   data() {
     return {
       checkedUniversities: [],
+      currentSort: 'position',
+      currentSortDirection: 'asc',
     };
   },
   computed: {
@@ -100,7 +102,6 @@ export default {
     comparable() {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
-
     selectedCourses() {
       const coursesCodes = [];
       for (let i = 0; i < this.checkedUniversities.length; i++) {
@@ -109,14 +110,29 @@ export default {
       return coursesCodes;
     },
   },
-  updated () { },
-  created() {
-    if (!this.courseName) {
-      this.$router.push('cursos');
-    }
+  methods: {
+    ...mapActions([
+      'loadGradesByCourseName'
+    ]),
+    compareCourses() {
+
+    },
+    verifyRoute() {
+      if (!this.courseName) {
+          this.$router.push('cursos');
+      }
+    },
+    loadGrades() {
+      this.loadGradesByCourseName(this.courseName);    
+    },
   },
-
-
+  updated () {
+    this.verifyRoute();    
+  },
+  created() {
+    this.verifyRoute();
+    this.loadGrades();    
+  },
 };
 </script>
 

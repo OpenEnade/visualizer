@@ -20,16 +20,18 @@ export default {
 				console.error(err);
 			}
 		},
-		async loadGrades({ commit }) {
+		async loadGradesByCourseName({ commit }, courseName) {
 			try {
 				const allGrades = await ApiService.getGrades();
-				commit('LOAD_GRADES', allGrades);
+				const usefulGrades = allGrades.filter(
+					grade => grade.info.curso.nome = courseName					
+				)
+
+				commit('LOAD_GRADES', usefulGrades);
+				
 			} catch (err) {
 				console.error(err);
 			}
-		},
-		loadNotasByCourseName({ commit }, courseName) {
-				commit('LOAD_GRADES_COURSE', courseName);
 		},
 		persistCourseName({ commit }, courseName) {
 			commit('PERSIST_COURSE_NAME', courseName);

@@ -22,13 +22,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'loadCourses',
-      'loadGrades'
+      'loadCourses',      
     ]),
   },
   created: function () {
-    this.loadCourses();
-    this.loadGrades();
+    this.loadCourses();    
   }
 };
 </script>
