@@ -71,7 +71,6 @@
 </template>
 
 <script lang="js">
-import ApiService from '@/services/ApiService.js';
 import ListFilter from '@/components/ListFilter.vue';
 import Spinner from '@/components/Spinner.vue';
 import { mapState, mapActions } from 'vuex';
