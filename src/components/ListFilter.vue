@@ -102,7 +102,7 @@ export default {
     courseName: {
       type: String,
       default: "",
-      required: true      
+      required: true
     }
   },
   methods: {
@@ -123,7 +123,7 @@ export default {
     },
     filterByModality: function () {
       console.log('Not yet implemented!');
-    },  
+    },
     filterByYear: function () {
       console.log('Not yet implemented!');
     }

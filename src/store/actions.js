@@ -29,7 +29,7 @@ export default {
 			}
 		},
 		loadNotasByCourseName({ commit }, courseName) {
-				commit('LOAD_GRADES_COURSE', courseName);			
+				commit('LOAD_GRADES_COURSE', courseName);
 		},
 		persistCourseName({ commit }, courseName) {
 			commit('PERSIST_COURSE_NAME', courseName);
