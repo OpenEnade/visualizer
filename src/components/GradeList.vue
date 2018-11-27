@@ -38,8 +38,8 @@
             class="input-checkbox"
             type="checkbox"
             title="Selecione até 3 universidades para comparar">
-            <th scope="row">{{ index + 1 }}</th>
-            <td>{{ grade.info.universidade.nome }}</td>
+            <th @click="detailCourse()" scope="row">{{ index + 1 }}</th>
+            <td >{{ grade.info.universidade.nome }}</td>
             <td>{{ grade.info.universidade.categoriaAdmin }}</td>
             <td>{{ grade.info.curso.modalidade }}</td>
             <td>{{ grade.avaliacao.enadeContinuo ? grade.avaliacao.enadeContinuo.toFixed(2) : ''}}</td>
@@ -123,6 +123,9 @@ export default {
     },
     loadGrades() {
       this.loadGradesByCourseName(this.courseName);
+    },
+    detailCourse() {
+
     },
   },
   updated () {

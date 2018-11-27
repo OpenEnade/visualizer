@@ -2,6 +2,9 @@ import _ from 'lodash';
 import  * as type from './mutations-types.js';
 
 export default {
+  [type.PERSIST_COURSE_NAME]: (state, courseName) => {
+    state.currentCourseName = courseName;
+  },
   [type.LOAD_GRADES_COURSE] : (state, payload) => {
     state.gradesByCourse = payload;
     state.gradesByCourseOnTable = payload;
@@ -25,12 +28,12 @@ export default {
     state.coursesList = payload;
   },
   [type.LOAD_MODALITIES]: state => {
-    state.modalityList = _uniq(state.gradesByCourse.map(
+    state.modalityList = _.uniq(state.gradesByCourse.map(
       grade => grade.info.curso.modalidade
     ))
   },
   [type.LOAD_YEARS]: state => {
-    state.yearList = _uniq(state.gradesByCourse.map(
+    state.yearList = _.uniq(state.gradesByCourse.map(
       grade => grade.info.ano.ano
     ))
   },
@@ -53,11 +56,18 @@ export default {
     );
   },
   [type.UPDATE_BY_CATEGORY] : (state, categoryName) => {
-    state.gradesByCourseOnTable = state.gradesByCourseOnTable.filter (
+    state.gradesByCourseOnTable = state.gradesByCourse.filter (
       grade => grade.info.universidade.categoriaAdmin === categoryName
     );
   },
-  [type.PERSIST_COURSE_NAME]: (state, courseName) => {
-    state.currentCourseName = courseName;
-  }
+  [type.UPDATE_BY_MODALITY] : (state, modality) => {
+    state.gradesByCourseOnTable = state.gradesByCourse.filter(
+      grade => grade.info.curso.modalidade
+    )
+  },
+  [type.UPDATE_BY_YEAR] : (state, year) => {
+    state.gradesByCourseOnTable = state.gradesByCourse.filter(
+      grade => grade.info.ano.ano
+    )
+  },
 };

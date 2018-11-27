@@ -104,22 +104,26 @@ export default {
       'filterByCityAction',
       'filterCategoryAction',
       'filterByModalityAction',
-      ''
+      'filterByYearAction'
     ]),
     filterByState: function () {
-      this.filterByStateAction(this.state);
+      if(this.state) {
+        this.filterByStateAction(this.state);
+      }
     },
     filterByCity: function () {
-      this.filterByCityAction(this.city);
+      if (this.city) {
+        this.filterByCityAction(this.city);
+      }
     },
     filterByCategory: function () {
-      this.filterCategoryAction(this.category);
+      if (this.category) {this.filterCategoryAction(this.category);}
     },
     filterByModality: function () {
-      console.log('Not yet implemented!');
+      if (this.modality) {this.filterByModalityAction(this.modality);}
     },
     filterByYear: function () {
-      console.log('Not yet implemented!');
+      if(this.yearList) {this.filterByYearAction(this.year);}
     }
   },
   computed: {

@@ -34,7 +34,10 @@ export default {
 		filterCategoryAction({ commit }, categoryName) {
 			commit('UPDATE_BY_CATEGORY', categoryName);
 		},
-		filterByModality( {}, courseName ) {
-
+		filterByModalityAction( { commit }, modality ) {
+			commit('UPDATE_BY_MODALITY', modality);
 		},
+		filterByYearAction( { commit }, year ) {
+			commit('UPDATE_BY_YEAR', year);
+		}
 };
