@@ -1,7 +1,8 @@
 export default {
   universityList: [],
   universtitiesShowed: [],
-  notasByCourse: [],  
+  grades: [],
+  gradesByCourse: [], 
   stateList: [],
   cityList: [],
   categoryList: [],

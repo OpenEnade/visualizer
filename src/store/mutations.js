@@ -1,16 +1,16 @@
 import _ from 'lodash';
 import {
 	LOAD_UNIVERSITIES,
-	LOAD_STATELIST,
-	LOAD_CITYLIST,
-	LOAD_MODALITYLIST,
-	LOAD_CATEGORYLIST,
-	LOAD_COURSESLIST,
-	UPDATE_BYSTATE,
-	UPDATE_BYCITY,
-	UPDATE_BYCATEGORY,
-	LOAD_NOTAS,
-	LOAD_COURSESVALIDS,
+	LOAD_STATES,
+	LOAD_CITIES,
+	LOAD_CATEGORIES,
+	LOAD_COURSES,
+	LOAD_VALID_COURSES,
+	UPDATE_BY_STATE,
+	UPDATE_BY_CITY,
+	UPDATE_BY_CATEGORY,
+	LOAD_GRADES,
+  LOAD_GRADES_COURSE,
 } from './mutations-types.js';
 
 export default {
@@ -18,25 +18,25 @@ export default {
     state.universityList = _.uniq(payload).sort();
     state.universtitiesShowed = state.universityList;
   },
-  [LOAD_STATELIST]: (state) => {
+  [LOAD_STATES]: (state) => {
     state.stateList = _.uniq(state.universityList.map(
       (university => university.campus.estado.sigla)
     )).sort();
   },
-  [LOAD_CITYLIST]: (state) => {
+  [LOAD_CITIES]: (state) => {
     state.cityList = _.uniq(state.universityList.map(
       (university => university.campus.nome)
     )).sort();
   },
-  [LOAD_CATEGORYLIST]: (state) => {
+  [LOAD_CATEGORIES]: (state) => {
     state.categoryList = _.uniq(state.universityList.map(
       (university => university.categoriaAdmin)
     )).sort();
   },
-  [LOAD_COURSESLIST]: (state, payload) => {
+  [LOAD_COURSES]: (state, payload) => {
     state.coursesList = payload;
   },
-  [LOAD_COURSESVALIDS]: (state, payload) => {
+  [LOAD_VALID_COURSES]: (state, payload) => {
     state.coursesValids = _.uniqBy(payload, 'nome').sort(function (previous, next) {
       return ('' + previous.nome).localeCompare(next.nome);
     });
@@ -44,22 +44,27 @@ export default {
       course.nome = course.nome.toUpperCase();
     })
   },
-  [UPDATE_BYSTATE] : (state, stateName) => {
+  [UPDATE_BY_STATE] : (state, stateName) => {
     state.universtitiesShowed = state.universityList.filter (
       (university) => university.campus.estado.sigla === stateName
     );
   },
-  [UPDATE_BYCITY] : (state, cityName) => {
+  [UPDATE_BY_CITY] : (state, cityName) => {
     state.universtitiesShowed = state.universityList.filter (
       (university) => university.campus.nome === cityName
     );
   },
-  [UPDATE_BYCATEGORY] : (state, categoryName) => {
+  [UPDATE_BY_CATEGORY] : (state, categoryName) => {
     state.universtitiesShowed = state.universityList.filter (
       university => university.categoriaAdmin === categoryName
     );
   },
-  [LOAD_NOTAS]: (state, payload) => {
-    state.notasByCourse = payload;
+  [LOAD_GRADES]: (state, payload) => {
+    state.grades = payload;
   },
+  [LOAD_GRADES_COURSE]: (state, courseName) => {
+    state.gradesByCourse = state.grades.filter(
+      (grade) => grade.curso.nome === courseName;
+    )
+  }
 };
