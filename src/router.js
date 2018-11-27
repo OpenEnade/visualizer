@@ -34,8 +34,8 @@ const router = new Router({
     component: Courses,
   },
   {
-    path: '/universidades',
-    name: 'universidades',
+    path: '/notas',
+    name: 'notas',
     component: Dashboard,
   },
   {

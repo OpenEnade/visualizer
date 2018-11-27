@@ -6,19 +6,18 @@
     <h1 style="text-align: center">{{ courseName }}</h1>
     <br>
 
-    <div v-if="universityList.length == 0">
+    <div v-if="gradesByCourse.length == 0">
       <Spinner />
     </div>
     <section class="list-university animated fadeIn slow">
-      <h1>{{ courseName }}</h1>
       <br>
       <template>
-        <table class="table table-hover">
+        <table class="table table-hover table-bordered table-sm">
           <thead>
             <tr>
               <th scope="col"/>
-              <th scope="col">#</th>
-              <th scope="col"> Universidade</th>
+              <th @click="sort('position')" scope="col">#</th>
+              <th scope="col">Universidade</th>
               <th scope="col">Categoria Administrativa</th>
               <th scope="col">Modalidade de Ensino</th>
               <th scope="col">Conceito Contínuo</th>
@@ -29,23 +28,24 @@
           </thead>
           <tbody>
             <tr
-            v-for="(item, index) in universtitiesShowed"
+            v-for="(grade, index) in gradesByCourse"
             :key="index">
             <input
             v-b-tooltip.hover
-            :value="item"
+            :value="grade"
             v-model="checkedUniversities"
             :disabled="checkedUniversities.length >= 3 && checkedUniversities.indexOf(item) === -1"
             class="input-checkbox"
             type="checkbox"
             title="Selecione até 3 universidades para comparar">
-            <th scope="row">{{ index }}</th>
-            <td>{{ item.nome }}</td>
-            <td>{{ item.categoriaAdmin }}</td>
-            <td>{{ item.modalidade }}</td>
-            <td>{{ item.continuousConcept ? item.continuousConcept.toFixed(2) : ''}}</td>
-            <td>{{ item.enadeConcept }}</td>
-            <td>{{ 2017 }}</td>
+            <th scope="row">{{ index + 1 }}</th>
+            <td>{{ grade.info.universidade.nome }}</td>
+            <td>{{ grade.info.universidade.categoriaAdmin }}</td>
+            <td>{{ grade.info.curso.modalidade }}</td>
+            <td>{{ grade.avaliacao.enadeContinuo ? grade.avaliacao.enadeContinuo.toFixed(2) : ''}}</td>
+            <td>{{ grade.avaliacao.enadeFaixa }}</td>
+            <td>{{ grade.info.universidade.campus.nome }}</td>
+            <td>{{ grade.info.ano.ano }}</td>
           </tr>
         </tbody>
       </table>
@@ -78,22 +78,22 @@ import { mapState, mapActions } from 'vuex';
 
 
 export default {
-  universityName: 'list-university',  
-  components: {    
-    ListFilter,  
-    Spinner,  
+  universityName: 'list-university',
+  components: {
+    ListFilter,
+    Spinner,
   },
   data() {
     return {
       checkedUniversities: [],
-      courseName: '',      
+      currentSort: 'position',
+      currentSortDirection: 'asc',
     };
   },
-
   computed: {
     ...mapState({
-      universityList: 'universityList',
-      universtitiesShowed: 'universtitiesShowed'
+      courseName: 'currentCourseName',
+      gradesByCourse: 'gradesByCourse',
     }),
     selectable() {
       return this.checkedUniversities.length < 3;
@@ -101,7 +101,6 @@ export default {
     comparable() {
       return this.checkedUniversities.length > 1 && this.checkedUniversities.length <= 3;
     },
-
     selectedCourses() {
       const coursesCodes = [];
       for (let i = 0; i < this.checkedUniversities.length; i++) {
@@ -110,52 +109,28 @@ export default {
       return coursesCodes;
     },
   },
-  updated () {
+  methods: {
+    ...mapActions([
+      'loadGradesByCourseName'
+    ]),
+    compareCourses() {
 
+    },
+    verifyRoute() {
+      if (!this.courseName) {
+          this.$router.push('cursos');
+      }
+    },
+    loadGrades() {
+      this.loadGradesByCourseName(this.courseName);
+    },
+  },
+  updated () {
+    this.verifyRoute();
   },
   created() {
-    if (localStorage.getItem('cursosComparacao')) {
-      localStorage.removeItem('cursosComparacao');
-    }
-    const course = localStorage.getItem('curso');
-    if (course) {
-      this.courseName = course;
-    }
-  },
-
-  methods: {
-    getCoursesModality(courseName) {
-      for (let i = 0; i < this.universityList.length; i++) {
-        this.universityList[i].cursos.forEach((curso) => {
-          if (curso.nome === courseName) {
-            this.$set(this.universityList[i], 'modalidade', curso.modalidade);
-          }
-        });
-      }
-    },
-
-    getGrades() {
-      for (let i = 0; i < this.universityList.length; i++) {
-        const university = this.universityList[i];
-        const code = university.codigoIES;
-        const year = 2017;
-        const grades = {};
-        ApiService.getUniversityGradesByYear(code, year)
-        .then((response) => {
-          const gradeInfo = response[0].avaliacao;
-          this.$set(university, 'enadeConcept', gradeInfo.enadeFaixa);
-          this.$set(university, 'continuousConcept', gradeInfo.enadeContinuo);
-        });
-      }
-    },
-
-    compareCourses() {
-      if (this.checkedUniversities) {
-        this.
-        localStorage.setItem('cursosComparacao', this.selectedCourses);
-        this.$router.replace('comparacao');
-      }
-    },
+    this.verifyRoute();
+    this.loadGrades();
   },
 };
 </script>
