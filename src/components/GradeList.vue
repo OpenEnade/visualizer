@@ -9,7 +9,7 @@
     <div v-if="gradesByCourse.length == 0">
       <Spinner />
     </div>
-    <section class="list-university animated fadeIn slow">
+    <section class="list-university animated fadeIn slow" v-if="gradesByCourse.length > 0">
       <br>
       <template>
         <table class="table table-hover">
@@ -29,7 +29,7 @@
           <tbody>
             <tr
             @click="detailCourse()"
-            v-for="(grade, index) in gradesByCourse"
+            v-for="(grade, index) in grades"
             :key="index"
             v-model="currentGrade">
 
@@ -53,6 +53,7 @@
           </tr>
         </tbody>
       </table>
+
       <transition
       enter-active-class="animated slideInUp fast"
       leave-active-class="animated slideOutDown faster">
@@ -66,7 +67,6 @@
 
     </div>
   </transition>
-  <!-- <span>{{ checkedUniversities }}</span> -->
 </template>
 </transition>
 </section>
@@ -112,6 +112,10 @@ export default {
       }
       return coursesCodes;
     },
+
+    grades() {
+      return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', 'desc')
+    }
   },
   methods: {
     ...mapActions([
@@ -120,6 +124,7 @@ export default {
     compareCourses() {
 
     },
+
     verifyRoute() {
       if (!this.courseName) {
           this.$router.push('cursos');
