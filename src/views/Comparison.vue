@@ -20,6 +20,10 @@
         <Spinner />
       </div>
 
+      <div v-if="chartData.length > 0">
+        <Chart :courses="chartData"/>
+      </div>
+
       <div class="row" v-if="courses.length > 0">
         <div class="col-2">
           <div class="table-responsive">
@@ -111,10 +115,12 @@
 import PageHeader from '@/components/PageHeader.vue';
 import ApiService from '@/services/ApiService.js';
 import Spinner from '@/components/Spinner.vue';
+import Chart from "../components/Chart";
 
 export default {
   name: 'Comparison',
   components: {
+      Chart,
     PageHeader,
     Spinner
   },
@@ -122,6 +128,7 @@ export default {
     return {
       course: '',
       courses: [],
+      chartData: [],
     };
   },
   computed: {
@@ -130,10 +137,12 @@ export default {
   async created() {
     this.course = localStorage.getItem('curso');
     const courses = JSON.parse(localStorage.getItem('cursosComparacao'));
-    this.courses = await ApiService.getCourseNotes(courses);
+    this.chartData = this.getChartData(courses);
   },
   methods: {
+  getChartData(courses) {
 
+  },
   },
 };
 </script>
