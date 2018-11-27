@@ -4,28 +4,35 @@ import  * as type from './mutations-types.js';
 export default {
   [type.LOAD_GRADES_COURSE] : (state, payload) => {
     state.gradesByCourse = payload;
-  },
-  [type.LOAD_UNIVERSITIES]: (state, payload) => {
-    state.universityList = _.uniq(payload).sort();
-    state.universtitiesShowed = state.universityList;
+    state.gradesByCourseOnTable = payload;
   },
   [type.LOAD_STATES]: (state) => {
-    state.stateList = _.uniq(state.universityList.map(
-      (university => university.campus.estado.sigla)
+    state.stateList = _.uniq(state.gradesByCourse.map(
+      (grade => grade.info.universidade.campus.estado.sigla)
     )).sort();
   },
   [type.LOAD_CITIES]: (state) => {
-    state.cityList = _.uniq(state.universityList.map(
-      (university => university.campus.nome)
+    state.cityList = _.uniq(state.gradesByCourse.map(
+      (grade => grade.info.universidade.campus.nome)
     )).sort();
   },
   [type.LOAD_CATEGORIES]: (state) => {
-    state.categoryList = _.uniq(state.universityList.map(
-      (university => university.categoriaAdmin)
+    state.categoryList = _.uniq(state.gradesByCourse.map(
+      grade => grade.info.universidade.categoriaAdmin
     )).sort();
   },
   [type.LOAD_COURSES]: (state, payload) => {
     state.coursesList = payload;
+  },
+  [type.LOAD_MODALITIES]: state => {
+    state.modalityList = _uniq(state.gradesByCourse.map(
+      grade => grade.info.curso.modalidade
+    ))
+  },
+  [type.LOAD_YEARS]: state => {
+    state.yearList = _uniq(state.gradesByCourse.map(
+      grade => grade.info.ano.ano
+    ))
   },
   [type.LOAD_VALID_COURSES]: (state, payload) => {
     state.coursesValids = _.uniqBy(payload, 'nome').sort(function (previous, next) {
@@ -36,18 +43,18 @@ export default {
     })
   },
   [type.UPDATE_BY_STATE] : (state, stateName) => {
-    state.universtitiesShowed = state.universityList.filter (
-      (university) => university.campus.estado.sigla === stateName
+    state.gradesByCourseOnTable = state.gradesByCourse.filter (
+      (grade) => grade.info.universidade.campus.estado.sigla === stateName
     );
   },
   [type.UPDATE_BY_CITY] : (state, cityName) => {
-    state.universtitiesShowed = state.universityList.filter (
-      (university) => university.campus.nome === cityName
+    state.gradesByCourseOnTable = state.gradesByCourse.filter (
+      (grade) => grade.info.universidade.campus.nome === cityName
     );
   },
   [type.UPDATE_BY_CATEGORY] : (state, categoryName) => {
-    state.universtitiesShowed = state.universityList.filter (
-      university => university.categoriaAdmin === categoryName
+    state.gradesByCourseOnTable = state.gradesByCourseOnTable.filter (
+      grade => grade.info.universidade.categoriaAdmin === categoryName
     );
   },
   [type.PERSIST_COURSE_NAME]: (state, courseName) => {

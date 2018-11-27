@@ -98,19 +98,13 @@
 import { mapState, mapActions } from 'vuex';
 export default {
   name: 'ListFilter',
-  props: {
-    courseName: {
-      type: String,
-      default: "",
-      required: true
-    }
-  },
   methods: {
     ...mapActions([
-      'loadUniversitiesByCourse',
       'filterByStateAction',
       'filterByCityAction',
       'filterCategoryAction',
+      'filterByModalityAction',
+      ''
     ]),
     filterByState: function () {
       this.filterByStateAction(this.state);
@@ -127,9 +121,6 @@ export default {
     filterByYear: function () {
       console.log('Not yet implemented!');
     }
-  },
-  created: function() {
-    this.loadUniversitiesByCourse(this.courseName);
   },
   computed: {
     ...mapState({
@@ -148,6 +139,11 @@ export default {
       modality: '',
       year: '',
     }
+  },
+
+  created: function() {
+  },
+  updated: function() {
   },
 };
 </script>

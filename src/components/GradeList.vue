@@ -12,11 +12,11 @@
     <section class="list-university animated fadeIn slow">
       <br>
       <template>
-        <table class="table table-hover table-bordered table-sm">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th scope="col"/>
-              <th @click="sort('position')" scope="col">#</th>
+              <th scope="col">#</th>
               <th scope="col">Universidade</th>
               <th scope="col">Categoria Administrativa</th>
               <th scope="col">Modalidade de Ensino</th>
@@ -93,7 +93,7 @@ export default {
   computed: {
     ...mapState({
       courseName: 'currentCourseName',
-      gradesByCourse: 'gradesByCourse',
+      gradesByCourse: 'gradesByCourseOnTable',
     }),
     selectable() {
       return this.checkedUniversities.length < 3;
@@ -111,7 +111,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'loadGradesByCourseName'
+      'loadGradesByCourseName',
     ]),
     compareCourses() {
 

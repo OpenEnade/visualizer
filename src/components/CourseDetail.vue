@@ -51,26 +51,22 @@
 
 <script>
 import Chart from './Chart';
+import { mapState } from 'vuex';
 
 export default {
   name: 'CourseDetail',
   components: { Chart },
-  props: {
-    courseName: {
-      type: String,
-      default: '',
-      required: true,
-    }
-  },
   data() {
     return {
 
     };
   },
-
-  created() {
-    this.course = localStorage.getItem('curso');
+  computed: {
+    ...mapState([
+      'currentCourseGrade',
+    ]),
   },
+  created() { },
 };
 </script>
 

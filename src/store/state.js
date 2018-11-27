@@ -1,14 +1,16 @@
 export default {
-  universityList: [],
-  universtitiesShowed: [],
   gradesByCourse: [],
+  gradesByCourseOnTable: [],
+
   stateList: [],
   cityList: [],
   categoryList: [],
-  modalityList: ["Educação à Distância", "Educação Presencial"],
-  yearList: [ 2017 ],
+  modalityList: [],
+  yearList: [],
+
   coursesList: [],
   coursesValids: [],
   coursesToCompare: [],
   currentCourseName: '',
+  currentCourseGrade: '',
 };
