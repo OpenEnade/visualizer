@@ -28,8 +28,11 @@
           </thead>
           <tbody>
             <tr
+            @click="detailCourse()"
             v-for="(grade, index) in gradesByCourse"
-            :key="index">
+            :key="index"
+            v-model="currentGrade">
+
             <input
             v-b-tooltip.hover
             :value="grade"
@@ -38,8 +41,9 @@
             class="input-checkbox"
             type="checkbox"
             title="Selecione até 3 universidades para comparar">
-            <th @click="detailCourse()" scope="row">{{ index + 1 }}</th>
-            <td >{{ grade.info.universidade.nome }}</td>
+
+            <th scope="row">{{ index + 1 }}</th>
+            <td>{{ grade.info.universidade.nome }}</td>
             <td>{{ grade.info.universidade.categoriaAdmin }}</td>
             <td>{{ grade.info.curso.modalidade }}</td>
             <td>{{ grade.avaliacao.enadeContinuo ? grade.avaliacao.enadeContinuo.toFixed(2) : ''}}</td>
@@ -87,6 +91,7 @@ export default {
       checkedUniversities: [],
       currentSort: 'position',
       currentSortDirection: 'asc',
+      currentGrade: {},
     };
   },
   computed: {
@@ -124,7 +129,7 @@ export default {
       this.loadGradesByCourseName(this.courseName);
     },
     detailCourse() {
-
+      console.log(this.checkedUniversities);
     },
   },
   updated () {
