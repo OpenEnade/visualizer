@@ -78,22 +78,22 @@ import { mapState, mapActions } from 'vuex';
 
 
 export default {
-  universityName: 'list-university',  
-  components: {    
-    ListFilter,  
-    Spinner,  
+  universityName: 'list-university',
+  components: {
+    ListFilter,
+    Spinner,
   },
   data() {
     return {
-      checkedUniversities: [],
-      courseName: '',      
+      checkedUniversities: [],      
     };
   },
 
   computed: {
     ...mapState({
       universityList: 'universityList',
-      universtitiesShowed: 'universtitiesShowed'
+      universtitiesShowed: 'universtitiesShowed',
+      courseName: 'currentCourseName',
     }),
     selectable() {
       return this.checkedUniversities.length < 3;

@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     ...mapState({
-      courses: 'coursesValids'
+      courses: 'coursesValids',
     }),
   },
   created() {},
@@ -44,12 +44,13 @@ export default {
 
   methods: {
     ...mapActions([
-      'loadNotas'
+      'loadNotas',
+      'persistCourseName'
       ]),
     searchCourse() {
-      if (this.course) {
-        localStorage.setItem('curso', this.course);
-        this.$router.replace('universidades');
+      if (this.courseName) {
+        this.persistCourseName(this.courseName);
+        this.$router.replace('notas');
       }
     },
   },

@@ -20,13 +20,15 @@ export default {
     Navbar,
     FooterC,
   },
-  methods: {    
+  methods: {
     ...mapActions([
-      'loadCourses'
+      'loadCourses',
+      'loadGrades'
     ]),
   },
   created: function () {
     this.loadCourses();
+    this.loadGrades();
   }
 };
 </script>

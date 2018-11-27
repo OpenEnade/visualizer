@@ -1,25 +1,12 @@
 import ApiService from '@/services/ApiService.js';
 export default {
-		async loadNotas({ commit }, course) {
-			try {
-				const allNotas = await ApiService.getNotas();
-
-				const expectedNotas = allNotas.filter(
-					nota => nota.info.codigoCurso === course.codigoCurso
-				);
-				commit('LOAD_NOTAS', expectedNotas);
-
-			} catch (err) {
-				console.error(err);
-			}
-		},
 		async loadUniversitiesByCourse({ commit }, courseName) {
 			try {
 				const allUniversities = await ApiService.getUniversitiesByCourse(courseName);
 				commit('LOAD_UNIVERSITIES', allUniversities);
-				commit('LOAD_STATELIST');
-				commit('LOAD_CITYLIST');
-				commit('LOAD_CATEGORYLIST');
+				commit('LOAD_STATES');
+				commit('LOAD_CITIES');
+				commit('LOAD_CATEGORIES');
 			} catch (err) {
 				console.error(err);
 			}
@@ -27,22 +14,33 @@ export default {
 		async loadCourses({ commit }) {
 			try {
 				const allCourses = await ApiService.getCourses();
-				commit('LOAD_COURSESLIST', allCourses);
-				commit('LOAD_COURSESVALIDS', allCourses);
+				commit('LOAD_COURSES', allCourses);
+				commit('LOAD_VALID_COURSES', allCourses);
 			} catch (err) {
 				console.error(err);
 			}
 		},
+		async loadGrades({ commit }) {
+			try {
+				const allGrades = await ApiService.getGrades();
+				commit('LOAD_GRADES', allGrades);
+			} catch (err) {
+				console.error(err);
+			}
+		},
+		loadNotasByCourseName({ commit }, courseName) {
+				commit('LOAD_GRADES_COURSE', courseName);			
+		},
+		persistCourseName({ commit }, courseName) {
+			commit('PERSIST_COURSE_NAME', courseName);
+		},
 		filterByStateAction({ commit }, stateName) {
-			commit('UPDATE_BYSTATE', stateName);
+			commit('UPDATE_BY_STATE', stateName);
 		},
 		filterByCityAction({ commit }, cityName) {
-			commit('UPDATE_BYCITY', cityName);
+			commit('UPDATE_BY_CITY', cityName);
 		},
 		filterCategoryAction({ commit }, categoryName) {
-			commit('UPDATE_BYCATEGORY', categoryName);
-		},
-		compareCourses({ commit }, payload) {
-
+			commit('UPDATE_BY_CATEGORY', categoryName);
 		},
 };

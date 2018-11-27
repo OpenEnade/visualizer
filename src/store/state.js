@@ -2,7 +2,7 @@ export default {
   universityList: [],
   universtitiesShowed: [],
   grades: [],
-  gradesByCourse: [], 
+  gradesByCourse: [],
   stateList: [],
   cityList: [],
   categoryList: [],
@@ -10,5 +10,6 @@ export default {
   yearList: [ 2017 ],
   coursesList: [],
   coursesValids: [],
-  coursesToCompare: []
+  coursesToCompare: [],
+  currentCourseName: '',
 };
