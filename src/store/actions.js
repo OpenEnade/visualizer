@@ -1,16 +1,5 @@
 import ApiService from '@/services/ApiService.js';
 export default {
-		async loadUniversitiesByCourse({ commit }, courseName) {
-			try {
-				const allUniversities = await ApiService.getUniversitiesByCourse(courseName);
-				commit('LOAD_UNIVERSITIES', allUniversities);
-				commit('LOAD_STATES');
-				commit('LOAD_CITIES');
-				commit('LOAD_CATEGORIES');
-			} catch (err) {
-				console.error(err);
-			}
-		},
 		async loadCourses({ commit }) {
 			try {
 				const allCourses = await ApiService.getCourses();
@@ -24,6 +13,11 @@ export default {
 			try {
 				const usefulGrades = await ApiService.getGradesByName(courseName);
 				commit('LOAD_GRADES_COURSE', usefulGrades);
+				commit('LOAD_STATES');
+				commit('LOAD_CITIES');
+				commit('LOAD_CATEGORIES');
+				commit('LOAD_MODALITIES');
+				commit('LOAD_YEARS');
 			} catch (err) {
 				console.error(err);
 			}
@@ -40,4 +34,10 @@ export default {
 		filterCategoryAction({ commit }, categoryName) {
 			commit('UPDATE_BY_CATEGORY', categoryName);
 		},
+		filterByModalityAction( { commit }, modality ) {
+			commit('UPDATE_BY_MODALITY', modality);
+		},
+		filterByYearAction( { commit }, year ) {
+			commit('UPDATE_BY_YEAR', year);
+		}
 };

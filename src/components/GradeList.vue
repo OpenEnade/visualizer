@@ -12,11 +12,11 @@
     <section class="list-university animated fadeIn slow">
       <br>
       <template>
-        <table class="table table-hover table-bordered table-sm">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th scope="col"/>
-              <th @click="sort('position')" scope="col">#</th>
+              <th scope="col">#</th>
               <th scope="col">Universidade</th>
               <th scope="col">Categoria Administrativa</th>
               <th scope="col">Modalidade de Ensino</th>
@@ -28,8 +28,11 @@
           </thead>
           <tbody>
             <tr
+            @click="detailCourse()"
             v-for="(grade, index) in gradesByCourse"
-            :key="index">
+            :key="index"
+            v-model="currentGrade">
+
             <input
             v-b-tooltip.hover
             :value="grade"
@@ -38,6 +41,7 @@
             class="input-checkbox"
             type="checkbox"
             title="Selecione até 3 universidades para comparar">
+
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ grade.info.universidade.nome }}</td>
             <td>{{ grade.info.universidade.categoriaAdmin }}</td>
@@ -71,7 +75,6 @@
 </template>
 
 <script lang="js">
-import ApiService from '@/services/ApiService.js';
 import ListFilter from '@/components/ListFilter.vue';
 import Spinner from '@/components/Spinner.vue';
 import { mapState, mapActions } from 'vuex';
@@ -88,12 +91,13 @@ export default {
       checkedUniversities: [],
       currentSort: 'position',
       currentSortDirection: 'asc',
+      currentGrade: {},
     };
   },
   computed: {
     ...mapState({
       courseName: 'currentCourseName',
-      gradesByCourse: 'gradesByCourse',
+      gradesByCourse: 'gradesByCourseOnTable',
     }),
     selectable() {
       return this.checkedUniversities.length < 3;
@@ -111,7 +115,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'loadGradesByCourseName'
+      'loadGradesByCourseName',
     ]),
     compareCourses() {
 
@@ -123,6 +127,9 @@ export default {
     },
     loadGrades() {
       this.loadGradesByCourseName(this.courseName);
+    },
+    detailCourse() {
+      console.log(this.checkedUniversities);
     },
   },
   updated () {
