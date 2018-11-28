@@ -1,4 +1,5 @@
 import ApiService from '@/services/ApiService.js';
+
 export default {
 		async loadCourses({ commit }) {
 			try {

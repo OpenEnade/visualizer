@@ -15,24 +15,24 @@
 </template>
 
 <script lang="js">
-  export default  {
-    name: 'spinner',
-    props: [],
-    mounted() {
+export default {
+  name: 'spinner',
+  props: [],
+  mounted() {
 
-    },
-    data() {
-      return {
+  },
+  data() {
+    return {
 
-      }
-    },
-    methods: {
+    };
+  },
+  methods: {
 
-    },
-    computed: {
+  },
+  computed: {
 
-    }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">
