@@ -145,7 +145,6 @@ export default {
     },
 
     async getChartData(courses) {
-<<<<<<< HEAD
       const newChartData = {};
       for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
         const course = courses[courseIndex];
@@ -165,27 +164,6 @@ export default {
             newChartData[universityName] = {};
             newChartData[universityName][year] = parseFloat(enadeNote);
           }
-=======
-        var newChartData = {};
-        for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
-            const course = courses[courseIndex];
-            const courseCode = course.info.curso.codigoCurso;
-            const courseNotes = await ApiService.getCourseNotes(courseCode);
-            for (let noteIndex = 0; noteIndex < courseNotes.length; noteIndex++) {
-                const note = courseNotes[noteIndex];
-                const university = note.info.universidade;
-                const universityName = university.nome + ' - ' + university.campus.nome;
-                const year = note.info.ano.ano;
-                const enadeNote = note.avaliacao.enadeContinuo.toFixed(2);
-                if(newChartData[universityName]) {
-                    newChartData[universityName][year] = parseFloat(enadeNote);
-                } else {
-                    newChartData[universityName] = {};
-                    newChartData[universityName][year] = parseFloat(enadeNote);
-                }
-
-            }
->>>>>>> parent of d88997d... Modifying university search by area code and university code.
         }
       }
       return newChartData;
