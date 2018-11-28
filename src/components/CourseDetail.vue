@@ -2,10 +2,12 @@
 
   <section class="course-detail animated fadeIn slow">
     <br>
+
     <h1 v-if="!currentCourseGradeEmpty">{{ currentCourseGrade.info.curso.nome }}</h1>
     <h1 v-else> {{ errorCourseMessage }} </h1>
     <h4 v-if="!currentCourseGradeEmpty"> {{ currentCourseGrade.info.universidade.nome }} </h4>
     <h4 v-else> {{ errorUniversityMessage }} </h4>
+
     <hr>
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
@@ -105,8 +107,9 @@
 import Chart from './Chart';
 import { mapState, mapGetters } from 'vuex';
 
+
 export default {
-  name: 'CourseDetail',
+  name: "CourseDetail",
   components: { Chart },
   data() {
     return {

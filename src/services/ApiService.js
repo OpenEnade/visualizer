@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://open-enade-api.herokuapp.com/api';
-// axios.defaults.baseURL = 'http://localhost:8080/api';
+// axios.defaults.baseURL = 'https://open-enade-api.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:8080/api';
 axios.defaults.withCredentials = false;
 
 export default {
@@ -26,6 +26,11 @@ export default {
     return axios.get(`/universidades/cursos?nomeCurso=${courseName}`)
       .then(response => response.data);
   },
+
+  getGradesByCourse(areaCode) {
+    return axios.get(`/notas/filterby?codigoArea=${areaCode}`)
+  },
+
   getUniversityGradesByYear(universityCode, year) {
     return axios.get(`/notas/filterby?universidade=${universityCode}&beginAno=${year}&endAno=${year}`)
       .then(response => response.data);
@@ -33,6 +38,7 @@ export default {
   getModalities() {
     return axios.get('/modalidades');
   },
+  
   getCourseNotes(areaCode, universityCode, countyCode) {
     return axios.get(`/notas/filterby?codigoArea=${areaCode}&universidade=${universityCode}&municipio=${countyCode}`)
       .then(response => response.data);

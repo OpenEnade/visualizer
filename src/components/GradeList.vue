@@ -3,13 +3,13 @@
     <div>
       <ListFilter v-bind:courseName="courseName"/>
     </div>
-    <h1 style="text-align: center">{{ courseName }}</h1>
+    <h1>{{ courseName }}</h1>
     <br>
 
     <div v-if="gradesByCourse.length == 0">
       <Spinner />
     </div>
-    <section class="list-university animated fadeIn slow">
+    <section class="list-university animated fadeIn slow" v-if="gradesByCourse.length > 0">
       <br>
       <template>
         <table class="table table-hover">
@@ -20,43 +20,40 @@
               <th scope="col">Universidade</th>
               <th scope="col">Categoria Administrativa</th>
               <th scope="col">Modalidade de Ensino</th>
+              <th scope="col">Município</th>
               <th scope="col">Conceito Contínuo</th>
               <th scope="col">Conceito ENADE</th>
-              <th scope="col">Município</th>
               <th scope="col">Ano</th>
             </tr>
           </thead>
           <tbody>
             <tr
-            @click="detailCourse()"
-            v-for="(grade, index) in gradesByCourse"
-            :key="index">
+            v-for="(grade, index) in grades"
+            :key="index"
+            v-model="currentGrade">
             <input
             v-b-tooltip.hover
             :value="grade"
             v-model="checkedUniversities"
-            :disabled="checkedUniversities.length >= 3 && checkedUniversities.indexOf(item) === -1"
+            :disabled="checkedUniversities.length >= 3 && checkedUniversities.indexOf(grade) === -1"
             class="input-checkbox"
             type="checkbox"
             title="Selecione até 3 universidades para comparar">
-
+    
             <th scope="row">{{ index + 1 }}</th>
-            <td 
-                id=""
-                @click="detailCourse(grade)"
-                >
-                  {{ grade.info.universidade.nome }}
-
-            </td>
+            <div class="grade-selector" @click.prevent="detailCourse(grade)">
+            <td>{{ grade.info.universidade.nome }}</td>
             <td>{{ grade.info.universidade.categoriaAdmin }}</td>
             <td>{{ grade.info.curso.modalidade }}</td>
-            <td>{{ grade.avaliacao.enadeContinuo ? grade.avaliacao.enadeContinuo.toFixed(2) : ''}}</td>
-            <td>{{ grade.avaliacao.enadeFaixa }}</td>
             <td>{{ grade.info.universidade.campus.nome }}</td>
+            <td>{{ grade.avaliacao.enadeContinuo.toFixed(2)}}</td>
+            <td>{{ grade.avaliacao.enadeFaixa }}</td>
             <td>{{ grade.info.ano.ano }}</td>
+            </div>
           </tr>
         </tbody>
       </table>
+
       <transition
       enter-active-class="animated slideInUp fast"
       leave-active-class="animated slideOutDown faster">
@@ -70,7 +67,6 @@
 
     </div>
   </transition>
-  <!-- <span>{{ checkedUniversities }}</span> -->
 </template>
 </transition>
 </section>
@@ -94,7 +90,8 @@ export default {
     return {
       checkedUniversities: [],
       currentSort: 'position',
-      currentSortDirection: 'asc',
+      currentSortDirection: 'desc',
+      currentGrade: {},
     };
   },
   computed: {
@@ -115,18 +112,23 @@ export default {
       }
       return coursesCodes;
     },
+
+    grades() {
+      console.log(this.gradesByCourse);
+      return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', this.currentSortDirection);
+    }
   },
   methods: {
     ...mapActions([
       'loadGradesByCourseName',
       'persistGrade'
     ]),
-    async compareCourses() {
-      if (this.checkedUniversities) {
-        localStorage.setItem('cursosComparacao', JSON.stringify(this.checkedUniversities));
-        this.$router.replace('comparacao');
-      }
+
+    compareCourses() {
+      localStorage.setItem('coursesToCompare', JSON.stringify(this.checkedUniversities));
+      this.$router.push('comparacao');
     },
+
     verifyRoute() {
       if (!this.courseName) {
         this.$router.push('cursos');
@@ -135,6 +137,7 @@ export default {
     loadGrades() {
       this.loadGradesByCourseName(this.courseName);
     },
+
     detailCourse(grade) {      
       
       if (grade) {
@@ -170,6 +173,24 @@ export default {
 }
 
 th {
-  color: rgb(5, 47, 82);
+  font-weight: bold;
+  color: grey;
+}
+
+h1 {
+  font-weight: bold;
+  color: rgb(4, 56, 99);
+  text-align: center;
+}
+
+.grade-selector {
+  display: contents;
+}
+
+.grade-selector:hover {
+  font-weight: bold;
+  color: rgb(4, 56, 99);
+  cursor: pointer;
+  transform: scale(1.1);
 }
 </style>
