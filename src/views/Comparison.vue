@@ -9,7 +9,7 @@
         <div
           class="col"
           style="text-align: center">
-          <h2>{{ course }}</h2>
+          <h2>{{ courseName }}</h2>
         </div>
         <div class="col" />
       </div>
@@ -21,7 +21,7 @@
       </div>
 
       <div class="row" v-if="courses.length > 0">
-        <div class="col-2">
+        <div class="col-3">
           <div class="table-responsive">
             <table class="table table-borderless">
               <tr>
@@ -43,60 +43,67 @@
                 <th class="header">Conceito contínuo</th>
               </tr>
               <tr>
-                <th class="header">Formação Geral</th>
-              </tr>
-              <tr>
                 <th class="header">Candidatos inscritos</th>
               </tr>
               <tr>
                 <th class="header">Candidatos participantes</th>
               </tr>
               <tr>
-                <th class="header">Nota bruta</th>
+                <th class="header">Nota bruta de formação geral</th>
               </tr>
               <tr>
-                <th class="header">Nota padronizada</th>
+                <th class="header">Nota padronizada de formação geral</th>
+              </tr>
+              <tr>
+                <th class="header">Nota bruta de conteúdo específico</th>
+              </tr>
+              <tr>
+                <th class="header">Nota padronizada de conteúdo específico</th>
               </tr>
             </table>
           </div>
         </div>
         <div
-          v-for="(item) in courses"
-          class="col-2 table-item">
+          v-for="(item, index) in coursesCompared"
+          :key="index"
+          class="col-3 table-item">
           <div class="table-responsive">
-            <table class="table table-borderless">
+            <table class="table table-responsive table-borderless">
               <tr>
-                <td>{{ item.universityName }}</td>
+                <td>{{ item.info.universidade.campus.nome }}</td>
               </tr>
               <tr>
-                <td>{{ item.courseCode }}</td>
+                <td>{{ item.info.curso.nome }}</td>
               </tr>
               <tr>
-                <td>{{ item.category }}</td>
+                <td>{{ item.info.universidade.categoriaAdmin }}</td>
               </tr>
               <tr>
-                <td>{{ item.modality }}</td>
+                <td>{{ item.info.curso.modalidade }}</td>
               </tr>
               <tr>
-                <td>{{ item.enadeConcept }}</td>
+                <td>{{ item.avaliacao.enadeFaixa }}</td>
               </tr>
               <tr>
-                <td>{{ item.continuousConcept }}</td>
+                <td>{{ item.avaliacao.enadeContinuo.toFixed(2)   }}</td>
               </tr>
               <tr>
-                <td>{{ item.average }}</td>
+                <td>{{ item.avaliacao.concluintesInscritos }}</td>
               </tr>
               <tr>
-                <td>{{ item.subscribed }}</td>
+                <td>{{ item.avaliacao.concluintesParticipantes }}</td>
               </tr>
               <tr>
-                <td>{{ item.participants }}</td>
+                <td>{{ item.avaliacao.notaBrutaFG.toFixed(2) }}</td>
               </tr>
               <tr>
-                <td>{{ item.grossScore }}</td>
+                <td>{{ item.avaliacao.notaPadronizadaFG.toFixed(2) }}</td>
               </tr>
               <tr>
-                <td>{{ item.standardScore }}</td>
+                <td>{{ item.avaliacao.notaBrutaCE.toFixed(2) }}</td>
+              </tr>
+              <tr>
+                <td>{{ item.avaliacao.notaPadronizadaCE.toFixed(2) }}</td>
               </tr>
             </table>
           </div>
@@ -111,6 +118,7 @@
 import PageHeader from '@/components/PageHeader.vue';
 import ApiService from '@/services/ApiService.js';
 import Spinner from '@/components/Spinner.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Comparison',
@@ -120,18 +128,30 @@ export default {
   },
   data() {
     return {
-      course: '',
       courses: [],
     };
   },
   computed: {
+    ...mapState({
+      courseName: 'currentCourseName',
+    }),
 
+    coursesCompared() {
+      console.log(this.courses);
+      return this.courses;
+    }
   },
-  async created() {
-    this.course = localStorage.getItem('curso');
-    const courses = JSON.parse(localStorage.getItem('cursosComparacao'));
-    this.courses = await ApiService.getCourseNotes(courses);
+
+  created() {
+    console.log('oi');
+    return ApiService.getUniversityGradesByYear(1, 2017)
+    .then(res => this.courses = res)
+    .then(() =>  {
+      this.courses = [this.courses[0], this.courses[1]];
+      console.log(this.courses);
+    })
   },
+
   methods: {
 
   },
@@ -152,16 +172,24 @@ export default {
 }
 
 th {
-  height: 70px;
+  min-height: 70px;
 }
 
 td {
   padding: 0.75rem;
-  height: 70px;
+  min-height: 70px;
 }
 
 .header {
   color: rgb(5, 47, 82);
   min-height: 96px;
+}
+
+h2 {
+  font-weight: bold;
+  color: rgb(4, 56, 99);
+}
+
+.row {
 }
 </style>

@@ -3,7 +3,7 @@
     <div>
       <ListFilter v-bind:courseName="courseName"/>
     </div>
-    <h1 style="text-align: center">{{ courseName }}</h1>
+    <h1>{{ courseName }}</h1>
     <br>
 
     <div v-if="gradesByCourse.length == 0">
@@ -90,7 +90,7 @@ export default {
     return {
       checkedUniversities: [],
       currentSort: 'position',
-      currentSortDirection: 'asc',
+      currentSortDirection: 'desc',
       currentGrade: {},
     };
   },
@@ -114,7 +114,7 @@ export default {
     },
 
     grades() {
-      return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', 'desc')
+      return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', currentSortDirection);
     }
   },
   methods: {
@@ -164,6 +164,12 @@ export default {
 }
 
 th {
-  color: rgb(5, 47, 82);
+  color: rgba(5, 47, 82, 0.9);
+}
+
+h1 {
+  font-weight: bold;
+  color: rgb(4, 56, 99);
+  text-align: center;
 }
 </style>
