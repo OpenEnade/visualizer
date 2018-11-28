@@ -24,9 +24,6 @@
         <Spinner />
       </div>
 
-      <div v-if="Object.keys(chartData).length > 0">
-        <Chart :courses="chartData"/>
-      </div>
 
       <div class="row" v-if="courses.length > 0">
         <div class="col-3">
@@ -156,7 +153,7 @@ export default {
 
   created() {
     this.course = localStorage.getItem('curso');
-    const courses = JSON.parse(localStorage.getItem('cursosComparacao'));
+    const courses = JSON.parse(localStorage.getItem('coursesToCompare'));
     this.initChartData(courses);
   },
 
