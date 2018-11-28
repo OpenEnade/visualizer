@@ -126,7 +126,7 @@ export default {
 
     compareCourses() {
       localStorage.setItem('coursesToCompare', JSON.stringify(this.checkedUniversities));
-      this.$router.replace('comparacao');
+      this.$router.push('comparacao');
     },
 
     verifyRoute() {
@@ -140,7 +140,7 @@ export default {
     detailCourse(course) {
       console.log(course);
       localStorage.setItem('courseToDetail', JSON.stringify(course))
-      this.$router.replace('detalhes');
+      this.$router.push('detalhes');
     },
   },
   updated () {
