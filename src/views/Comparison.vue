@@ -149,8 +149,10 @@ export default {
         var newChartData = {};
         for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
             const course = courses[courseIndex];
-            const courseCode = course.info.curso.codigoCurso;
-            const courseNotes = await ApiService.getCourseNotes(courseCode);
+            console.log(course);
+            const areaCode = course.info.curso.codigoArea;
+            const universityCode = course.info.universidade.codigoIES;
+            const courseNotes = await ApiService.getCourseNotes(areaCode, universityCode);
             for (let noteIndex = 0; noteIndex < courseNotes.length; noteIndex++) {
                 const note = courseNotes[noteIndex];
                 const university = note.info.universidade;

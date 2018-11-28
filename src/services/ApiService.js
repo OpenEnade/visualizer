@@ -35,7 +35,7 @@ export default {
   getModalities() {
     return axios.get('/modalidades');
   },
-    getCourseNotes(courseCode) {
-        return axios.get(`/notas/filterby?curso=${courseCode}`).then(response => response.data);
+    getCourseNotes(areaCode, universityCode) {
+        return axios.get(`/notas/filterby?codigoArea=${areaCode}&universidade=${universityCode}`).then(response => response.data);
     }
 };
