@@ -140,6 +140,7 @@ export default {
     detailCourse(course) {
       console.log(course);
       localStorage.setItem('courseToDetail', JSON.stringify(course))
+      this.$router.replace('detalhes');
     },
   },
   updated () {

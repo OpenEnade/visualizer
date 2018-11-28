@@ -28,6 +28,11 @@ export default {
     return axios.get(`/universidades/cursos?nomeCurso=${courseName}`)
       .then(response => response.data);
   },
+
+  getGradesByCourse(areaCode) {
+    return axios.get(`/notas/filterby?codigoArea=${areaCode}`)
+  },
+
   getUniversityGradesByYear(universityCode, year) {
     return axios.get(`/notas/filterby?universidade=${universityCode}&beginAno=${year}&endAno=${year}`)
       .then(response => response.data);

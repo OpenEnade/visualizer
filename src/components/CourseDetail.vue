@@ -2,8 +2,8 @@
 
   <section class="course-detail animated fadeIn slow">
     <br>
-    <h1>{{ course }}</h1>
-    <h4 style="margin-left: 4px">Universidade Federal de Campina Grande</h4>
+    <h1>{{ course.info.curso.nome }}</h1>
+    <h4 style="margin-left: 4px">{{ course.info.universidade.nome }}</h4>
     <hr>
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
@@ -50,23 +50,24 @@
 </template>
 
 <script>
-import Chart from './Chart';
-import { mapState } from 'vuex';
+import Chart from "./Chart";
+import { mapState } from "vuex";
 
 export default {
-  name: 'CourseDetail',
+  name: "CourseDetail",
   components: { Chart },
   data() {
     return {
-
+      course: ""
     };
   },
   computed: {
-    ...mapState([
-      'currentCourseGrade',
-    ]),
+    ...mapState(["currentCourseGrade"])
   },
-  created() { },
+  created() {
+    this.course = JSON.parse(localStorage.getItem("courseToDetail"));
+    console.log(this.course);
+  }
 };
 </script>
 
