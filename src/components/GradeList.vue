@@ -114,7 +114,7 @@ export default {
     },
 
     grades() {
-      return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', currentSortDirection);
+      return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', this.currentSortDirection);
     }
   },
   methods: {
