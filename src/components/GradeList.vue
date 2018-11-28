@@ -28,7 +28,6 @@
           </thead>
           <tbody>
             <tr
-            @click="detailCourse()"
             v-for="(grade, index) in grades"
             :key="index"
             v-model="currentGrade">
@@ -41,8 +40,9 @@
             class="input-checkbox"
             type="checkbox"
             title="Selecione até 3 universidades para comparar">
-
+    
             <th scope="row">{{ index + 1 }}</th>
+            <div class="grade-selector" @click.prevent="detailCourse(grade)">
             <td>{{ grade.info.universidade.nome }}</td>
             <td>{{ grade.info.universidade.categoriaAdmin }}</td>
             <td>{{ grade.info.curso.modalidade }}</td>
@@ -50,6 +50,7 @@
             <td>{{ grade.avaliacao.enadeContinuo.toFixed(2)}}</td>
             <td>{{ grade.avaliacao.enadeFaixa }}</td>
             <td>{{ grade.info.ano.ano }}</td>
+            </div>
           </tr>
         </tbody>
       </table>
@@ -136,8 +137,9 @@ export default {
     loadGrades() {
       this.loadGradesByCourseName(this.courseName);
     },
-    detailCourse() {
-      console.log(this.checkedUniversities);
+    detailCourse(course) {
+      console.log(course);
+      localStorage.setItem('courseToDetail', JSON.stringify(course))
     },
   },
   updated () {
@@ -167,12 +169,24 @@ export default {
 }
 
 th {
-  color: rgba(5, 47, 82, 0.9);
+  font-weight: bold;
+  color: grey;
 }
 
 h1 {
   font-weight: bold;
   color: rgb(4, 56, 99);
   text-align: center;
+}
+
+.grade-selector {
+  display: contents;
+}
+
+.grade-selector:hover {
+  font-weight: bold;
+  color: rgb(4, 56, 99);
+  cursor: pointer;
+  transform: scale(1.1);
 }
 </style>
