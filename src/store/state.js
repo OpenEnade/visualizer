@@ -13,4 +13,7 @@ export default {
   coursesToCompare: [],
   currentCourseName: '',
   currentCourseGrade: {},
+  currentCourseCodeArea: 0,
+
+  gradesByCourseAreaCode: [],
 };

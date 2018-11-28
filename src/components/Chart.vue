@@ -26,6 +26,7 @@ export default {
       ['Year'],
     ];
     const universities = Object.keys(this.courses);
+    console.log(universities);
     universities.map((university) => {
       newChartData[0].push(university);
     });

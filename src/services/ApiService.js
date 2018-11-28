@@ -29,6 +29,7 @@ export default {
 
   getGradesByCourse(areaCode) {
     return axios.get(`/notas/filterby?codigoArea=${areaCode}`)
+    .then( response => response.data);
   },
 
   getUniversityGradesByYear(universityCode, year) {

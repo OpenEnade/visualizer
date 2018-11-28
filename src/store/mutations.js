@@ -8,6 +8,12 @@ export default {
   [type.PERSIST_GRADE] : (state, grade) => {
     state.currentCourseGrade = grade;
   },
+  [type.PERSIST_COURSES_TO_COMPARE] : (state, _coursesToCompare) => {
+    state.coursesToCompare = _coursesToCompare;
+  },
+  [type.LOAD_GRADES_BY_COURSE_AREA] : (state, gradesByCourseArea) => {
+    state.gradesByCourseAreaCode = gradesByCourseArea;
+  },
   [type.LOAD_GRADES_COURSE] : (state, payload) => {
     state.gradesByCourse = payload;
     state.gradesByCourseOnTable = payload;

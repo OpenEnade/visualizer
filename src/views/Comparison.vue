@@ -1,7 +1,7 @@
 <template lang="html">
 
   <section class="comparison animated fadeIn slow">
-    <PageHeader description="Comparação de cursos" />
+    <PageHeader description="Comparação de Cursos" />
 
     <div class="list-comparator">
       <div class="row">
@@ -136,13 +136,19 @@ export default {
   },
   data() {
     return {
-      courses: [],
       chartData: {},
+      charOptions: {
+        chart: {
+          title: 'Histórico de Notas',
+          subtitle: 'Histórico de notas de 2004 - 2017',
+        }
+      }
     };
   },
   computed: {
     ...mapState({
       courseName: 'currentCourseName',
+      courses: 'coursesToCompare',
     }),
 
     coursesCompared() {
@@ -154,6 +160,8 @@ export default {
   created() {
     this.course = localStorage.getItem('curso');
     const courses = JSON.parse(localStorage.getItem('coursesToCompare'));
+    console.log(courses);
+    console.log(this.courses);
     this.initChartData(courses);
   },
 

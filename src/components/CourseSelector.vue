@@ -44,10 +44,9 @@ export default {
 
   methods: {
     ...mapActions([
-      'loadNotas',
       'persistCourseName',
     ]),
-    searchCourse() {
+    searchCourse() {      
       if (this.courseName) {
         this.persistCourseName(this.courseName);
         this.$router.replace('notas');

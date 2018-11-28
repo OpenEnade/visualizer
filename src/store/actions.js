@@ -1,9 +1,9 @@
-import ApiService from '@/services/ApiService.js';
+import http from '@/services/ApiService.js';
 
 export default {
 		async loadCourses({ commit }) {
 			try {
-				const allCourses = await ApiService.getCourses();
+				const allCourses = await http.getCourses();
 				commit('LOAD_COURSES', allCourses);
 				commit('LOAD_VALID_COURSES', allCourses);
 			} catch (err) {
@@ -12,7 +12,7 @@ export default {
 		},
 		async loadGradesByCourseName({ commit }, courseName) {
 			try {
-				const usefulGrades = await ApiService.getGradesByName(courseName);
+				const usefulGrades = await http.getGradesByName(courseName);
 				commit('LOAD_GRADES_COURSE', usefulGrades);
 				commit('LOAD_STATES');
 				commit('LOAD_CITIES');
@@ -22,6 +22,17 @@ export default {
 			} catch (err) {
 				console.error(err);
 			}
+		},
+		async loadGradesByCourseArea( { commit }, courseAreaCode ) {
+			try {
+				const usefulGrades = await http.getGradesByCourse(courseAreaCode);
+				commit( 'LOAD_GRADES_BY_COURSE_AREA', usefulGrades);
+			} catch (err) {
+				console.log(err);
+			}
+		},
+		persistCoursesToCompare( { commit }, courses ) {
+			commit('PERSIST_COURSES_TO_COMPARE', courses);
 		},
 		persistCourseName({ commit }, courseName) {
 			commit('PERSIST_COURSE_NAME', courseName);

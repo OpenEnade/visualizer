@@ -1,40 +1,39 @@
 <template>
-
   <section class="course-detail animated fadeIn slow">
     <br>
-
-    <h1 v-if="!currentCourseGradeEmpty">{{ currentCourseGrade.info.curso.nome }}</h1>
+    <h1 v-if="currentCourseGrade">{{ currentCourseGrade.info.curso.nome }}</h1>
     <h1 v-else> {{ errorCourseMessage }} </h1>
-    <h4 v-if="!currentCourseGradeEmpty"> {{ currentCourseGrade.info.universidade.nome }} </h4>
+    <h4 v-if="currentCourseGrade"> {{ currentCourseGrade.info.universidade.nome }} </h4>
     <h4 v-else> {{ errorUniversityMessage }} </h4>
-
     <hr>
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
     <div>
+      <div> 
+        <ChartCourseDetail/>
+      </div>
       <table class="table table-bordless ">
         <tbody>
           <tr > 
             <th>Conceito ENADE</th>
-            <td v-if="!currentCourseGradeEmpty">{{ currentCourseGrade.avaliacao.enadeFaixa }}</td>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.avaliacao.enadeFaixa }}</td>
             <td v-else> {{ integerErrorMessage }} </td> 
            
-            <th>Conceito contínuo</th>
-            <td v-if="!currentCourseGradeEmpty"> {{ 
+            <th>Conceito Contínuo</th>
+            <td v-if="currentCourseGrade"> {{ 
               currentCourseGrade.avaliacao.enadeContinuo ? currentCourseGrade.avaliacao.enadeContinuo.toFixed(2) : ''
               }}</td>
             <td v-else> {{ floatErrorMessage }} </td>              
           </tr>
-
           <tr> 
             <th>Nota Bruta Conteúdo Específico</th>
-            <td v-if="!currentCourseGradeEmpty">{{ 
+            <td v-if="currentCourseGrade">{{ 
               currentCourseGrade.avaliacao.notaBrutaCE ? currentCourseGrade.avaliacao.notaBrutaCE.toFixed(2) : ''
             }}</td>
             <td v-else> {{ floatErrorMessage }} </td> 
           
             <th>Nota Padronizada Conteúdo Específico</th>
-            <td v-if="!currentCourseGradeEmpty"> {{ 
+            <td v-if="currentCourseGrade"> {{ 
               currentCourseGrade.avaliacao.notaPadronizadaCE ?
               currentCourseGrade.avaliacao.notaPadronizadaCE.toFixed(2) : ''
 
@@ -43,13 +42,13 @@
           </tr>
           <tr> 
             <th>Nota Bruta Formação Geral</th>
-            <td v-if="!currentCourseGradeEmpty">{{ 
+            <td v-if="currentCourseGrade">{{ 
               currentCourseGrade.avaliacao.notaBrutaFG ? currentCourseGrade.avaliacao.notaBrutaFG.toFixed(2) : ''
             }}</td>
             <td v-else> {{ floatErrorMessage }} </td> 
           
             <th>Nota Padronizada Formação Geral</th>
-            <td v-if="!currentCourseGradeEmpty"> {{ 
+            <td v-if="currentCourseGrade"> {{ 
               currentCourseGrade.avaliacao.notaPadronizadaFG ?
               currentCourseGrade.avaliacao.notaPadronizadaFG.toFixed(2) : ''
 
@@ -58,59 +57,58 @@
           </tr>
           <tr>
             <th>Concluintes Inscritos</th>
-            <td v-if="!currentCourseGradeEmpty"> {{ currentCourseGrade.avaliacao.concluintesInscritos }}</td>
+            <td v-if="currentCourseGrade"> {{ currentCourseGrade.avaliacao.concluintesInscritos }}</td>
             <td v-else> {{ integerErrorMessage }} </td>
           
             <th>Concluintes Participantes </th>
-            <td v-if="!currentCourseGradeEmpty">{{ currentCourseGrade.avaliacao.concluintesParticipantes }}</td>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.avaliacao.concluintesParticipantes }}</td>
             <td v-else> {{ integerErrorMessage }} </td>           
           </tr>  
           <tr>
             <th>Modalidade de Ensino</th>
-            <td v-if="!currentCourseGradeEmpty"> {{ currentCourseGrade.info.curso.modalidade }}</td>          
+            <td v-if="currentCourseGrade"> {{ currentCourseGrade.info.curso.modalidade }}</td>          
             <td v-else> {{ errorCourseMessage }} </td>
           
             <th>Categoria Administrativa</th>             
-            <td v-if="!currentCourseGradeEmpty">{{ currentCourseGrade.info.universidade.categoriaAdmin }}</td>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.info.universidade.categoriaAdmin }}</td>
             <td v-else> {{ errorCourseMessage }}  </td>
           </tr> 
           <tr>
             <th>Ano</th>
-            <td v-if="!currentCourseGradeEmpty">{{ currentCourseGrade.info.ano.ano }}</td>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.info.ano.ano }}</td>
             <td v-else> {{ integerErrorMessage }} </td>
 
             <th>Município</th>
-            <td v-if="!currentCourseGradeEmpty"> {{ currentCourseGrade.info.universidade.campus.nome }}</td>
+            <td v-if="currentCourseGrade"> {{ currentCourseGrade.info.universidade.campus.nome }}</td>
             <td v-else> {{ errorCourseMessage }} </td>                    
           </tr>
 
           <tr>
             <th>Estado</th>
-            <td v-if="!currentCourseGradeEmpty">{{ currentCourseGrade.universidade.campus.estado.sigla }}</td>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.info.universidade.campus.estado.sigla }}</td>
             <td v-else> {{ integerErrorMessage }} </td>
 
             <th>Região</th>
-            <td v-if="!currentCourseGradeEmpty"> {{ currentCourseGrade.universidade.campus.estado.sigla.regiao.sigla  }}</td>
+            <td v-if="currentCourseGrade"> {{ currentCourseGrade.info.universidade.campus.estado.regiao.sigla  }}</td>
             <td v-else> {{ errorCourseMessage }} </td>                    
-          </tr>            
-   
+          </tr>               
+           
         </tbody>
       </table>
     </div>
-
-    <!-- <Chart :courses="currentCourseGrade" /> -->
   </section>
 
 </template>
 
 <script>
-import Chart from './Chart';
+import ChartCourseDetail from '@/components/ChartCourseDetail.vue';
 import { mapState, mapGetters } from 'vuex';
-
 
 export default {
   name: "CourseDetail",
-  components: { Chart },
+  components: {
+    ChartCourseDetail
+  },
   data() {
     return {
       integerErrorMessage: 0,
@@ -123,15 +121,20 @@ export default {
     ...mapState([
       'currentCourseGrade',
     ]),
-    ...mapGetters([
-      'currentCourseGradeEmpty',
-      ]),
+  },
+  methods: {
+    verifyRoute() {
+      if (!this.currentCourseGrade) {
+        this.$router.push('notas');
+      }
+    },
   },
   created() { 
-    if (this.currentCourseGradeEmpty) {
-      this.$router.push('notas');
-    }
+    this.verifyRoute();
   },
+  updated() {
+    this.verifyRoute();
+  }
 };
 </script>
 

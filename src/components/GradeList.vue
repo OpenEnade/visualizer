@@ -6,7 +6,7 @@
     <h1>{{ courseName }}</h1>
     <br>
 
-    <div v-if="gradesByCourse.length == 0">
+    <div v-if="gradesByCourse.length === 0">
       <Spinner />
     </div>
     <section class="list-university animated fadeIn slow" v-if="gradesByCourse.length > 0">
@@ -41,7 +41,7 @@
             title="Selecione até 3 universidades para comparar">
     
             <th scope="row">{{ index + 1 }}</th>
-            <div class="grade-selector" @click.prevent="detailCourse(grade)">
+            <div class="grade-selector" @click="detailCourse(grade)">
             <td>{{ grade.info.universidade.nome }}</td>
             <td>{{ grade.info.universidade.categoriaAdmin }}</td>
             <td>{{ grade.info.curso.modalidade }}</td>
@@ -113,18 +113,19 @@ export default {
       return coursesCodes;
     },
 
-    grades() {
-      console.log(this.gradesByCourse);
+    grades() {      
       return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', this.currentSortDirection);
     }
   },
   methods: {
     ...mapActions([
       'loadGradesByCourseName',
-      'persistGrade'
+      'persistGrade',
+      'persistCoursesToCompare',
     ]),
 
     compareCourses() {
+      this.persistCoursesToCompare(this.checkedUniversities);
       localStorage.setItem('coursesToCompare', JSON.stringify(this.checkedUniversities));
       this.$router.push('comparacao');
     },
@@ -138,8 +139,7 @@ export default {
       this.loadGradesByCourseName(this.courseName);
     },
 
-    detailCourse(grade) {      
-      
+    detailCourse(grade) {          
       if (grade) {
         this.persistGrade(grade);
         this.$router.push('detalhes');        
