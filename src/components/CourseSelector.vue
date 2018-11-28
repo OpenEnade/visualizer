@@ -24,7 +24,7 @@
 </template>
 
 <script lang="js">
-import { mapState , mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'CourseSelector',
@@ -45,8 +45,8 @@ export default {
   methods: {
     ...mapActions([
       'loadNotas',
-      'persistCourseName'
-      ]),
+      'persistCourseName',
+    ]),
     searchCourse() {
       if (this.courseName) {
         this.persistCourseName(this.courseName);

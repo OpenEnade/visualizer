@@ -117,12 +117,15 @@ export default {
     ...mapActions([
       'loadGradesByCourseName',
     ]),
-    compareCourses() {
-
+    async compareCourses() {
+      if (this.checkedUniversities) {
+        localStorage.setItem('cursosComparacao', JSON.stringify(this.checkedUniversities));
+        this.$router.replace('comparacao');
+      }
     },
     verifyRoute() {
       if (!this.courseName) {
-          this.$router.push('cursos');
+        this.$router.push('cursos');
       }
     },
     loadGrades() {
@@ -132,7 +135,7 @@ export default {
       console.log(this.checkedUniversities);
     },
   },
-  updated () {
+  updated() {
     this.verifyRoute();
   },
   created() {

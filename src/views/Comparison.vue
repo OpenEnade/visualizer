@@ -13,7 +13,11 @@
         </div>
         <div class="col" />
       </div>
+      <div v-if="Object.keys(chartData).length > 0">
+        <Chart :courses="chartData"/>
+      </div>
       <hr>
+
       <br>
 
       <div v-if="courses.length == 0">
@@ -109,31 +113,61 @@
 
 <script lang="js">
 import PageHeader from '@/components/PageHeader.vue';
-import ApiService from '@/services/ApiService.js';
+import ApiService from '@/services/ApiService';
 import Spinner from '@/components/Spinner.vue';
+import Chart from '../components/Chart';
 
 export default {
   name: 'Comparison',
   components: {
+    Chart,
     PageHeader,
-    Spinner
+    Spinner,
   },
   data() {
     return {
       course: '',
       courses: [],
+      chartData: {},
     };
   },
   computed: {
 
   },
-  async created() {
+  created() {
     this.course = localStorage.getItem('curso');
     const courses = JSON.parse(localStorage.getItem('cursosComparacao'));
-    this.courses = await ApiService.getCourseNotes(courses);
+    this.initChartData(courses);
   },
   methods: {
+    async initChartData(courses) {
+      this.chartData = await this.getChartData(courses);
+    },
 
+    async getChartData(courses) {
+      const newChartData = {};
+      for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
+        const course = courses[courseIndex];
+        const areaCode = course.info.curso.codigoArea;
+        const universityCode = course.info.universidade.codigoIES;
+        const countyCode = course.info.universidade.campus.codigo;
+        const courseNotes = await ApiService.getCourseNotes(areaCode, universityCode, countyCode);
+        for (let noteIndex = 0; noteIndex < courseNotes.length; noteIndex++) {
+          const note = courseNotes[noteIndex];
+          const university = note.info.universidade;
+          const universityName = `${university.nome} - ${university.campus.nome}`;
+          const year = note.info.ano.ano;
+          const enadeNote = note.avaliacao.enadeContinuo.toFixed(2);
+          if (newChartData[universityName]) {
+            newChartData[universityName][year] = parseFloat(enadeNote);
+          } else {
+            newChartData[universityName] = {};
+            newChartData[universityName][year] = parseFloat(enadeNote);
+          }
+        }
+      }
+      return newChartData;
+    },
   },
 };
 </script>

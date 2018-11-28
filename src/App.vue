@@ -22,12 +22,12 @@ export default {
   },
   methods: {
     ...mapActions([
-      'loadCourses',      
+      'loadCourses',
     ]),
   },
-  created: function () {
-    this.loadCourses();    
-  }
+  created() {
+    this.loadCourses();
+  },
 };
 </script>
 

@@ -96,6 +96,7 @@
 
 <script lang="js">
 import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'ListFilter',
   methods: {
@@ -104,27 +105,27 @@ export default {
       'filterByCityAction',
       'filterCategoryAction',
       'filterByModalityAction',
-      'filterByYearAction'
+      'filterByYearAction',
     ]),
-    filterByState: function () {
-      if(this.state) {
+    filterByState() {
+      if (this.state) {
         this.filterByStateAction(this.state);
       }
     },
-    filterByCity: function () {
+    filterByCity() {
       if (this.city) {
         this.filterByCityAction(this.city);
       }
     },
-    filterByCategory: function () {
-      if (this.category) {this.filterCategoryAction(this.category);}
+    filterByCategory() {
+      if (this.category) { this.filterCategoryAction(this.category); }
     },
-    filterByModality: function () {
-      if (this.modality) {this.filterByModalityAction(this.modality);}
+    filterByModality() {
+      if (this.modality) { this.filterByModalityAction(this.modality); }
     },
-    filterByYear: function () {
-      if(this.yearList) {this.filterByYearAction(this.year);}
-    }
+    filterByYear() {
+      if (this.yearList) { this.filterByYearAction(this.year); }
+    },
   },
   computed: {
     ...mapState({
@@ -133,7 +134,7 @@ export default {
       categoryList: 'categoryList',
       modalityList: 'modalityList',
       yearList: 'yearList',
-    })
+    }),
   },
   data() {
     return {
@@ -142,12 +143,12 @@ export default {
       category: '',
       modality: '',
       year: '',
-    }
+    };
   },
 
-  created: function() {
+  created() {
   },
-  updated: function() {
+  updated() {
   },
 };
 </script>
