@@ -5,6 +5,9 @@ export default {
   [type.PERSIST_COURSE_NAME]: (state, courseName) => {
     state.currentCourseName = courseName;
   },
+  [type.PERSIST_GRADE] : (state, grade) => {
+    state.currentCourseGrade = grade;
+  },
   [type.LOAD_GRADES_COURSE] : (state, payload) => {
     state.gradesByCourse = payload;
     state.gradesByCourseOnTable = payload;

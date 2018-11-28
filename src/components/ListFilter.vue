@@ -105,16 +105,12 @@ export default {
       'filterCategoryAction',
       'filterByModalityAction',
       'filterByYearAction'
-    ]),
+      ]),
     filterByState: function () {
-      if(this.state) {
-        this.filterByStateAction(this.state);
-      }
+      if(this.state) { this.filterByStateAction(this.state);}
     },
     filterByCity: function () {
-      if (this.city) {
-        this.filterByCityAction(this.city);
-      }
+      if (this.city) { this.filterByCityAction(this.city);}
     },
     filterByCategory: function () {
       if (this.category) {this.filterCategoryAction(this.category);}
@@ -124,6 +120,9 @@ export default {
     },
     filterByYear: function () {
       if(this.yearList) {this.filterByYearAction(this.year);}
+    },
+    resetFiltersFields: function () {
+      
     }
   },
   computed: {
