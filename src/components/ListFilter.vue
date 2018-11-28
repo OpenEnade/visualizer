@@ -105,7 +105,7 @@ export default {
       'filterByCityAction',
       'filterCategoryAction',
       'filterByModalityAction',
-      'filterByYearAction'
+      'filterByYearAction',
       ]),
     filterByState: function () {
       if(this.state) { this.filterByStateAction(this.state);}
@@ -122,9 +122,6 @@ export default {
     filterByYear: function () {
       if(this.yearList) {this.filterByYearAction(this.year);}
     },
-    resetFiltersFields: function () {
-      
-    }
   },
   computed: {
     ...mapState({
