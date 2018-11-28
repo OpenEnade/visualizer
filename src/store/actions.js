@@ -31,6 +31,9 @@ export default {
 				console.log(err);
 			}
 		},
+		persistGradeForDetail( { commit }, detailGradeCourse) {
+			commit('PERSIST_GRADE_FOR_DETAIL', detailGradeCourse);
+		},
 		persistCoursesToCompare( { commit }, courses ) {
 			commit('PERSIST_COURSES_TO_COMPARE', courses);
 		},

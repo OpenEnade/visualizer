@@ -16,14 +16,15 @@
       <div v-if="Object.keys(chartData).length > 0">
         <Chart :courses="chartData"/>
       </div>
+      <div v-else> 
+        <Spinner />
+      </div>
       <hr>
-
       <br>
 
       <div v-if="courses.length == 0">
         <Spinner />
       </div>
-
 
       <div class="row" v-if="courses.length > 0">
         <div class="col-3">
@@ -126,7 +127,6 @@ import Spinner from '@/components/Spinner.vue';
 import Chart from "../components/Chart";
 import { mapState } from 'vuex';
 
-
 export default {
   name: 'Comparison',
   components: {
@@ -152,17 +152,12 @@ export default {
     }),
 
     coursesCompared() {
-      console.log(this.courses);
       return this.courses;
     }
   },
 
   created() {
-    this.course = localStorage.getItem('curso');
-    const courses = JSON.parse(localStorage.getItem('coursesToCompare'));
-    console.log(courses);
-    console.log(this.courses);
-    this.initChartData(courses);
+    this.initChartData(this.courses);
   },
 
   methods: {

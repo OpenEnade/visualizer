@@ -9,9 +9,14 @@
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
     <div>
-      <div> 
-        <ChartCourseDetail/>
+      <div v-if="Object.keys(chartData).length > 0">
+        <Chart :courses="chartData"/>
       </div>
+      <div v-else> 
+        <Spinner />
+      </div>
+      <hr>
+      <br>
       <table class="table table-bordless ">
         <tbody>
           <tr > 
@@ -101,13 +106,16 @@
 </template>
 
 <script>
-import ChartCourseDetail from '@/components/ChartCourseDetail.vue';
+import Chart from '@/components/Chart.vue';
+import Spinner from "@/components/Spinner.vue";
+import ApiService from '@/services/ApiService.js';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: "CourseDetail",
   components: {
-    ChartCourseDetail
+    Chart,
+    Spinner
   },
   data() {
     return {
@@ -115,12 +123,19 @@ export default {
       floatErrorMessage: 0.0,
       errorCourseMessage: 'Nenhum curso selecionado.',
       errorUniversityMessage: 'Nenhuma universidade selecionada',
+      chartData: {},
     };
   },
   computed: {
     ...mapState([
       'currentCourseGrade',
+      'currentCourseGradeDetail',
     ]),
+  },
+  created() { 
+    this.verifyRoute();
+    
+    this.initChartData(this.currentCourseGradeDetail);
   },
   methods: {
     verifyRoute() {
@@ -128,10 +143,35 @@ export default {
         this.$router.push('notas');
       }
     },
-  },
-  created() { 
-    this.verifyRoute();
-  },
+    async initChartData(courses) {
+      this.chartData = await this.getChartData(courses);
+    },
+
+    async getChartData(courses) {
+      const newChartData = {};
+      for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
+        const course = courses[courseIndex];
+        const areaCode = course.info.curso.codigoArea;
+        const universityCode = course.info.universidade.codigoIES;
+        const countyCode = course.info.universidade.campus.codigo;
+        const courseNotes = await ApiService.getCourseNotes(areaCode, universityCode, countyCode);
+        for (let noteIndex = 0; noteIndex < courseNotes.length; noteIndex++) {
+          const note = courseNotes[noteIndex];
+          const university = note.info.universidade;
+          const universityName = `${university.nome} - ${university.campus.nome}`;
+          const year = note.info.ano.ano;
+          const enadeNote = note.avaliacao.enadeContinuo.toFixed(2);
+          if (newChartData[universityName]) {
+            newChartData[universityName][year] = parseFloat(enadeNote);
+          } else {
+            newChartData[universityName] = {};
+            newChartData[universityName][year] = parseFloat(enadeNote);
+          }
+        }
+      }
+      return newChartData;
+    }
+  },  
   updated() {
     this.verifyRoute();
   }

@@ -6,7 +6,10 @@ export default {
     state.currentCourseName = courseName;
   },
   [type.PERSIST_GRADE] : (state, grade) => {
-    state.currentCourseGrade = grade;
+    state.currentCourseGrade = grade;    
+  },
+  [type.PERSIST_GRADE_FOR_DETAIL] : (state, detailGradeCourse) => {
+    state.currentCourseGradeDetail = detailGradeCourse;
   },
   [type.PERSIST_COURSES_TO_COMPARE] : (state, _coursesToCompare) => {
     state.coursesToCompare = _coursesToCompare;

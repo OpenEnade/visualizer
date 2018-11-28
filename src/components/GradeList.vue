@@ -88,7 +88,7 @@ export default {
   },
   data() {
     return {
-      checkedUniversities: [],
+      checkedUniversities: [],      
       currentSort: 'position',
       currentSortDirection: 'desc',
       currentGrade: {},
@@ -112,7 +112,6 @@ export default {
       }
       return coursesCodes;
     },
-
     grades() {      
       return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', this.currentSortDirection);
     }
@@ -122,14 +121,12 @@ export default {
       'loadGradesByCourseName',
       'persistGrade',
       'persistCoursesToCompare',
+      'persistGradeForDetail',
     ]),
-
     compareCourses() {
-      this.persistCoursesToCompare(this.checkedUniversities);
-      localStorage.setItem('coursesToCompare', JSON.stringify(this.checkedUniversities));
+      this.persistCoursesToCompare(this.checkedUniversities);      
       this.$router.push('comparacao');
     },
-
     verifyRoute() {
       if (!this.courseName) {
         this.$router.push('cursos');
@@ -138,10 +135,12 @@ export default {
     loadGrades() {
       this.loadGradesByCourseName(this.courseName);
     },
-
     detailCourse(grade) {          
       if (grade) {
         this.persistGrade(grade);
+        const detailGradeCourse = [];
+        detailGradeCourse.push(grade);
+        this.persistGradeForDetail(detailGradeCourse);
         this.$router.push('detalhes');        
       }      
     },    
