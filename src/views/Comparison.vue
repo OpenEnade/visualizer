@@ -13,15 +13,15 @@
         </div>
         <div class="col" />
       </div>
+      <div v-if="Object.keys(chartData).length > 0">
+        <Chart :courses="chartData"/>
+      </div>
       <hr>
+
       <br>
 
       <div v-if="courses.length == 0">
         <Spinner />
-      </div>
-
-      <div v-if="chartData.length > 0">
-        <Chart :courses="chartData"/>
       </div>
 
       <div class="row" v-if="courses.length > 0">
@@ -128,7 +128,7 @@ export default {
     return {
       course: '',
       courses: [],
-      chartData: [],
+      chartData: {},
     };
   },
   computed: {
@@ -141,7 +141,17 @@ export default {
   },
   methods: {
   getChartData(courses) {
-
+      const newChartData = {};
+      for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
+          var course = courses[courseIndex];
+          var university = course.info.universidade.nome;
+          var year = course.info.ano.ano;
+          var courseNote = parseFloat(course.avaliacao.enadeContinuo.toFixed(2));
+          var yearsJson = {};
+          yearsJson[year] = courseNote;
+          newChartData[university] = yearsJson;
+      }
+      return newChartData;
   },
   },
 };
