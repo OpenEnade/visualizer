@@ -125,7 +125,7 @@ export default {
     },
     verifyRoute() {
       if (!this.courseName) {
-          this.$router.push('cursos');
+        this.$router.push('cursos');
       }
     },
     loadGrades() {
@@ -135,7 +135,7 @@ export default {
       console.log(this.checkedUniversities);
     },
   },
-  updated () {
+  updated() {
     this.verifyRoute();
   },
   created() {

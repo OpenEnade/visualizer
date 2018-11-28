@@ -115,14 +115,14 @@
 import PageHeader from '@/components/PageHeader.vue';
 import ApiService from '@/services/ApiService';
 import Spinner from '@/components/Spinner.vue';
-import Chart from "../components/Chart";
+import Chart from '../components/Chart';
 
 export default {
   name: 'Comparison',
   components: {
     Chart,
     PageHeader,
-    Spinner
+    Spinner,
   },
   data() {
     return {
@@ -138,7 +138,6 @@ export default {
     this.course = localStorage.getItem('curso');
     const courses = JSON.parse(localStorage.getItem('cursosComparacao'));
     this.initChartData(courses);
-
   },
   methods: {
     async initChartData(courses) {
@@ -146,29 +145,28 @@ export default {
     },
 
     async getChartData(courses) {
-        var newChartData = {};
-        for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
-            const course = courses[courseIndex];
-            console.log(course);
-            const areaCode = course.info.curso.codigoArea;
-            const universityCode = course.info.universidade.codigoIES;
-            const courseNotes = await ApiService.getCourseNotes(areaCode, universityCode);
-            for (let noteIndex = 0; noteIndex < courseNotes.length; noteIndex++) {
-                const note = courseNotes[noteIndex];
-                const university = note.info.universidade;
-                const universityName = university.nome + ' - ' + university.campus.nome;
-                const year = note.info.ano.ano;
-                const enadeNote = note.avaliacao.enadeContinuo.toFixed(2);
-                if(newChartData[universityName]) {
-                    newChartData[universityName][year] = parseFloat(enadeNote);
-                } else {
-                    newChartData[universityName] = {};
-                    newChartData[universityName][year] = parseFloat(enadeNote);
-                }
-
-            }
+      const newChartData = {};
+      for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
+        const course = courses[courseIndex];
+        const areaCode = course.info.curso.codigoArea;
+        const universityCode = course.info.universidade.codigoIES;
+        const countyCode = course.info.universidade.campus.codigo;
+        const courseNotes = await ApiService.getCourseNotes(areaCode, universityCode, countyCode);
+        for (let noteIndex = 0; noteIndex < courseNotes.length; noteIndex++) {
+          const note = courseNotes[noteIndex];
+          const university = note.info.universidade;
+          const universityName = `${university.nome} - ${university.campus.nome}`;
+          const year = note.info.ano.ano;
+          const enadeNote = note.avaliacao.enadeContinuo.toFixed(2);
+          if (newChartData[universityName]) {
+            newChartData[universityName][year] = parseFloat(enadeNote);
+          } else {
+            newChartData[universityName] = {};
+            newChartData[universityName][year] = parseFloat(enadeNote);
+          }
         }
-        return newChartData;
+      }
+      return newChartData;
     },
   },
 };

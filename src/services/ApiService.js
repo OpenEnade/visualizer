@@ -8,14 +8,12 @@ axios.defaults.withCredentials = false;
 export default {
   getGradesByName(courseName) {
     return axios.get('/notas')
-    .then(res => res.data)
-    .then((res) => {
-      let notas = res.filter(function(element) {
-        return element.info.curso.nome == courseName
-      })
+      .then(res => res.data)
+      .then((res) => {
+        const notas = res.filter(element => element.info.curso.nome == courseName);
 
-      return notas
-    })
+        return notas;
+      });
   },
   getGrades() {
     return axios.get('/notas').then(response => response.data);
@@ -35,7 +33,8 @@ export default {
   getModalities() {
     return axios.get('/modalidades');
   },
-    getCourseNotes(areaCode, universityCode) {
-        return axios.get(`/notas/filterby?codigoArea=${areaCode}&universidade=${universityCode}`).then(response => response.data);
-    }
+  getCourseNotes(areaCode, universityCode, countyCode) {
+    return axios.get(`/notas/filterby?codigoArea=${areaCode}&universidade=${universityCode}&municipio=${countyCode}`)
+      .then(response => response.data);
+  },
 };
