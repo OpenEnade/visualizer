@@ -33,8 +33,14 @@ export default {
   getModalities() {
     return axios.get('/modalidades');
   },
+<<<<<<< HEAD
   getCourseNotes(areaCode, universityCode, countyCode) {
     return axios.get(`/notas/filterby?codigoArea=${areaCode}&universidade=${universityCode}&municipio=${countyCode}`)
       .then(response => response.data);
   },
+=======
+    getCourseNotes(courseCode) {
+        return axios.get(`/notas/filterby?curso=${courseCode}`).then(response => response.data);
+    }
+>>>>>>> parent of d88997d... Modifying university search by area code and university code.
 };
