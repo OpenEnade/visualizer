@@ -153,14 +153,15 @@ export default {
             const courseNotes = await ApiService.getCourseNotes(courseCode);
             for (let noteIndex = 0; noteIndex < courseNotes.length; noteIndex++) {
                 const note = courseNotes[noteIndex];
-                const university = note.info.universidade.nome;
+                const university = note.info.universidade;
+                const universityName = university.nome + ' - ' + university.campus.nome;
                 const year = note.info.ano.ano;
                 const enadeNote = note.avaliacao.enadeContinuo.toFixed(2);
-                if(newChartData[university]) {
-                    newChartData[university][year] = parseFloat(enadeNote);
+                if(newChartData[universityName]) {
+                    newChartData[universityName][year] = parseFloat(enadeNote);
                 } else {
-                    newChartData[university] = {};
-                    newChartData[university][year] = parseFloat(enadeNote);
+                    newChartData[universityName] = {};
+                    newChartData[universityName][year] = parseFloat(enadeNote);
                 }
 
             }
