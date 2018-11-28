@@ -105,17 +105,13 @@ export default {
       'filterByCityAction',
       'filterCategoryAction',
       'filterByModalityAction',
-      'filterByYearAction',
-    ]),
-    filterByState() {
-      if (this.state) {
-        this.filterByStateAction(this.state);
-      }
+      'filterByYearAction'
+      ]),
+    filterByState: function () {
+      if(this.state) { this.filterByStateAction(this.state);}
     },
-    filterByCity() {
-      if (this.city) {
-        this.filterByCityAction(this.city);
-      }
+    filterByCity: function () {
+      if (this.city) { this.filterByCityAction(this.city);}
     },
     filterByCategory() {
       if (this.category) { this.filterCategoryAction(this.category); }
@@ -123,9 +119,12 @@ export default {
     filterByModality() {
       if (this.modality) { this.filterByModalityAction(this.modality); }
     },
-    filterByYear() {
-      if (this.yearList) { this.filterByYearAction(this.year); }
+    filterByYear: function () {
+      if(this.yearList) {this.filterByYearAction(this.year);}
     },
+    resetFiltersFields: function () {
+      
+    }
   },
   computed: {
     ...mapState({

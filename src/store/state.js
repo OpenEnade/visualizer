@@ -12,5 +12,5 @@ export default {
   coursesValids: [],
   coursesToCompare: [],
   currentCourseName: '',
-  currentCourseGrade: '',
+  currentCourseGrade: {},
 };

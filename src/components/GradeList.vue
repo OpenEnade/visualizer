@@ -30,9 +30,7 @@
             <tr
             @click="detailCourse()"
             v-for="(grade, index) in gradesByCourse"
-            :key="index"
-            v-model="currentGrade">
-
+            :key="index">
             <input
             v-b-tooltip.hover
             :value="grade"
@@ -43,7 +41,13 @@
             title="Selecione até 3 universidades para comparar">
 
             <th scope="row">{{ index + 1 }}</th>
-            <td>{{ grade.info.universidade.nome }}</td>
+            <td 
+                id=""
+                @click="detailCourse(grade)"
+                >
+                  {{ grade.info.universidade.nome }}
+
+            </td>
             <td>{{ grade.info.universidade.categoriaAdmin }}</td>
             <td>{{ grade.info.curso.modalidade }}</td>
             <td>{{ grade.avaliacao.enadeContinuo ? grade.avaliacao.enadeContinuo.toFixed(2) : ''}}</td>
@@ -91,7 +95,6 @@ export default {
       checkedUniversities: [],
       currentSort: 'position',
       currentSortDirection: 'asc',
-      currentGrade: {},
     };
   },
   computed: {
@@ -116,6 +119,7 @@ export default {
   methods: {
     ...mapActions([
       'loadGradesByCourseName',
+      'persistGrade'
     ]),
     async compareCourses() {
       if (this.checkedUniversities) {
@@ -131,9 +135,13 @@ export default {
     loadGrades() {
       this.loadGradesByCourseName(this.courseName);
     },
-    detailCourse() {
-      console.log(this.checkedUniversities);
-    },
+    detailCourse(grade) {      
+      
+      if (grade) {
+        this.persistGrade(grade);
+        this.$router.push('detalhes');        
+      }      
+    },    
   },
   updated() {
     this.verifyRoute();
