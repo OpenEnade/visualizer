@@ -20,9 +20,9 @@
               <th scope="col">Universidade</th>
               <th scope="col">Categoria Administrativa</th>
               <th scope="col">Modalidade de Ensino</th>
+              <th scope="col">Município</th>
               <th scope="col">Conceito Contínuo</th>
               <th scope="col">Conceito ENADE</th>
-              <th scope="col">Município</th>
               <th scope="col">Ano</th>
             </tr>
           </thead>
@@ -37,7 +37,7 @@
             v-b-tooltip.hover
             :value="grade"
             v-model="checkedUniversities"
-            :disabled="checkedUniversities.length >= 3 && checkedUniversities.indexOf(item) === -1"
+            :disabled="checkedUniversities.length >= 3 && checkedUniversities.indexOf(grade) === -1"
             class="input-checkbox"
             type="checkbox"
             title="Selecione até 3 universidades para comparar">
@@ -46,9 +46,9 @@
             <td>{{ grade.info.universidade.nome }}</td>
             <td>{{ grade.info.universidade.categoriaAdmin }}</td>
             <td>{{ grade.info.curso.modalidade }}</td>
-            <td>{{ grade.avaliacao.enadeContinuo ? grade.avaliacao.enadeContinuo.toFixed(2) : ''}}</td>
-            <td>{{ grade.avaliacao.enadeFaixa }}</td>
             <td>{{ grade.info.universidade.campus.nome }}</td>
+            <td>{{ grade.avaliacao.enadeContinuo.toFixed(2)}}</td>
+            <td>{{ grade.avaliacao.enadeFaixa }}</td>
             <td>{{ grade.info.ano.ano }}</td>
           </tr>
         </tbody>
@@ -114,6 +114,7 @@ export default {
     },
 
     grades() {
+      console.log(this.gradesByCourse);
       return _.orderBy(this.gradesByCourse, 'avaliacao.enadeContinuo', this.currentSortDirection);
     }
   },
@@ -121,8 +122,10 @@ export default {
     ...mapActions([
       'loadGradesByCourseName',
     ]),
-    compareCourses() {
 
+    compareCourses() {
+      localStorage.setItem('coursesToCompare', JSON.stringify(this.checkedUniversities));
+      this.$router.replace('comparacao');
     },
 
     verifyRoute() {

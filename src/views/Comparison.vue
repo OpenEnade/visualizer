@@ -20,6 +20,10 @@
         <Spinner />
       </div>
 
+      <div v-if="Object.keys(chartData).length > 0">
+        <Chart :courses="chartData"/>
+      </div>
+
       <div class="row" v-if="courses.length > 0">
         <div class="col-3">
           <div class="table-responsive">
@@ -70,7 +74,7 @@
           <div class="table-responsive">
             <table class="table table-responsive table-borderless">
               <tr>
-                <td>{{ item.info.universidade.campus.nome }}</td>
+                <td>{{ item.info.universidade.nome }}</td>
               </tr>
               <tr>
                 <td>{{ item.info.curso.nome }}</td>
@@ -118,17 +122,20 @@
 import PageHeader from '@/components/PageHeader.vue';
 import ApiService from '@/services/ApiService.js';
 import Spinner from '@/components/Spinner.vue';
+import Chart from "../components/Chart";
 import { mapState } from 'vuex';
 
 export default {
   name: 'Comparison',
   components: {
     PageHeader,
-    Spinner
+    Spinner,
+    Chart
   },
   data() {
     return {
       courses: [],
+      chartData: {},
     };
   },
   computed: {
@@ -143,17 +150,33 @@ export default {
   },
 
   created() {
-    console.log('oi');
-    return ApiService.getUniversityGradesByYear(1, 2017)
-    .then(res => this.courses = res)
-    .then(() =>  {
-      this.courses = [this.courses[0], this.courses[1]];
-      console.log(this.courses);
-    })
+    this.courses = JSON.parse(localStorage.getItem('coursesToCompare'));
+    console.log(this.courses);
+    // return ApiService.getUniversityGradesByYear(21, 2017)
+    // .then(res => this.courses = res)
+    // .then(() =>  {
+    //   this.courses = [this.courses[0], this.courses[1]];
+    //   console.log(this.courses);
+    //   this.chartData = this.getChartData(this.courses);
+    // })
+    this.chartData = this.getChartData(this.courses);
   },
 
   methods: {
 
+     getChartData(courses) {
+      const newChartData = {};
+      for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
+          var course = courses[courseIndex];
+          var university = course.info.universidade.nome;
+          var year = course.info.ano.ano;
+          var courseNote = parseFloat(course.avaliacao.enadeContinuo.toFixed(2));
+          var yearsJson = {};
+          yearsJson[year] = courseNote;
+          newChartData[university] = yearsJson;
+      }
+      return newChartData;
+  },
   },
 };
 </script>
