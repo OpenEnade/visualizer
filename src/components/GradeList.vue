@@ -31,7 +31,6 @@
             v-for="(grade, index) in grades"
             :key="index"
             v-model="currentGrade">
-
             <input
             v-b-tooltip.hover
             :value="grade"
@@ -122,6 +121,7 @@ export default {
   methods: {
     ...mapActions([
       'loadGradesByCourseName',
+      'persistGrade'
     ]),
 
     compareCourses() {
@@ -131,19 +131,22 @@ export default {
 
     verifyRoute() {
       if (!this.courseName) {
-          this.$router.push('cursos');
+        this.$router.push('cursos');
       }
     },
     loadGrades() {
       this.loadGradesByCourseName(this.courseName);
     },
-    detailCourse(course) {
-      console.log(course);
-      localStorage.setItem('courseToDetail', JSON.stringify(course))
-      this.$router.push('detalhes');
-    },
+
+    detailCourse(grade) {      
+      
+      if (grade) {
+        this.persistGrade(grade);
+        this.$router.push('detalhes');        
+      }      
+    },    
   },
-  updated () {
+  updated() {
     this.verifyRoute();
   },
   created() {

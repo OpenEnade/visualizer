@@ -1,4 +1,5 @@
 import ApiService from '@/services/ApiService.js';
+
 export default {
 		async loadCourses({ commit }) {
 			try {
@@ -24,6 +25,9 @@ export default {
 		},
 		persistCourseName({ commit }, courseName) {
 			commit('PERSIST_COURSE_NAME', courseName);
+		},
+		persistGrade( { commit }, grade ) {
+			commit('PERSIST_GRADE', grade);
 		},
 		filterByStateAction({ commit }, stateName) {
 			commit('UPDATE_BY_STATE', stateName);
