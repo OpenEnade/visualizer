@@ -6,7 +6,7 @@ export default {
     state.currentCourseName = courseName;
   },
   [type.PERSIST_GRADE] : (state, grade) => {
-    state.currentCourseGrade = grade;    
+    state.currentCourseGrade = grade;
   },
   [type.PERSIST_GRADE_FOR_DETAIL] : (state, detailGradeCourse) => {
     state.currentCourseGradeDetail = detailGradeCourse;
@@ -19,7 +19,9 @@ export default {
   },
   [type.LOAD_GRADES_COURSE] : (state, payload) => {
     state.gradesByCourse = payload;
-    state.gradesByCourseOnTable = payload;
+    state.gradesByCourseOnTable = payload.filter(
+      grade => grade.info.ano.ano == 2017
+    );
   },
   [type.LOAD_STATES]: (state) => {
     state.stateList = _.uniq(state.gradesByCourse.map((grade => grade.info.universidade.campus.estado.sigla))).sort();
@@ -55,9 +57,10 @@ export default {
     state.gradesByCourseOnTable = state.gradesByCourse.filter(grade => grade.info.universidade.categoriaAdmin === categoryName);
   },
   [type.UPDATE_BY_MODALITY]: (state, modality) => {
-    state.gradesByCourseOnTable = state.gradesByCourse.filter(grade => grade.info.curso.modalidade);
+    state.gradesByCourseOnTable = state.gradesByCourse.filter(grade => grade.info.curso.modalidade === modality);
   },
   [type.UPDATE_BY_YEAR]: (state, year) => {
-    state.gradesByCourseOnTable = state.gradesByCourse.filter(grade => grade.info.ano.ano);
+
+    state.gradesByCourseOnTable = state.gradesByCourse.filter(grade => grade.info.ano.ano  == year);
   },
-};
+ };

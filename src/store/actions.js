@@ -19,6 +19,7 @@ export default {
 				commit('LOAD_CATEGORIES');
 				commit('LOAD_MODALITIES');
 				commit('LOAD_YEARS');
+
 			} catch (err) {
 				console.error(err);
 			}
@@ -57,5 +58,9 @@ export default {
 		},
 		filterByYearAction( { commit }, year ) {
 			commit('UPDATE_BY_YEAR', year);
-		}
+		// },
+		// filterByDefault( { commit } ) {
+		// 	commit('FILTER_BY_DEFAULT');
+		//
+	},
 };
