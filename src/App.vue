@@ -26,8 +26,7 @@ export default {
     ]),
   },
   created() {
-    this.loadCourses();
-    console.log(process.env.VUE_APP_BASE_URL);
+    this.loadCourses();    
   },
 };
 </script>
