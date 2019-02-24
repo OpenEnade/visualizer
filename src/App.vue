@@ -5,7 +5,7 @@
     <br>
     <br>
     <br>
-    <FooterC />
+    <FooterC />    
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
   },
   created() {
     this.loadCourses();
+    console.log(process.env.VUE_APP_BASE_URL);
   },
 };
 </script>

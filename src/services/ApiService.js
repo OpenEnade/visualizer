@@ -1,8 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import axios from 'axios';
 
-//axios.defaults.baseURL = 'https://open-enade-api.herokuapp.com/api';
-axios.defaults.baseURL = 'http://localhost:8080/api';
+axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 axios.defaults.withCredentials = false;
 
 export default {
