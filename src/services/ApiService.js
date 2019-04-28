@@ -1,68 +1,46 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://open-enade-api.herokuapp.com/api';
-// axios.defaults.baseURL = 'http://localhost:8080/api';
+axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 axios.defaults.withCredentials = false;
 
 export default {
-  getNotas() {
+  getGradesByName(courseName) {
+    return axios.get('/notas')
+      .then(res => res.data)
+      .then((res) => {
+        const notas = res.filter(element => element.info.curso.nome == courseName);
+
+        return notas;
+      });
+  },
+  getGrades() {
     return axios.get('/notas').then(response => response.data);
   },
   getCourses() {
     return axios.get('/cursos')
       .then(response => response.data);
   },
-
   getUniversitiesByCourse(courseName) {
     return axios.get(`/universidades/cursos?nomeCurso=${courseName}`)
       .then(response => response.data);
+  },
+
+  getGradesByCourse(areaCode) {
+    return axios.get(`/notas/filterby?codigoArea=${areaCode}`)
+    .then( response => response.data);
   },
 
   getUniversityGradesByYear(universityCode, year) {
     return axios.get(`/notas/filterby?universidade=${universityCode}&beginAno=${year}&endAno=${year}`)
       .then(response => response.data);
   },
-  async getCourseNotes(courses) {
-    const result = [];
-    const year = '2017';
-    for (let i = 0; i < courses.length; i++) {
-      const university = courses[i];
-      const categoria = university.categoriaAdmin.toUpperCase();
-      const universidade = university.codigoIES;
-      const municipio = university.campus.codigo;
-      const estado = university.campus.estado.sigla;
-      const regiao = university.campus.estado.regiao.sigla;
-      for (let j = 0; j < university.cursos.length; j++) {
-        const newCourse = {
-          universityName: university.nome,
-          category: categoria,
-        };
-        const course = university.cursos[j];
-        const courseCode = course.codigoCurso;
-        let modalidade = course.modalidade.trim();
-        newCourse.modality = modalidade;
-        modalidade = modalidade.replace(/\s{1,}/g, '_').toUpperCase();
-        modalidade = modalidade.replace(/Ç/g, 'C');
-        modalidade = modalidade.replace(/Ã/g, 'A');
-        modalidade = modalidade.replace(/À/g, 'A');
-        modalidade = modalidade.replace(/Â/g, 'A');
-        const notesResponse = await axios.get(`/notas/filterby?beginAno=${year}&categoria=${categoria}&curso=${courseCode}&endAno=${year}&estado=${estado}&modalidade=${modalidade}&municipio=${municipio}&regiao=${regiao}&universidade=${universidade}`);
-        const notes = notesResponse.data[0].avaliacao;
-        newCourse.enadeConcept = notes.enadeFaixa;
-        newCourse.continuousConcept = parseFloat(notes.enadeContinuo.toFixed(2));
-        newCourse.subscribed = notes.concluintesInscritos;
-        newCourse.participants = notes.concluintesParticipantes;
-        newCourse.grossScore = parseFloat(notes.notaBrutaCE.toFixed(2));
-        newCourse.standardScore = parseFloat(notes.notaPadronizadaCE.toFixed(2));
-        newCourse.average = parseFloat(notes.notaPadronizadaFG.toFixed(2));
-        newCourse.courseCode = notesResponse.data[0].info.curso.codigoCurso;
-        result.push(newCourse);
-      }
-    }
-    return result;
-  },
   getModalities() {
     return axios.get('/modalidades');
-  }
+  },
+  
+  getCourseNotes(areaCode, universityCode, countyCode) {
+    return axios.get(`/notas/filterby?codigoArea=${areaCode}&universidade=${universityCode}&municipio=${countyCode}`)
+      .then(response => response.data);
+  },
 };

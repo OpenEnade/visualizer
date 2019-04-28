@@ -5,7 +5,7 @@
     <br>
     <br>
     <br>
-    <FooterC />
+    <FooterC />    
   </div>
 </template>
 
@@ -20,14 +20,14 @@ export default {
     Navbar,
     FooterC,
   },
-  methods: {    
+  methods: {
     ...mapActions([
-      'loadCourses'
+      'loadCourses',
     ]),
   },
-  created: function () {
-    this.loadCourses();
-  }
+  created() {
+    this.loadCourses();    
+  },
 };
 </script>
 

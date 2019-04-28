@@ -1,22 +1,22 @@
 <template>
   <div class="dashboard animated fadeIn slow">
-    <PageHeader description="Lista de universidades associadas ao curso selecionado" />      
+    <PageHeader description="Lista de notas associadas ao curso selecionado" />
     <div class="list-university">
-      <ListUniversity />
+      <GradeList />
     </div>
   </div>
 </template>
 
 <script>
 
-import ListUniversity from '@/components/ListUniversity.vue';
+import GradeList from '@/components/GradeList.vue';
 import PageHeader from '@/components/PageHeader.vue';
 import ApiService from '@/services/ApiService.js';
 
 export default {
   name: 'Dashboard',
-  components: {    
-    ListUniversity,
+  components: {
+    GradeList,
     PageHeader,
   },
 };
@@ -29,4 +29,3 @@ export default {
   margin-right: 5%;
 }
 </style>
-

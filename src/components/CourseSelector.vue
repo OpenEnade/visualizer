@@ -6,7 +6,7 @@
         <div class="form-group col-sm-3 col-md-3 col-lg-3" />
         <div class="form-group col-sm-6 col-md-6 col-lg-6 text-center">
           <label for="course-selection" class="course-label">Cursos</label>
-          <select id="course" v-model="course" class="form-control">
+          <select id="courseName" v-model="courseName" class="form-control">
             <option disabled selected value="">Escolha um curso</option>
             <option v-for="curso in courses" :key="curso.codigoCurso" :value="curso.nome">
               {{ curso.nome }}
@@ -24,18 +24,18 @@
 </template>
 
 <script lang="js">
-import { mapState , mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'CourseSelector',
   data() {
     return {
-      course: '',
+      courseName: '',
     };
   },
   computed: {
     ...mapState({
-      courses: 'coursesValids'
+      courses: 'coursesValids',
     }),
   },
   created() {},
@@ -44,12 +44,12 @@ export default {
 
   methods: {
     ...mapActions([
-      'loadNotas'
-      ]),
-    searchCourse() {
-      if (this.course) {
-        localStorage.setItem('curso', this.course);
-        this.$router.replace('universidades');
+      'persistCourseName',
+    ]),
+    searchCourse() {      
+      if (this.courseName) {
+        this.persistCourseName(this.courseName);
+        this.$router.replace('notas');
       }
     },
   },

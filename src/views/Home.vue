@@ -15,7 +15,7 @@
             <router-link
               tag="button"
               class="btn btn-primary btn-xl"
-              to="cursos"> Pesquise sobre um curso!
+              :to="{name:'cursos'}"> Pesquise sobre um curso!
             </router-link>
           </div>
         </div>

@@ -1,96 +1,191 @@
 <template>
-
   <section class="course-detail animated fadeIn slow">
     <br>
-    <h1>{{ course }}</h1>
-    <h4 style="margin-left: 4px">Universidade Federal de Campina Grande</h4>
+    <h1 v-if="currentCourseGrade">{{ currentCourseGrade.info.curso.nome }}</h1>
+    <h1 v-else> {{ errorCourseMessage }} </h1>
+    <h4 v-if="currentCourseGrade"> {{ currentCourseGrade.info.universidade.nome }} </h4>
+    <h4 v-else> {{ errorUniversityMessage }} </h4>
     <hr>
     <h5 class="detail-header">DADOS DO CURSO</h5>
     <br>
     <div>
-      <table class="table table-borderless">
+      <div v-if="Object.keys(chartData).length > 0">
+        <Chart :courses="chartData"/>
+      </div>
+      <div v-else> 
+        <Spinner />
+      </div>
+      <hr>
+      <br>
+      <table class="table table-bordless ">
         <tbody>
-          <tr>
-            <th>Ano</th>
-            <td>2018</td>
-            <th>Média Geral</th>
-            <td>100</td>
-          </tr>
-          <tr>
+          <tr > 
             <th>Conceito ENADE</th>
-            <td>5.0</td>
-            <th>Conceito contínuo</th>
-            <td>5.0</td>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.avaliacao.enadeFaixa }}</td>
+            <td v-else> {{ integerErrorMessage }} </td> 
+           
+            <th>Conceito Contínuo</th>
+            <td v-if="currentCourseGrade"> {{ 
+              currentCourseGrade.avaliacao.enadeContinuo ? currentCourseGrade.avaliacao.enadeContinuo.toFixed(2) : ''
+              }}</td>
+            <td v-else> {{ floatErrorMessage }} </td>              
           </tr>
+          <tr> 
+            <th>Nota Bruta Conteúdo Específico</th>
+            <td v-if="currentCourseGrade">{{ 
+              currentCourseGrade.avaliacao.notaBrutaCE ? currentCourseGrade.avaliacao.notaBrutaCE.toFixed(2) : ''
+            }}</td>
+            <td v-else> {{ floatErrorMessage }} </td> 
+          
+            <th>Nota Padronizada Conteúdo Específico</th>
+            <td v-if="currentCourseGrade"> {{ 
+              currentCourseGrade.avaliacao.notaPadronizadaCE ?
+              currentCourseGrade.avaliacao.notaPadronizadaCE.toFixed(2) : ''
+
+            }}</td>
+            <td v-else> {{ floatErrorMessage }} </td>  
+          </tr>
+          <tr> 
+            <th>Nota Bruta Formação Geral</th>
+            <td v-if="currentCourseGrade">{{ 
+              currentCourseGrade.avaliacao.notaBrutaFG ? currentCourseGrade.avaliacao.notaBrutaFG.toFixed(2) : ''
+            }}</td>
+            <td v-else> {{ floatErrorMessage }} </td> 
+          
+            <th>Nota Padronizada Formação Geral</th>
+            <td v-if="currentCourseGrade"> {{ 
+              currentCourseGrade.avaliacao.notaPadronizadaFG ?
+              currentCourseGrade.avaliacao.notaPadronizadaFG.toFixed(2) : ''
+
+            }}</td>
+            <td v-else> {{ floatErrorMessage }} </td>  
+          </tr>
+          <tr>
+            <th>Concluintes Inscritos</th>
+            <td v-if="currentCourseGrade"> {{ currentCourseGrade.avaliacao.concluintesInscritos }}</td>
+            <td v-else> {{ integerErrorMessage }} </td>
+          
+            <th>Concluintes Participantes </th>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.avaliacao.concluintesParticipantes }}</td>
+            <td v-else> {{ integerErrorMessage }} </td>           
+          </tr>  
           <tr>
             <th>Modalidade de Ensino</th>
-            <td>Presencial</td>
-            <th>Categoria Administrativa</th>
-            <td>Federal</td>
-          </tr>
+            <td v-if="currentCourseGrade"> {{ currentCourseGrade.info.curso.modalidade }}</td>          
+            <td v-else> {{ errorCourseMessage }} </td>
+          
+            <th>Categoria Administrativa</th>             
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.info.universidade.categoriaAdmin }}</td>
+            <td v-else> {{ errorCourseMessage }}  </td>
+          </tr> 
           <tr>
-            <th>Concluintes inscritos</th>
-            <td>90</td>
-            <th>Concluintes participantes</th>
-            <td>90</td>
+            <th>Ano</th>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.info.ano.ano }}</td>
+            <td v-else> {{ integerErrorMessage }} </td>
+
+            <th>Município</th>
+            <td v-if="currentCourseGrade"> {{ currentCourseGrade.info.universidade.campus.nome }}</td>
+            <td v-else> {{ errorCourseMessage }} </td>                    
           </tr>
+
           <tr>
-            <th>Nota bruta</th>
-            <td>99.90</td>
-            <th>Nota padronizada</th>
-            <td>99.99</td>
-          </tr>
+            <th>Estado</th>
+            <td v-if="currentCourseGrade">{{ currentCourseGrade.info.universidade.campus.estado.sigla }}</td>
+            <td v-else> {{ integerErrorMessage }} </td>
+
+            <th>Região</th>
+            <td v-if="currentCourseGrade"> {{ currentCourseGrade.info.universidade.campus.estado.regiao.sigla  }}</td>
+            <td v-else> {{ errorCourseMessage }} </td>                    
+          </tr>               
+           
         </tbody>
       </table>
     </div>
-
-    <Chart :courses="courses" />
   </section>
 
 </template>
 
 <script>
-import Chart from './Chart';
+import Chart from '@/components/Chart.vue';
+import Spinner from "@/components/Spinner.vue";
+import ApiService from '@/services/ApiService.js';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
-  name: 'CourseDetail',
-  components: { Chart },
+  name: "CourseDetail",
+  components: {
+    Chart,
+    Spinner
+  },
   data() {
     return {
-      course: 'Ciência da Computação',
-      courses: {
-        UEPB: {
-          2014: 1000,
-          2015: 1170,
-          2016: 660,
-          2017: 1030,
-          2018: 2000,
-        },
-        UFPB: {
-          2014: 400,
-          2015: 460,
-          2016: 1120,
-          2017: 540,
-          2018: 100,
-        },
-        UFCG: {
-          2014: 200,
-          2015: 250,
-          2016: 300,
-          2017: 350,
-          2018: 400,
-        },
-      },
+      integerErrorMessage: 0,
+      floatErrorMessage: 0.0,
+      errorCourseMessage: 'Nenhum curso selecionado.',
+      errorUniversityMessage: 'Nenhuma universidade selecionada',
+      chartData: {},
     };
   },
-
-  created() {
-    this.course = localStorage.getItem('curso');
+  computed: {
+    ...mapState([
+      'currentCourseGrade',
+      'currentCourseGradeDetail',
+    ]),
   },
+  created() { 
+    this.verifyRoute();
+    
+    this.initChartData(this.currentCourseGradeDetail);
+  },
+  methods: {
+    verifyRoute() {
+      if (!this.currentCourseGrade) {
+        this.$router.push('notas');
+      }
+    },
+    async initChartData(courses) {
+      this.chartData = await this.getChartData(courses);
+    },
+
+    async getChartData(courses) {
+      const newChartData = {};
+      for (let courseIndex = 0; courseIndex < courses.length; courseIndex++) {
+        const course = courses[courseIndex];
+        const areaCode = course.info.curso.codigoArea;
+        const universityCode = course.info.universidade.codigoIES;
+        const countyCode = course.info.universidade.campus.codigo;
+        const courseNotes = await ApiService.getCourseNotes(areaCode, universityCode, countyCode);
+        for (let noteIndex = 0; noteIndex < courseNotes.length; noteIndex++) {
+          const note = courseNotes[noteIndex];
+          const university = note.info.universidade;
+          const universityName = `${university.nome} - ${university.campus.nome}`;
+          const year = note.info.ano.ano;
+          const enadeNote = note.avaliacao.enadeContinuo.toFixed(2);
+          if (newChartData[universityName]) {
+            newChartData[universityName][year] = parseFloat(enadeNote);
+          } else {
+            newChartData[universityName] = {};
+            newChartData[universityName][year] = parseFloat(enadeNote);
+          }
+        }
+      }
+      return newChartData;
+    }
+  },  
+  updated() {
+    this.verifyRoute();
+  }
 };
 </script>
 
 <style scoped>
+tr {
+  text-align: center;
+
+}
+h4 {
+  margin-left: 4px;
+}
 .course-detail {
   margin-left: 5%;
   margin-right: 5%;
