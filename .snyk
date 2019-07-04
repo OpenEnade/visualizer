@@ -1,0 +1,44 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - bootstrap-vue > opencollective > inquirer > lodash:
+        patched: '2019-07-04T03:02:53.397Z'
+    - lodash:
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@babel/core > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - eslint > table > lodash:
+        patched: '2019-07-04T03:02:53.397Z'
+    - eslint > inquirer > lodash:
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@vue/cli > inquirer > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - eslint-plugin-vue > vue-eslint-parser > lodash:
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@babel/core > @babel/types > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@babel/core > @babel/template > @babel/types > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - eslint > lodash:
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@vue/cli > @vue/cli-ui > lowdb > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@vue/cli > request-promise-native > request-promise-core > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/generator > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@vue/cli > @vue/cli-shared-utils > request-promise-native > request-promise-core > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@vue/cli > @vue/cli-ui > @vue/cli-shared-utils > request-promise-native > request-promise-core > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@vue/cli > @vue/cli-ui > vue-cli-plugin-apollo > apollo-server-express > apollo-server-core > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/helper-function-name > @babel/types > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
+    - '@vue/cli > @vue/cli-ui > vue-cli-plugin-apollo > apollo-server-express > apollo-server-core > apollo-engine-reporting > lodash':
+        patched: '2019-07-04T03:02:53.397Z'
