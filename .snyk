@@ -42,3 +42,8 @@ patch:
         patched: '2019-07-04T03:02:53.397Z'
     - '@vue/cli > @vue/cli-ui > vue-cli-plugin-apollo > apollo-server-express > apollo-server-core > apollo-engine-reporting > lodash':
         patched: '2019-07-04T03:02:53.397Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-04T03:01:37.091Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-04T03:01:37.091Z'
