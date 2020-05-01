@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.5
+version: v1.14.1
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -60,3 +60,62 @@ patch:
         patched: '2019-09-29T03:00:50.825Z'
     - snyk > snyk-go-plugin > graphlib > lodash:
         patched: '2019-09-29T03:00:50.825Z'
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@babel/core > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - eslint > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@babel/core > @babel/traverse > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@vue/cli > inquirer > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - eslint > inquirer > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - eslint > table > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - eslint-plugin-vue > vue-eslint-parser > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@vue/cli > request-promise-native > request-promise-core > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@vue/cli > @vue/cli-ui > lowdb > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/generator > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@vue/cli > @vue/cli-shared-utils > request-promise-native > request-promise-core > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@vue/cli > @vue/cli-ui > @vue/cli-shared-utils > request-promise-native > request-promise-core > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@vue/cli > @vue/cli-ui > vue-cli-plugin-apollo > apollo-server-express > apollo-server-core > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - '@vue/cli > @vue/cli-ui > vue-cli-plugin-apollo > apollo-server-express > apollo-server-core > apollo-engine-reporting > lodash':
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > inquirer > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > snyk-config > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > snyk-mvn-plugin > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
+    - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2020-05-01T03:00:52.051Z'
