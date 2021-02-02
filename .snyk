@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.5
+version: v1.19.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -60,3 +60,26 @@ patch:
         patched: '2019-09-29T03:00:50.825Z'
     - snyk > snyk-go-plugin > graphlib > lodash:
         patched: '2019-09-29T03:00:50.825Z'
+  SNYK-JS-LODASH-567746:
+    - '@vue/cli > jscodeshift > @babel/core > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > jscodeshift > @babel/preset-env > @babel/plugin-transform-block-scoping > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > jscodeshift > @babel/preset-env > @babel/plugin-transform-modules-umd > @babel/helper-module-transforms > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > @vue/cli-ui > vue-cli-plugin-apollo > apollo > cli-ux > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > jscodeshift > @babel/preset-env > @babel/plugin-transform-parameters > @babel/helper-call-delegate > @babel/traverse > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > @vue/cli-ui > vue-cli-plugin-apollo > apollo > @oclif/plugin-plugins > cli-ux > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > @vue/cli-ui > vue-cli-plugin-apollo > apollo > gaze > globule > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > jscodeshift > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > jscodeshift > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/generator > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > jscodeshift > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
+    - '@vue/cli > jscodeshift > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash':
+        patched: '2021-02-02T03:03:52.339Z'
