@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "@babel/core": "^7.1.6",
-    "@vue/cli": "^4.0.0",
+    "@vue/cli": "^5.0.1",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0",
     "eslint": "^5.9.0",
     "eslint-plugin-vue": "^4.7.1",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.21",
     "popper.js": "^1.14.5",
     "vue": "^2.5.17",
@@ -26,7 +26,7 @@
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "webpack": "^5.0.0",
-    "snyk": "^1.440.4"
+    "snyk": "^1.685.0"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.0.0-beta.53",
